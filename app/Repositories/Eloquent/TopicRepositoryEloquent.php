@@ -3,7 +3,6 @@
 namespace App\Repositories\Eloquent;
 
 use App\Presenters\TopicPresenter;
-use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\TopicRepository;
 use App\Models\Topic;

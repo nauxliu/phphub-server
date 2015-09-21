@@ -2,14 +2,25 @@
 
 namespace App\Models;
 
+use App\Presenters\UserPresenter;
 use Illuminate\Database\Eloquent\Model;
-use Prettus\Repository\Contracts\Transformable;
-use Prettus\Repository\Traits\TransformableTrait;
+use Prettus\Repository\Contracts\PresenterInterface;
+use Prettus\Repository\Traits\PresentableTrait;
 
-class User extends Model implements Transformable
+class User extends Model implements PresenterInterface
 {
-    use TransformableTrait;
+    use PresentableTrait;
 
     protected $fillable = [];
 
+    /**
+     * Prepare data to present
+     *
+     * @param $data
+     * @return mixed
+     */
+    public function present($data)
+    {
+        return UserPresenter::class;
+    }
 }
