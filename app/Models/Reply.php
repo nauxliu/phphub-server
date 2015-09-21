@@ -12,6 +12,16 @@ class Reply extends Model implements PresenterInterface
     use PresentableTrait;
     protected $fillable = [];
 
+    public function topic()
+    {
+        return $this->belongsTo(Reply::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     /**
      * Prepare data to present
      *
