@@ -150,6 +150,7 @@ return [
          * Third Party Service Providers...
          */
         Dingo\Api\Provider\LaravelServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
 
     ],
 

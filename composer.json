@@ -9,6 +9,7 @@
         "laravel/framework": "5.1.*",
         "dingo/api": "1.0.x@dev",
         "lucadegasperi/oauth2-server-laravel": "^5.0",
+        "prettus/l5-repository": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
