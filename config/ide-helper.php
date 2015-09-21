@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 return array(
 
@@ -11,8 +12,8 @@ return array(
     |
     */
 
-    'filename'  => '_ide_helper',
-    'format'    => 'php',
+    'filename' => '_ide_helper',
+    'format'   => 'php',
 
     /*
     |--------------------------------------------------------------------------
@@ -44,7 +45,6 @@ return array(
         'app',
     ),
 
-
     /*
     |--------------------------------------------------------------------------
     | Extra classes
@@ -56,7 +56,7 @@ return array(
 
     'extra' => array(
         'Eloquent' => array('Illuminate\Database\Eloquent\Builder', 'Illuminate\Database\Query\Builder'),
-        'Session' => array('Illuminate\Session\Store'),
+        'Session'  => array('Illuminate\Session\Store'),
     ),
 
     'magic' => array(
@@ -69,9 +69,9 @@ return array(
             'critical'  => 'Monolog\Logger::addCritical',
             'alert'     => 'Monolog\Logger::addAlert',
             'emergency' => 'Monolog\Logger::addEmergency',
-        )
+        ),
     ),
-    
+
     /*
     |--------------------------------------------------------------------------
     | Interface implementations
@@ -81,7 +81,7 @@ return array(
     | are detected by the helpers, others can be listed below.
     |
     */
-    
+
     'interfaces' => array(
         '\Illuminate\Contracts\Auth\Authenticatable' => config('auth.model', 'App\User'),
     ),
