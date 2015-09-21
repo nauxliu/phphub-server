@@ -5,11 +5,9 @@ namespace App\Transformers;
 use App\Transformers\Traits\HelpersTrait;
 use App\Transformers\Traits\IncludeUserTrait;
 use League\Fractal\TransformerAbstract;
-use App\Models\Reply;
 
 /**
- * Class ReplyTransformer
- * @package namespace App\Transformers;
+ * Class ReplyTransformer.
  */
 class ReplyTransformer extends TransformerAbstract
 {
@@ -23,7 +21,8 @@ class ReplyTransformer extends TransformerAbstract
     protected $availableIncludes = array('user');
 
     /**
-     * Transform the \Reply entity
+     * Transform the \Reply entity.
+     *
      * @param \Reply $model
      *
      * @return array
@@ -31,9 +30,9 @@ class ReplyTransformer extends TransformerAbstract
     public function transformData($model)
     {
         return [
-            'id'         => (int) $model->id,
+            'id' => (int) $model->id,
             'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at
+            'updated_at' => $model->updated_at,
         ];
     }
 }

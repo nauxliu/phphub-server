@@ -1,6 +1,7 @@
 <?php
+
 /**
- * RepositoryInterface.php
+ * RepositoryInterface.php.
  *
  * Part of phphub-server.
  *
@@ -23,5 +24,4 @@ use Prettus\Repository\Contracts\RepositoryInterface as PrettusRepositoryInterfa
  */
 interface RepositoryInterface extends PrettusRepositoryInterface, WithOnlyInterface
 {
-
 }

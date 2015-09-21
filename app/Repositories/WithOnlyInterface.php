@@ -1,6 +1,7 @@
 <?php
+
 /**
- * WithOnlyInterface.php
+ * WithOnlyInterface.php.
  *
  * Part of phphub-server.
  *

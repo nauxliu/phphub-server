@@ -8,13 +8,12 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\User;
 
 /**
- * Class UserRepositoryEloquent
- * @package namespace App\Repositories\Eloquent;
+ * Class UserRepositoryEloquent.
  */
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
     /**
-     * Specify Model class name
+     * Specify Model class name.
      *
      * @return string
      */
@@ -24,7 +23,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
 
     /**
-     * Boot up the repository, pushing criteria
+     * Boot up the repository, pushing criteria.
      */
     public function boot()
     {

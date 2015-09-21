@@ -6,16 +6,14 @@ use App\Transformers\TopicTransformer;
 use Prettus\Repository\Presenter\FractalPresenter;
 
 /**
- * Class TopicPresenter
- *
- * @package namespace App\Presenters;
+ * Class TopicPresenter.
  */
 class TopicPresenter extends FractalPresenter
 {
     use HelpersTrait;
 
     /**
-     * Transformer
+     * Transformer.
      *
      * @return \League\Fractal\TransformerAbstract
      */

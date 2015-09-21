@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-
 /**
  * Interface ReplyRepository.
  */
