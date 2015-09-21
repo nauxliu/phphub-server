@@ -9,28 +9,11 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Repositories\Eloquent\Traits\AutoWithTrait;
+use App\Repositories\Eloquent\Traits\WIthOnlyTrait;
 use Prettus\Repository\Eloquent\BaseRepository as Repository;
 
 abstract class BaseRepository extends Repository
 {
-    /**
-     * Load relations and specific columns.
-     *
-     * @param array|string $relations
-     * @param null         $columns
-     *
-     * @return $this
-     */
-    public function withOnly($relations, $columns = null)
-    {
-        if (!$columns) {
-            $this->model = $this->model->with($relations);
-        } else {
-            $this->model = $this->model->with([$relations => function ($query) use ($columns) {
-                $query->select(array_merge(['id'], $columns));
-            }]);
-        }
-
-        return $this;
-    }
+    use WithOnlyTrait, AutoWithTrait;
 }

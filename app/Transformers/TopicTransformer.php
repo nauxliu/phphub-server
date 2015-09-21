@@ -54,11 +54,6 @@ class TopicTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeAuthor(Topic $model)
-    {
-        return $this->includeUser($model);
-    }
-
     public function includeAuthor($model){
         return $this->includeUser($model);
     }

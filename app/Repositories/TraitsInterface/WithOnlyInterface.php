@@ -15,7 +15,7 @@
  * @link      http://overtrue.me
  */
 
-namespace App\Repositories;
+namespace App\Repositories\TraitsInterface;
 
 /**
  * Interface WithOnlyInterface.

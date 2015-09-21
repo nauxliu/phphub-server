@@ -11,6 +11,7 @@ class User extends Model implements PresenterInterface
 {
     use PresentableTrait;
 
+    public static $includable = ['id', 'name', 'avatar'];
     protected $fillable = [];
 
     /**

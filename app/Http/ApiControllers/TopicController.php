@@ -3,6 +3,7 @@
 namespace App\Http\ApiControllers;
 
 use App\Repositories\TopicRepositoryInterface;
+use App\User;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
@@ -29,13 +30,15 @@ class TopicController extends Controller
      */
     public function index()
     {
+        $this->repository->addIncludable('user', ['name'], User::$includable, 'user_id');
+        $this->repository->addIncludable('last_reply_user', ['name', 'avatar'], User::$includable, 'last_reply_user_id');
+
         return $this->repository
-            ->withOnly('user', ['name', 'avatar'])
-            ->withOnly('lastReplyUser', ['name'])
-            ->paginate(15, [
-                'id', 'user_id', 'last_reply_user_id', 'title',
-                'is_excellent', 'reply_count', 'updated_at',
-            ]);
+            ->autoWith()
+            ->autoWithRootColumns([
+                'id', 'title', 'is_excellent', 'reply_count', 'updated_at',
+            ])
+            ->paginate(15);
     }
 
     /**

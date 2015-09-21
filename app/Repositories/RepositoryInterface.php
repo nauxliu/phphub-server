@@ -17,11 +17,17 @@
 
 namespace App\Repositories;
 
+use App\Repositories\Eloquent\Traits\AutoWithTrait;
+use App\Repositories\TraitsInterface\AutoWIthInterface;
 use Prettus\Repository\Contracts\RepositoryInterface as PrettusRepositoryInterface;
+use App\Repositories\TraitsInterface\WithOnlyInterface;
 
 /**
  * Interface RepositoryInterface.
  */
-interface RepositoryInterface extends PrettusRepositoryInterface, WithOnlyInterface
+interface RepositoryInterface extends PrettusRepositoryInterface,
+    WithOnlyInterface,
+    AutoWIthInterface
 {
+
 }
