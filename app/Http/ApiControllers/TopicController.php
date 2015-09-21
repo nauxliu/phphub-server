@@ -33,8 +33,8 @@ class TopicController extends Controller
      */
     public function index()
     {
-        return $this->repository->paginate(15,
-            ['id', 'title', 'is_excellent', 'reply_count', 'created_at', 'updated_at']);
+        return $this->repository->with('user')->paginate(15,
+            ['id', 'user_id','title', 'is_excellent', 'reply_count', 'created_at', 'updated_at']);
     }
 
     /**

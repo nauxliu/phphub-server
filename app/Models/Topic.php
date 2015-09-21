@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\PresenterInterface;
 use Prettus\Repository\Traits\PresentableTrait;
 
-class Topic extends Model implements  PresenterInterface
+class Topic extends Model implements PresenterInterface
 {
     use PresentableTrait;
 
     protected $fillable = [];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Prepare data to present

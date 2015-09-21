@@ -11,6 +11,19 @@ use App\Models\Topic;
  */
 class TopicTransformer extends TransformerAbstract
 {
+    /**
+     * Resources that can be included if requested.
+     *
+     * @var array
+     */
+    protected $availableIncludes = array('author');
+
+    /**
+     * Include resources without needing it to be requested.
+     *
+     * @var array
+     */
+    protected $defaultIncludes = array();
 
     /**
      * Transform the \Topic entity
@@ -34,5 +47,9 @@ class TopicTransformer extends TransformerAbstract
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ], array_keys($model->toArray()));
+    }
+
+    public function includeAuthor(Topic $model){
+        return $this->item($model->user, new UserTransformer());
     }
 }
