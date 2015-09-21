@@ -1,6 +1,8 @@
 <?php
 /**
  * PHP-CS-fixer configuration.
+ *
+ * https://github.com/FriendsOfPHP/PHP-CS-Fixer
  */
 
 $finder = Symfony\CS\Finder\DefaultFinder::create()
