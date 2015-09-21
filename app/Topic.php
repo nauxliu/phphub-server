@@ -1,16 +1,27 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
-use App\Presenters\ReplyPresenter;
+use App\Presenters\TopicPresenter;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\PresenterInterface;
 use Prettus\Repository\Traits\PresentableTrait;
 
-class Reply extends Model implements PresenterInterface
+class Topic extends Model implements PresenterInterface
 {
     use PresentableTrait;
+
     protected $fillable = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function lastReplyUser()
+    {
+        return $this->belongsTo(User::class, 'last_reply_user_id');
+    }
 
     /**
      * Prepare data to present
@@ -20,6 +31,6 @@ class Reply extends Model implements PresenterInterface
      */
     public function present($data)
     {
-        return ReplyPresenter::class;
+        return TopicPresenter::class;
     }
 }

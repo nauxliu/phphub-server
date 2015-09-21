@@ -3,15 +3,15 @@
 namespace App\Repositories\Eloquent;
 
 use App\Presenters\ReplyPresenter;
+use App\Repositories\ReplyRepositoryInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\ReplyRepository;
-use App\Models\Reply;
+use App\Reply;
 
 /**
  * Class ReplyRepositoryEloquent
  * @package namespace App\Repositories\Eloquent;
  */
-class ReplyRepositoryEloquent extends BaseRepository implements ReplyRepository
+class ReplyRepositoryEloquent extends BaseRepository implements ReplyRepositoryInterface
 {
     /**
      * Specify Model class name
