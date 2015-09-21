@@ -5,7 +5,6 @@ namespace App\Transformers;
 use App\Transformers\Traits\HelpersTrait;
 use App\Transformers\Traits\IncludeUserTrait;
 use League\Fractal\TransformerAbstract;
-use App\Models\Reply;
 
 /**
  * Class ReplyTransformer.
@@ -31,7 +30,7 @@ class ReplyTransformer extends TransformerAbstract
     public function transformData($model)
     {
         return [
-            'id'         => (int) $model->id,
+            'id' => (int) $model->id,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at,
         ];

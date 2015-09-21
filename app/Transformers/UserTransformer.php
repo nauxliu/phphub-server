@@ -4,7 +4,6 @@ namespace App\Transformers;
 
 use App\Transformers\Traits\HelpersTrait;
 use League\Fractal\TransformerAbstract;
-use App\Models\User;
 
 /**
  * Class UserTransformer.

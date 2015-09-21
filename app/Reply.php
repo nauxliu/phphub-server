@@ -14,7 +14,7 @@ class Reply extends Model implements PresenterInterface
 
     public function topic()
     {
-        return $this->belongsTo(Reply::class);
+        return $this->belongsTo(self::class);
     }
 
     public function user()

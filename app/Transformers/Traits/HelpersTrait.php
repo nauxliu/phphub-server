@@ -23,12 +23,12 @@ trait HelpersTrait
      */
     public function transform($model)
     {
-        if($model instanceof PresenterInterface){
+        if ($model instanceof PresenterInterface) {
             $presenter = app($model->present(null));
-            if (!$presenter instanceof PresenterInterface ) {
+            if (!$presenter instanceof PresenterInterface) {
                 throw new RepositoryException("Class {$presenter} must be an instance of Prettus\\Repository\\Contracts\\PresenterInterface");
             }
-            if(method_exists($presenter, 'setWrapObject')){
+            if (method_exists($presenter, 'setWrapObject')) {
                 $presenter->setWrapObject($model);
                 $model = $presenter;
             }
