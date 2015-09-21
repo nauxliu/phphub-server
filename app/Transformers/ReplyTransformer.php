@@ -28,13 +28,10 @@ class ReplyTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transformData(Reply $model)
+    public function transformData($model)
     {
         return [
             'id'         => (int) $model->id,
-
-            /* place your other model properties here */
-
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];
