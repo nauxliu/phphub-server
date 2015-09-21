@@ -2,6 +2,7 @@
 
 namespace App\Transformers;
 
+use App\Transformers\Traits\HelpersTrait;
 use League\Fractal\TransformerAbstract;
 use App\Models\User;
 
@@ -11,14 +12,14 @@ use App\Models\User;
  */
 class UserTransformer extends TransformerAbstract
 {
-
+    use HelpersTrait;
     /**
      * Transform the \User entity
      * @param \User $model
      *
      * @return array
      */
-    public function transform(User $model)
+    public function transformData(User $model)
     {
         return [
             'id'         => (int) $model->id,

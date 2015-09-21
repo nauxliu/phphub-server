@@ -2,6 +2,7 @@
 
 namespace App\Transformers;
 
+use App\Transformers\Traits\HelpersTrait;
 use League\Fractal\TransformerAbstract;
 use App\Models\Reply;
 
@@ -11,14 +12,14 @@ use App\Models\Reply;
  */
 class ReplyTransformer extends TransformerAbstract
 {
-
+    use HelpersTrait;
     /**
      * Transform the \Reply entity
      * @param \Reply $model
      *
      * @return array
      */
-    public function transform(Reply $model)
+    public function transformData(Reply $model)
     {
         return [
             'id'         => (int) $model->id,

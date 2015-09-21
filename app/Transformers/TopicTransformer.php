@@ -2,6 +2,8 @@
 
 namespace App\Transformers;
 
+use App\Transformers\Traits\HelpersTrait;
+use App\Transformers\Traits\IncludeUserTrait;
 use League\Fractal\TransformerAbstract;
 use App\Models\Topic;
 
@@ -11,6 +13,8 @@ use App\Models\Topic;
  */
 class TopicTransformer extends TransformerAbstract
 {
+    use IncludeUserTrait, HelpersTrait;
+
     /**
      * Resources that can be included if requested.
      *
@@ -30,9 +34,9 @@ class TopicTransformer extends TransformerAbstract
      * @param Topic $model
      * @return array
      */
-    public function transform(Topic $model)
+    public function transformData(Topic $model)
     {
-        return array_only([
+        return [
             'id'         => (int) $model->id,
             'title'      => $model->title,
             'body'       => $model->body,
@@ -46,10 +50,10 @@ class TopicTransformer extends TransformerAbstract
             'vote_count' => (int) $model->vote_count,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
-        ], array_keys($model->toArray()));
+        ];
     }
 
     public function includeAuthor(Topic $model){
-        return $this->item($model->user, new UserTransformer());
+        return $this->includeUser($model);
     }
 }
