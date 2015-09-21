@@ -1,9 +1,10 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: xuan
  * Date: 9/21/15
- * Time: 7:11 PM
+ * Time: 7:11 PM.
  */
 
 namespace App\Transformers\Traits;
