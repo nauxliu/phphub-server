@@ -222,7 +222,7 @@ return [
         'rootNamespace'=>'App\\',
         'paths'=>[
             'models'=>'Models',
-            'repositories'=>'Repositories',
+            'repositories'=>'Repositories\\Eloquent',
             'interfaces'=>'Repositories',
             'transformers'=>'Transformers',
             'presenters'=>'Presenters'
