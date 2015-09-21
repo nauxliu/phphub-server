@@ -11,7 +11,7 @@ use App\User;
  * Class UserRepositoryEloquent
  * @package namespace App\Repositories\Eloquent;
  */
-class UserRepositoryEloquent extends BaseRepository implements UserRepositoryInterface
+class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
     /**
      * Specify Model class name

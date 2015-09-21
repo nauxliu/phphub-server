@@ -2,12 +2,12 @@
 
 namespace App\Providers;
 
-use App\Repositories\Eloquent\ReplyRepositoryEloquent;
-use App\Repositories\Eloquent\TopicRepositoryEloquent;
-use App\Repositories\Eloquent\UserRepositoryEloquent;
-use App\Repositories\ReplyRepository;
-use App\Repositories\TopicRepository;
-use App\Repositories\UserRepository;
+use App\Repositories\Eloquent\ReplyRepository;
+use App\Repositories\Eloquent\TopicRepository;
+use App\Repositories\Eloquent\UserRepository;
+use App\Repositories\ReplyRepositoryInterface;
+use App\Repositories\TopicRepositoryInterface;
+use App\Repositories\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoriesServiceProvider extends ServiceProvider
@@ -19,9 +19,9 @@ class RepositoriesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        app()->bind(UserRepository::class, UserRepositoryEloquent::class);
-        app()->bind(TopicRepository::class, TopicRepositoryEloquent::class);
-        app()->bind(ReplyRepository::class, ReplyRepositoryEloquent::class);
+        app()->bind(UserRepositoryInterface::class, UserRepository::class);
+        app()->bind(TopicRepositoryInterface::class, TopicRepository::class);
+        app()->bind(ReplyRepositoryInterface::class, ReplyRepository::class);
     }
 
     /**

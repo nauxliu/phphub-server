@@ -11,7 +11,7 @@ use App\Topic;
  * Class TopicRepositoryEloquent
  * @package namespace App\Repositories\Eloquent;
  */
-class TopicRepositoryEloquent extends BaseRepository implements TopicRepositoryInterface
+class TopicRepository extends BaseRepository implements TopicRepositoryInterface
 {
     /**
      * Specify Model class name

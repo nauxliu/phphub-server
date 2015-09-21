@@ -53,11 +53,11 @@ class TopicTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeAuthor(Topic $model){
+    public function includeAuthor($model){
         return $this->includeUser($model);
     }
 
-    public function includeLastReplyUser(Topic $model){
+    public function includeLastReplyUser($model){
         return $this->includeUser($model, 'lastReplyUser');
     }
 }

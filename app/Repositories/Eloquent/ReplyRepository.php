@@ -11,7 +11,7 @@ use App\Reply;
  * Class ReplyRepositoryEloquent
  * @package namespace App\Repositories\Eloquent;
  */
-class ReplyRepositoryEloquent extends BaseRepository implements ReplyRepositoryInterface
+class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
 {
     /**
      * Specify Model class name
