@@ -18,6 +18,11 @@ class Topic extends Model implements PresenterInterface
         return $this->belongsTo(User::class);
     }
 
+    public function lastReplyUser()
+    {
+        return $this->belongsTo(User::class, 'last_reply_user_id');
+    }
+
     /**
      * Prepare data to present
      *

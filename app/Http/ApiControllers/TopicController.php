@@ -35,9 +35,10 @@ class TopicController extends Controller
     {
         return $this->repository
             ->withOnly('user', ['name', 'avatar'])
+            ->withOnly('lastReplyUser', ['name'])
             ->paginate(15, [
-                'id', 'user_id', 'title', 'is_excellent',
-                'reply_count', 'updated_at'
+                'id', 'user_id', 'last_reply_user_id', 'title',
+                'is_excellent', 'reply_count', 'updated_at'
             ]);
     }
 
@@ -70,7 +71,7 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->repository->find($id);
     }
 
     /**

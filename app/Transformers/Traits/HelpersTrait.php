@@ -8,6 +8,7 @@
 
 namespace App\Transformers\Traits;
 
+use Prettus\Repository\Contracts\PresenterInterface;
 
 trait HelpersTrait
 {
