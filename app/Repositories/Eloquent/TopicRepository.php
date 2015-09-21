@@ -3,15 +3,15 @@
 namespace App\Repositories\Eloquent;
 
 use App\Presenters\TopicPresenter;
+use App\Repositories\TopicRepositoryInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\TopicRepository;
-use App\Models\Topic;
+use App\Topic;
 
 /**
  * Class TopicRepositoryEloquent
  * @package namespace App\Repositories\Eloquent;
  */
-class TopicRepositoryEloquent extends BaseRepository implements TopicRepository
+class TopicRepositoryEloquent extends BaseRepository implements TopicRepositoryInterface
 {
     /**
      * Specify Model class name

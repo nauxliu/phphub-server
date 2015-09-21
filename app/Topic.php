@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use App\Presenters\TopicPresenter;
 use Illuminate\Database\Eloquent\Model;
