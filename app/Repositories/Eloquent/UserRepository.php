@@ -10,7 +10,7 @@ use App\User;
 /**
  * Class UserRepositoryEloquent.
  */
-class UserRepositoryEloquent extends BaseRepository implements UserRepositoryInterface
+class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
     /**
      * Specify Model class name.

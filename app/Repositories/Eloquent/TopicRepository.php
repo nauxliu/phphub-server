@@ -10,7 +10,7 @@ use App\Topic;
 /**
  * Class TopicRepositoryEloquent.
  */
-class TopicRepositoryEloquent extends BaseRepository implements TopicRepositoryInterface
+class TopicRepository extends BaseRepository implements TopicRepositoryInterface
 {
     /**
      * Specify Model class name.

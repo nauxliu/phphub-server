@@ -35,7 +35,7 @@ class TopicTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transformData(Topic $model)
+    public function transformData($model)
     {
         return [
             'id' => (int) $model->id,
@@ -59,8 +59,11 @@ class TopicTransformer extends TransformerAbstract
         return $this->includeUser($model);
     }
 
-    public function includeLastReplyUser(Topic $model)
-    {
+    public function includeAuthor($model){
+        return $this->includeUser($model);
+    }
+
+    public function includeLastReplyUser($model){
         return $this->includeUser($model, 'lastReplyUser');
     }
 }

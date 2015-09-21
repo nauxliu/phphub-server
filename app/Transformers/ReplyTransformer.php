@@ -3,6 +3,7 @@
 namespace App\Transformers;
 
 use App\Transformers\Traits\HelpersTrait;
+use App\Transformers\Traits\IncludeUserTrait;
 use League\Fractal\TransformerAbstract;
 use App\Models\Reply;
 
@@ -11,7 +12,15 @@ use App\Models\Reply;
  */
 class ReplyTransformer extends TransformerAbstract
 {
-    use HelpersTrait;
+    use HelpersTrait, IncludeUserTrait;
+
+    /**
+     * Resources that can be included if requested.
+     *
+     * @var array
+     */
+    protected $availableIncludes = array('user');
+
     /**
      * Transform the \Reply entity.
      *
@@ -19,13 +28,10 @@ class ReplyTransformer extends TransformerAbstract
      *
      * @return array
      */
-    public function transformData(Reply $model)
+    public function transformData($model)
     {
         return [
-            'id' => (int) $model->id,
-
-            /* place your other model properties here */
-
+            'id'         => (int) $model->id,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at,
         ];

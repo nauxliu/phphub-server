@@ -10,6 +10,8 @@ use Prettus\Repository\Presenter\FractalPresenter;
  */
 class TopicPresenter extends FractalPresenter
 {
+    use HelpersTrait;
+
     /**
      * Transformer.
      *

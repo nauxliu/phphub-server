@@ -10,7 +10,7 @@ use App\Reply;
 /**
  * Class ReplyRepositoryEloquent.
  */
-class ReplyRepositoryEloquent extends BaseRepository implements ReplyRepositoryInterface
+class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
 {
     /**
      * Specify Model class name.
