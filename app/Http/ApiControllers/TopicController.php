@@ -4,7 +4,6 @@ namespace App\Http\ApiControllers;
 
 use App\Repositories\TopicRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 
 class TopicController extends Controller
 {
@@ -15,6 +14,7 @@ class TopicController extends Controller
 
     /**
      * TopicController constructor.
+     *
      * @param TopicRepositoryInterface $repository
      */
     public function __construct(TopicRepositoryInterface $repository)
@@ -34,7 +34,7 @@ class TopicController extends Controller
             ->withOnly('lastReplyUser', ['name'])
             ->paginate(15, [
                 'id', 'user_id', 'last_reply_user_id', 'title',
-                'is_excellent', 'reply_count', 'updated_at'
+                'is_excellent', 'reply_count', 'updated_at',
             ]);
     }
 
@@ -51,7 +51,8 @@ class TopicController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -62,7 +63,8 @@ class TopicController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -73,7 +75,8 @@ class TopicController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -84,8 +87,9 @@ class TopicController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -96,7 +100,8 @@ class TopicController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

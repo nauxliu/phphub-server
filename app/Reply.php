@@ -13,9 +13,10 @@ class Reply extends Model implements PresenterInterface
     protected $fillable = [];
 
     /**
-     * Prepare data to present
+     * Prepare data to present.
      *
      * @param $data
+     *
      * @return mixed
      */
     public function present($data)

@@ -6,14 +6,12 @@ use App\Transformers\ReplyTransformer;
 use Prettus\Repository\Presenter\FractalPresenter;
 
 /**
- * Class ReplyPresenter
- *
- * @package namespace App\Presenters;
+ * Class ReplyPresenter.
  */
 class ReplyPresenter extends FractalPresenter
 {
     /**
-     * Transformer
+     * Transformer.
      *
      * @return \League\Fractal\TransformerAbstract
      */

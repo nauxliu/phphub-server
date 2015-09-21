@@ -8,13 +8,12 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Topic;
 
 /**
- * Class TopicRepositoryEloquent
- * @package namespace App\Repositories\Eloquent;
+ * Class TopicRepositoryEloquent.
  */
 class TopicRepositoryEloquent extends BaseRepository implements TopicRepositoryInterface
 {
     /**
-     * Specify Model class name
+     * Specify Model class name.
      *
      * @return string
      */
@@ -24,7 +23,7 @@ class TopicRepositoryEloquent extends BaseRepository implements TopicRepositoryI
     }
 
     /**
-     * Boot up the repository, pushing criteria
+     * Boot up the repository, pushing criteria.
      */
     public function boot()
     {
