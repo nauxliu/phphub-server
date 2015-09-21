@@ -1,3 +1,3 @@
 <?php
 
-$router->get('topics', 'TopicController@index');
+$router->resource('topics', 'TopicController');
