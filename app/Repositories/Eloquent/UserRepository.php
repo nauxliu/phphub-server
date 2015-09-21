@@ -3,15 +3,15 @@
 namespace App\Repositories\Eloquent;
 
 use App\Presenters\UserPresenter;
+use App\Repositories\UserRepositoryInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\UserRepository;
-use App\Models\User;
+use App\User;
 
 /**
  * Class UserRepositoryEloquent
  * @package namespace App\Repositories\Eloquent;
  */
-class UserRepositoryEloquent extends BaseRepository implements UserRepository
+class UserRepositoryEloquent extends BaseRepository implements UserRepositoryInterface
 {
     /**
      * Specify Model class name

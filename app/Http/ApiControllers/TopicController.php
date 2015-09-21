@@ -2,26 +2,22 @@
 
 namespace App\Http\ApiControllers;
 
-use App\Models\Topic;
-use App\Presenters\TopicPresenter;
-use App\Repositories\TopicRepository;
-use App\Transformers\TopicTransformer;
+use App\Repositories\TopicRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Prettus\Repository\Presenter\ModelFractalPresenter;
 
 class TopicController extends Controller
 {
     /**
-     * @var TopicRepository
+     * @var TopicRepositoryInterface
      */
     private $repository;
 
     /**
      * TopicController constructor.
-     * @param TopicRepository $repository
+     * @param TopicRepositoryInterface $repository
      */
-    public function __construct(TopicRepository $repository)
+    public function __construct(TopicRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
