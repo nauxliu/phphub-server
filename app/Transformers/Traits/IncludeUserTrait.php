@@ -6,7 +6,6 @@
  * Date: 9/21/15
  * Time: 7:11 PM.
  */
-
 namespace App\Transformers\Traits;
 
 use App\Transformers\UserTransformer;

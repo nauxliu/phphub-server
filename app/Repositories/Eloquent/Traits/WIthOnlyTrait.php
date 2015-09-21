@@ -4,9 +4,8 @@
  * Created by PhpStorm.
  * User: xuan
  * Date: 9/22/15
- * Time: 12:02 AM
+ * Time: 12:02 AM.
  */
-
 namespace App\Repositories\Eloquent\Traits;
 
 trait WIthOnlyTrait

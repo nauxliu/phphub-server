@@ -6,7 +6,6 @@
  * Date: 9/21/15
  * Time: 10:28 PM.
  */
-
 namespace App\Presenters;
 
 use Exception;

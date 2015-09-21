@@ -14,7 +14,6 @@
  * @link      https://github.com/phphub/phphub-server
  * @link      http://overtrue.me
  */
-
 namespace App\Repositories\TraitsInterface;
 
 /**

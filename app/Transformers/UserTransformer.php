@@ -21,9 +21,9 @@ class UserTransformer extends TransformerAbstract
     public function transformData($model)
     {
         return [
-            'id' => (int) $model->id,
-            'name' => $model->name,
-            'avatar' => $model->avatar,
+            'id'         => (int) $model->id,
+            'name'       => $model->name,
+            'avatar'     => $model->avatar,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at,
         ];

@@ -14,10 +14,8 @@
  * @link      https://github.com/phphub/phphub-server
  * @link      http://overtrue.me
  */
-
 namespace App\Repositories;
 
-use App\Repositories\Eloquent\Traits\AutoWithTrait;
 use App\Repositories\TraitsInterface\AutoWIthInterface;
 use Prettus\Repository\Contracts\RepositoryInterface as PrettusRepositoryInterface;
 use App\Repositories\TraitsInterface\WithOnlyInterface;
@@ -29,5 +27,4 @@ interface RepositoryInterface extends PrettusRepositoryInterface,
     WithOnlyInterface,
     AutoWIthInterface
 {
-
 }

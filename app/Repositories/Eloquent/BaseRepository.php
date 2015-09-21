@@ -6,7 +6,6 @@
  * Date: 9/21/15
  * Time: 6:30 PM.
  */
-
 namespace App\Repositories\Eloquent;
 
 use App\Repositories\Eloquent\Traits\AutoWithTrait;
