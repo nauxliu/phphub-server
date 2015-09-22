@@ -18,7 +18,8 @@
         "phpspec/phpspec": "~2.1",
         "filp/whoops": "^1.1",
         "barryvdh/laravel-ide-helper": "^2.1",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "fabpot/php-cs-fixer": "^1.10"
     },
     "autoload": {
         "classmap": [

@@ -38,7 +38,7 @@ class CodeSniffer extends Command implements SelfHandling
      */
     public function handle()
     {
-        $process = new Process('php-cs-fixer fix');
+        $process = new Process('php '.base_path('vendor/bin/php-cs-fixer').' fix');
 
         try {
             $process->run(function ($type, $buffer) {
