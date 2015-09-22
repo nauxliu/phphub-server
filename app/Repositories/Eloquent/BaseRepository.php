@@ -9,7 +9,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Repositories\Eloquent\Traits\AutoWithTrait;
-use App\Repositories\Eloquent\Traits\WIthOnlyTrait;
+use App\Repositories\Eloquent\Traits\WithOnlyTrait;
 use Prettus\Repository\Eloquent\BaseRepository as Repository;
 
 abstract class BaseRepository extends Repository

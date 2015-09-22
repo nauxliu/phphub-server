@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Eloquent\Traits;
 
-trait WIthOnlyTrait
+trait WithOnlyTrait
 {
     /**
      * Load relations and specific columns.
