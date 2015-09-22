@@ -3,8 +3,8 @@
 namespace App\Repositories\Eloquent;
 
 use App\Presenters\TopicPresenter;
+use App\Repositories\Criteria\TopicCriteria;
 use App\Repositories\TopicRepositoryInterface;
-use Prettus\Repository\Criteria\RequestCriteria;
 use App\Topic;
 
 /**
@@ -27,7 +27,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria(app(TopicCriteria::class));
     }
 
     public function presenter()
