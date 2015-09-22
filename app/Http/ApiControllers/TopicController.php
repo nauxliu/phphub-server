@@ -41,7 +41,7 @@ class TopicController extends Controller
             ->autoWithRootColumns([
                 'id', 'title', 'is_excellent', 'reply_count', 'updated_at',
             ])
-            ->paginate(15);
+            ->paginate(per_page());
     }
 
     /**

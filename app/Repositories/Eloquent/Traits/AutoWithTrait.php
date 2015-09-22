@@ -26,7 +26,7 @@ trait AutoWithTrait
      */
     public function addIncludable($include, array $default_columns, array $includable_columns, $foreign_key = null, $limit = null)
     {
-        $limit                     = $limit ?: 10;
+        $limit                     = $limit ?: per_page();
         $this->auto_with[$include] = compact('default_columns', 'includable_columns', 'foreign_key', 'limit');
 
         if ($foreign_key) {
