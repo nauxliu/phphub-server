@@ -31,7 +31,7 @@ class TopicController extends Controller
     public function index()
     {
         $this->repository->addIncludable('user', ['name'], User::$includable, 'user_id');
-        $this->repository->addIncludable('last_reply_user', ['name', 'avatar'], User::$includable, 'last_reply_user_id');
+        $this->repository->addIncludable('last_reply_user', ['name'], User::$includable, 'last_reply_user_id');
 
         return $this->repository
             ->autoWith()

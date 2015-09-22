@@ -19,7 +19,7 @@ class TopicTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = array('author', 'last_reply_user');
+    protected $availableIncludes = array('user', 'last_reply_user');
 
     /**
      * Include resources without needing it to be requested.
@@ -52,11 +52,6 @@ class TopicTransformer extends TransformerAbstract
             'created_at'     => $model->created_at,
             'updated_at'     => $model->updated_at,
         ];
-    }
-
-    public function includeAuthor($model)
-    {
-        return $this->includeUser($model);
     }
 
     public function includeLastReplyUser($model)
