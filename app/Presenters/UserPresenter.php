@@ -21,4 +21,9 @@ class UserPresenter extends FractalPresenter
     {
         return new UserTransformer();
     }
+
+    public function avatar()
+    {
+        return cdn('uploads/avatars/'. $this->getWrapObject()->avatar);
+    }
 }
