@@ -1,18 +1,17 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: xuan
  * Date: 9/22/15
- * Time: 8:07 AM
+ * Time: 8:07 AM.
  */
-
 namespace App\Repositories\Criteria;
-
 
 class TopicCriteria extends BaseCriteria
 {
     /**
-     * 精华帖
+     * 精华帖.
      *
      * @param $model
      */
@@ -22,7 +21,7 @@ class TopicCriteria extends BaseCriteria
     }
 
     /**
-     * Wiki 帖
+     * Wiki 帖.
      *
      * @param $model
      */
@@ -32,7 +31,7 @@ class TopicCriteria extends BaseCriteria
     }
 
     /**
-     * 最新发表的贴
+     * 最新发表的贴.
      *
      * @param $model
      */
@@ -42,7 +41,7 @@ class TopicCriteria extends BaseCriteria
     }
 
     /**
-     * 按照投票数倒序排序
+     * 按照投票数倒序排序.
      *
      * @param $model
      */
@@ -52,7 +51,7 @@ class TopicCriteria extends BaseCriteria
     }
 
     /**
-     * 无人回复的贴
+     * 无人回复的贴.
      *
      * @param $model
      */
