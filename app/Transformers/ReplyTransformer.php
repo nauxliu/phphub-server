@@ -29,13 +29,14 @@ class ReplyTransformer extends TransformerAbstract
     public function transformData($model)
     {
         return [
-            'id'         => (int) $model->id,
-            'body_original'  => $model->body_original,
-            'created_at' => $model->created_at,
+            'id'            => (int) $model->id,
+            'body_original' => $model->body_original,
+            'created_at'    => $model->created_at,
         ];
     }
 
-    public function includeUser($model){
+    public function includeUser($model)
+    {
         return $this->item($model->user, new UserTransformer());
     }
 }

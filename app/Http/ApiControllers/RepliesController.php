@@ -2,10 +2,7 @@
 
 namespace App\Http\ApiControllers;
 
-use App\Node;
-use App\Reply;
 use App\Repositories\ReplyRepositoryInterface;
-use App\Repositories\TopicRepositoryInterface;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -30,6 +27,7 @@ class RepliesController extends Controller
      * Display a listing of the replies by topic id.
      *
      * @param $topic_id
+     *
      * @return \Illuminate\Http\Response
      */
     public function indexByTopicId($topic_id)
@@ -41,7 +39,6 @@ class RepliesController extends Controller
             ->autoWith()
             ->autoWithRootColumns(['body_original'])
             ->paginate(per_page());
-
     }
 
     /**
