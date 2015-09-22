@@ -30,8 +30,12 @@ class ReplyTransformer extends TransformerAbstract
     {
         return [
             'id'         => (int) $model->id,
-            'body'       => $model->body_original,
+            'body_original'  => $model->body_original,
             'created_at' => $model->created_at,
         ];
+    }
+
+    public function includeUser($model){
+        return $this->item($model->user, new UserTransformer());
     }
 }

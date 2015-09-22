@@ -8,7 +8,7 @@ use App\Repositories\TopicRepositoryInterface;
 use App\User;
 use Illuminate\Http\Request;
 
-class TopicController extends Controller
+class TopicsController extends Controller
 {
     /**
      * @var TopicRepositoryInterface
@@ -76,7 +76,8 @@ class TopicController extends Controller
     public function show($id)
     {
         $this->repository->addIncludable('user', ['name', 'avatar'], User::$includable, 'user_id');
-        $this->repository->addIncludable('replies', ['body', 'vote_count'], Reply::$includable, null);
+        $this->repository->addIncludable('replies', ['body_original', 'vote_count'], Reply::$includable, null);
+        $this->repository->addIncludable('replies.user', ['name', 'avatar'], User::$includable, null);
 
         return $this->repository->autoWith()->find($id);
     }
