@@ -4,6 +4,8 @@ namespace App\Repositories\Eloquent;
 
 use App\Presenters\ReplyPresenter;
 use App\Repositories\ReplyRepositoryInterface;
+use App\Repositories\TraitsInterface\AutoWIthInterface;
+use App\Repositories\TraitsInterface\WithOnlyInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Reply;
 
@@ -33,5 +35,18 @@ class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
     public function presenter()
     {
         return ReplyPresenter::class;
+    }
+
+    /**
+     * 通过 TopicId 过滤
+     *
+     * @param $topic_id
+     * @param string $columns
+     * @return $this
+     */
+    public function byTopicId($topic_id)
+    {
+        $this->model->where('topic_id', $topic_id);
+        return $this;
     }
 }

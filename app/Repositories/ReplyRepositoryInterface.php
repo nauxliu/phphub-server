@@ -7,5 +7,9 @@ namespace App\Repositories;
  */
 interface ReplyRepositoryInterface extends RepositoryInterface
 {
-    //TODO
+    /**
+     * @param $topic_id
+     * @return $this
+     */
+    public function byTopicId($topic_id);
 }
