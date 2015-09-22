@@ -10,7 +10,8 @@ use Prettus\Repository\Traits\PresentableTrait;
 class Reply extends Model implements PresenterInterface
 {
     use PresentableTrait;
-    protected $fillable = [];
+    public static $includable = [];
+    protected $fillable       = [];
 
     public function topic()
     {

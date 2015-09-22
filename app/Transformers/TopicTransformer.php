@@ -17,7 +17,7 @@ class TopicTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = array('user', 'last_reply_user');
+    protected $availableIncludes = array('user', 'last_reply_user', 'replies');
 
     /**
      * Include resources without needing it to be requested.
@@ -60,5 +60,10 @@ class TopicTransformer extends TransformerAbstract
     public function includeLastReplyUser($model)
     {
         return $this->item($model->lastReplyUser, new UserTransformer());
+    }
+
+    public function includeReplies($model)
+    {
+        return $this->collection($model->replies, new ReplyTransformer());
     }
 }

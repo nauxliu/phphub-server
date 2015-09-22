@@ -14,6 +14,11 @@ class User extends Model implements PresenterInterface
     public static $includable = ['id', 'name', 'avatar'];
     protected $fillable       = [];
 
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
+
     /**
      * Prepare data to present.
      *

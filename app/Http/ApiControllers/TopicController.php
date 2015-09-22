@@ -2,6 +2,7 @@
 
 namespace App\Http\ApiControllers;
 
+use App\Reply;
 use App\Repositories\TopicRepositoryInterface;
 use App\User;
 use Illuminate\Http\Request;
@@ -72,7 +73,10 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        return $this->repository->find($id);
+        $this->repository->addIncludable('user', ['name', 'avatar'], User::$includable, 'user_id');
+        $this->repository->addIncludable('replies', ['body', 'vote_count'], Reply::$includable);
+
+        return $this->repository->autoWith()->find($id);
     }
 
     /**

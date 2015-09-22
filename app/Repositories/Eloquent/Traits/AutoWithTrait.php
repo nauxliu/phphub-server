@@ -21,7 +21,7 @@ trait AutoWithTrait
      * @param $include
      * @param array $default_columns    默认字段
      * @param array $includable_columns 可允许字段
-     * @param null  $foreign_key        belongsTo 关系的外键，Has 关系的可不填
+     * @param null  $foreign_key        只有 belongsTo 关联需要传
      */
     public function addIncludable($include, array $default_columns, array $includable_columns, $foreign_key = null)
     {
@@ -47,15 +47,33 @@ trait AutoWithTrait
                 continue;
             }
 
-            $default_columns = array_get($this->auto_with, $include, ['default_columns' => []])['default_columns'];
+            $default_columns = $this->getAutoWithConfig($include, 'default_columns');
+            $foreign_key     = $this->getAutoWithConfig($include, 'foreign_key');
             $manual_columns  = array_get($columns, $include, []);
             $relation        = camel_case($include);
 
-            //TODO: 使用 includable_columns 过滤要查询的字段
-            $this->withOnly($relation, array_filter(array_merge($default_columns, $manual_columns)));
+            // 没有传 $foreign_key 时不是 belongsTo 关系，不能走 withOnly，会获取不到数据
+            if (!$foreign_key) {
+                $this->with($relation, array_filter(array_merge($default_columns, $manual_columns)));
+            } else {
+                $this->withOnly($relation, array_filter(array_merge($default_columns, $manual_columns)));
+            }
         }
 
         return $this;
+    }
+
+    /**
+     * @param $include
+     * @param $key
+     *
+     * @return mixed
+     */
+    public function getAutoWithConfig($include, $key)
+    {
+        $configs = array_get($this->auto_with, $include, []);
+
+        return array_get($configs, $key);
     }
 
     /**
