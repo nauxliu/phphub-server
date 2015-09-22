@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateLinksTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -24,11 +21,8 @@ class CreateLinksTable extends Migration
         $this->initData();
     }
 
-
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
@@ -40,28 +34,28 @@ class CreateLinksTable extends Migration
         $links = [
             [
                 'title' => 'Ruby China',
-                'link' => 'https://ruby-china.org',
+                'link'  => 'https://ruby-china.org',
             ],
             [
                 'title' => 'V2EX',
-                'link' => 'http://v2ex.com/',
+                'link'  => 'http://v2ex.com/',
             ],
             [
                 'title' => 'Golang 中国',
-                'link' => 'http://golangtc.com/',
+                'link'  => 'http://golangtc.com/',
             ],
             [
                 'title' => 'CNode：Node.js 中文社区',
-                'link' => 'http://cnodejs.org/',
+                'link'  => 'http://cnodejs.org/',
             ],
             [
                 'title' => 'F2E - 前端技术社区',
-                'link' => 'http://f2e.im/',
+                'link'  => 'http://f2e.im/',
             ],
             [
                 'title' => '知乎',
-                'link' => 'http://zhihu.com/',
-            ]
+                'link'  => 'http://zhihu.com/',
+            ],
         ];
         DB::table('links')->insert($links);
     }

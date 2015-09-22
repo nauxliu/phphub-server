@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateNotificationsTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -27,8 +24,6 @@ class CreateNotificationsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

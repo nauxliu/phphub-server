@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateSiteStatusesTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -24,11 +21,8 @@ class CreateSiteStatusesTable extends Migration
         });
     }
 
-
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

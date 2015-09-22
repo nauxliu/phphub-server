@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateTopicsTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -37,8 +34,6 @@ class CreateTopicsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

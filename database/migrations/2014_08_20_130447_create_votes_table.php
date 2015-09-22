@@ -5,11 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateVotesTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -26,11 +23,8 @@ class CreateVotesTable extends Migration
         });
     }
 
-
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
