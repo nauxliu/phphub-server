@@ -36,9 +36,10 @@ class UserController extends Controller
         //TODO: 临时接口，待用户登录做了之后将 QR 生成到本地用 cdn 连接返回
         $login_token = $this->repository->skipPresenter()->find($user_id)->login_token;
 
-        if(!$login_token){
+        if (!$login_token) {
             $login_token = $this->dispatch(new GenerateUsersLoginToken($user_id));
         }
+
         return QrCode::size(200)
             ->margin(0)
             ->generate($login_token);
