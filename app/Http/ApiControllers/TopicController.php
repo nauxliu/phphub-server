@@ -2,6 +2,7 @@
 
 namespace App\Http\ApiControllers;
 
+use App\Node;
 use App\Reply;
 use App\Repositories\TopicRepositoryInterface;
 use App\User;
@@ -33,6 +34,7 @@ class TopicController extends Controller
     {
         $this->repository->addIncludable('user', ['name', 'avatar'], User::$includable, 'user_id');
         $this->repository->addIncludable('last_reply_user', ['name'], User::$includable, 'last_reply_user_id');
+        $this->repository->addIncludable('node', ['name'], Node::$includable, 'node_id');
 
         return $this->repository
             ->autoWith()
