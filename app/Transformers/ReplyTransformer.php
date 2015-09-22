@@ -30,9 +30,8 @@ class ReplyTransformer extends TransformerAbstract
     {
         return [
             'id'         => (int) $model->id,
-            'body'       => $model->body,
+            'body'       => $model->body_original,
             'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at,
         ];
     }
 }
