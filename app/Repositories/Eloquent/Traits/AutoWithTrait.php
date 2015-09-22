@@ -22,10 +22,12 @@ trait AutoWithTrait
      * @param array $default_columns    默认字段
      * @param array $includable_columns 可允许字段
      * @param null  $foreign_key        只有 belongsTo 关联需要传
+     * @param null  $limit              HasMany 关系是需要传，
      */
-    public function addIncludable($include, array $default_columns, array $includable_columns, $foreign_key = null)
+    public function addIncludable($include, array $default_columns, array $includable_columns, $foreign_key = null, $limit = null)
     {
-        $this->auto_with[$include] = compact('default_columns', 'includable_columns', 'foreign_key');
+        $limit                     = $limit ?: 10;
+        $this->auto_with[$include] = compact('default_columns', 'includable_columns', 'foreign_key', 'limit');
 
         if ($foreign_key) {
             $this->foreign_keys[] = $foreign_key;
@@ -49,12 +51,13 @@ trait AutoWithTrait
 
             $default_columns = $this->getAutoWithConfig($include, 'default_columns');
             $foreign_key     = $this->getAutoWithConfig($include, 'foreign_key');
+            $limit           = $this->getAutoWithConfig($include, 'limit');
             $manual_columns  = array_get($columns, $include, []);
             $relation        = camel_case($include);
 
             // 没有传 $foreign_key 时不是 belongsTo 关系，不能走 withOnly，会获取不到数据
             if (!$foreign_key) {
-                $this->with($relation, array_filter(array_merge($default_columns, $manual_columns)));
+                $this->with([$relation => function ($query) use ($limit) {$query->limit($limit);}]);
             } else {
                 $this->withOnly($relation, array_filter(array_merge($default_columns, $manual_columns)));
             }

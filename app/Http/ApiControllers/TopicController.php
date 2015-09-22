@@ -76,7 +76,7 @@ class TopicController extends Controller
     public function show($id)
     {
         $this->repository->addIncludable('user', ['name', 'avatar'], User::$includable, 'user_id');
-        $this->repository->addIncludable('replies', ['body', 'vote_count'], Reply::$includable);
+        $this->repository->addIncludable('replies', ['body', 'vote_count'], Reply::$includable, null);
 
         return $this->repository->autoWith()->find($id);
     }
