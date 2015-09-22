@@ -21,7 +21,6 @@ abstract class BaseCriteria extends RequestCriteria
         $filter             = $this->request->get( config('repository.criteria.params.filter','filter') , null);
         $orderBy            = $this->request->get( config('repository.criteria.params.orderBy','orderBy') , null);
         $sortedBy           = $this->request->get( config('repository.criteria.params.sortedBy','sortedBy') , 'asc');
-        $with               = $this->request->get( config('repository.criteria.params.with','with') , null);
         $sortedBy           = !empty($sortedBy) ? $sortedBy : 'asc';
 
         if ( $search && is_array($fieldsSearchable) && count($fieldsSearchable) )
@@ -74,15 +73,14 @@ abstract class BaseCriteria extends RequestCriteria
 
         if ( isset($filter) && !empty($filter) ) {
             if ( is_string($filter) ) {
-                $filter = explode(';', $filter);
+                foreach(explode(';', $filter) as $filter){
+                    // eg. filter 'hot' 会调用方法 'filterHot'
+                    $method_name = camel_case('filter_'.$filter);
+                    if(method_exists($this, $method_name)){
+                        call_user_func([$this, $method_name], $model);
+                    }
+                }
             }
-
-            $model = $model->select($filter);
-        }
-
-        if( $with ) {
-            $with  = explode(';', $with);
-            $model = $model->with($with);
         }
 
         return $model;
