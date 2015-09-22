@@ -35,12 +35,12 @@ class User extends Model implements PresenterInterface
     protected $fillable = [];
 
     protected $casts = [
-        'id' => 'int',
-        'github_id' => 'int',
-        'topic_count' => 'int',
-        'reply_count' => 'int',
+        'id'                 => 'int',
+        'github_id'          => 'int',
+        'topic_count'        => 'int',
+        'reply_count'        => 'int',
         'notification_count' => 'int',
-        'is_banned' => 'boolean',
+        'is_banned'          => 'boolean',
     ];
 
     public function topics()

@@ -21,8 +21,9 @@ class UserTransformer extends TransformerAbstract
      */
     public function transformData($model)
     {
-        $data = array_only($model->toArray(), User::$includable);
+        $data           = array_only($model->toArray(), User::$includable);
         $data['avatar'] = $model->avatar();
+
         return $data;
     }
 }
