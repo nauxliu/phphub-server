@@ -11,8 +11,37 @@ class User extends Model implements PresenterInterface
 {
     use PresentableTrait;
 
-    public static $includable = ['id', 'name', 'avatar'];
-    protected $fillable       = [];
+    public static $includable = [
+        'id',
+        'name',
+        'avatar',
+        'github_id',
+        'topic_count',
+        'reply_count',
+        'notification_count',
+        'is_banned',
+        'twitter_account',
+        'company',
+        'city',
+        'email',
+        'signature',
+        'introduction',
+        'github_name',
+        'real_name',
+        'created_at',
+        'updated_at',
+    ];
+
+    protected $fillable = [];
+
+    protected $casts = [
+        'id' => 'int',
+        'github_id' => 'int',
+        'topic_count' => 'int',
+        'reply_count' => 'int',
+        'notification_count' => 'int',
+        'is_banned' => 'boolean',
+    ];
 
     public function topics()
     {

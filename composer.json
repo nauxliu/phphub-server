@@ -8,7 +8,7 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "dingo/api": "1.0.x@dev",
-        "lucadegasperi/oauth2-server-laravel": "^5.0",
+        "lucadegasperi/oauth2-server-laravel": "~5.0",
         "prettus/l5-repository": "^2.1",
         "simplesoftwareio/simple-qrcode": "~1.3"
     },
