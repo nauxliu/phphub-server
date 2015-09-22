@@ -3,16 +3,14 @@
 namespace App\Transformers;
 
 use App\Transformers\Traits\HelpersTrait;
-use App\Transformers\Traits\IncludeUserTrait;
 use League\Fractal\TransformerAbstract;
-use App\Models\Topic;
 
 /**
  * Class TopicTransformer.
  */
 class TopicTransformer extends TransformerAbstract
 {
-    use IncludeUserTrait, HelpersTrait;
+    use HelpersTrait;
 
     /**
      * Resources that can be included if requested.
@@ -54,8 +52,13 @@ class TopicTransformer extends TransformerAbstract
         ];
     }
 
+    public function includeUser($model)
+    {
+        return $this->item($model->user, new UserTransformer());
+    }
+
     public function includeLastReplyUser($model)
     {
-        return $this->includeUser($model, 'lastReplyUser');
+        return $this->item($model->lastReplyUser, new UserTransformer());
     }
 }

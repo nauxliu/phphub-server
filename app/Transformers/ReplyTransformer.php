@@ -3,7 +3,6 @@
 namespace App\Transformers;
 
 use App\Transformers\Traits\HelpersTrait;
-use App\Transformers\Traits\IncludeUserTrait;
 use League\Fractal\TransformerAbstract;
 
 /**
@@ -11,7 +10,7 @@ use League\Fractal\TransformerAbstract;
  */
 class ReplyTransformer extends TransformerAbstract
 {
-    use HelpersTrait, IncludeUserTrait;
+    use HelpersTrait;
 
     /**
      * Resources that can be included if requested.
