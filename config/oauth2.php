@@ -34,10 +34,9 @@ return [
          */
         'login_token' => [
             'class'            => \App\OAuth\LoginTokenGrant::class,
-            'callback'         => '\App\OAuth\LoginTokenVerifier@verify',
+            'callback'         => \App\OAuth\LoginTokenVerifier::class.'@verify',
             'access_token_ttl' => 3600,
         ],
-
         /*
          * 在用户还未登陆的时候使用，可访问部分资源
          */
@@ -45,7 +44,6 @@ return [
             'class'            => \League\OAuth2\Server\Grant\ClientCredentialsGrant::class,
             'access_token_ttl' => 3600,
         ],
-
         /*
          * 使用此授权方法来更新过期的 Token
          */
@@ -55,7 +53,6 @@ return [
             'refresh_token_ttl' => 36000,
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Output Token Type
