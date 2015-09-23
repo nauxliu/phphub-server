@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Providers;
+namespace PHPHub\Providers;
 
-use App\Repositories\Eloquent\ReplyRepository;
-use App\Repositories\Eloquent\TopicRepository;
-use App\Repositories\Eloquent\UserRepository;
-use App\Repositories\ReplyRepositoryInterface;
-use App\Repositories\TopicRepositoryInterface;
-use App\Repositories\UserRepositoryInterface;
+use PHPHub\Repositories\Eloquent\ReplyRepository;
+use PHPHub\Repositories\Eloquent\TopicRepository;
+use PHPHub\Repositories\Eloquent\UserRepository;
+use PHPHub\Repositories\ReplyRepositoryInterface;
+use PHPHub\Repositories\TopicRepositoryInterface;
+use PHPHub\Repositories\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoriesServiceProvider extends ServiceProvider

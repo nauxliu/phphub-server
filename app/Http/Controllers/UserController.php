@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace PHPHub\Http\Controllers;
 
-use App\Jobs\GenerateUsersLoginToken;
-use App\Repositories\UserRepositoryInterface;
+use PHPHub\Jobs\GenerateUsersLoginToken;
+use PHPHub\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use QrCode;
 

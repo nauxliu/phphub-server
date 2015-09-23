@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Console;
+namespace PHPHub\Console;
 
-use App\Console\Commands\CodeSniffer;
+use PHPHub\Console\Commands\CodeSniffer;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 

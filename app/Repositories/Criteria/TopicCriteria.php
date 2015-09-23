@@ -6,7 +6,7 @@
  * Date: 9/22/15
  * Time: 8:07 AM.
  */
-namespace App\Repositories\Criteria;
+namespace PHPHub\Repositories\Criteria;
 
 use Illuminate\Database\Eloquent\Builder;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories\Eloquent;
+namespace PHPHub\Repositories\Eloquent;
 
-use App\Presenters\ReplyPresenter;
-use App\Repositories\ReplyRepositoryInterface;
+use PHPHub\Presenters\ReplyPresenter;
+use PHPHub\Repositories\ReplyRepositoryInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Reply;
+use PHPHub\Reply;
 
 /**
  * Class ReplyRepositoryEloquent.

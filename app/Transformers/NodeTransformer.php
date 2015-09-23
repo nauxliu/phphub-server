@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Transformers;
+namespace PHPHub\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use App\Node;
+use PHPHub\Node;
 
 /**
  * Class NodeTransformer.

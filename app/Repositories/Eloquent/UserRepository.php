@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories\Eloquent;
+namespace PHPHub\Repositories\Eloquent;
 
-use App\Presenters\UserPresenter;
-use App\Repositories\UserRepositoryInterface;
+use PHPHub\Presenters\UserPresenter;
+use PHPHub\Repositories\UserRepositoryInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\User;
+use PHPHub\User;
 
 /**
  * Class UserRepositoryEloquent.

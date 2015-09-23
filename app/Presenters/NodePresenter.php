@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Presenters;
+namespace PHPHub\Presenters;
 
-use App\Transformers\NodeTransformer;
+use PHPHub\Transformers\NodeTransformer;
 use Prettus\Repository\Presenter\FractalPresenter;
 
 /**

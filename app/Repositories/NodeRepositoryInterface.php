@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace PHPHub\Repositories;
 
 /**
  * Interface NodeRepository.

@@ -6,9 +6,9 @@
  * Date: 9/22/15
  * Time: 9:12 PM.
  */
-namespace App\OAuth;
+namespace PHPHub\OAuth;
 
-use App\User;
+use PHPHub\User;
 
 class LoginTokenVerifier
 {

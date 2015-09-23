@@ -6,7 +6,7 @@
  * Date: 9/22/15
  * Time: 12:06 AM.
  */
-namespace App\Repositories\Eloquent\Traits;
+namespace PHPHub\Repositories\Eloquent\Traits;
 
 use Input;
 

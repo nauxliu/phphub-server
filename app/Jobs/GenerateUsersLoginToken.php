@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Jobs;
+namespace PHPHub\Jobs;
 
-use App\Repositories\UserRepositoryInterface;
+use PHPHub\Repositories\UserRepositoryInterface;
 use Illuminate\Contracts\Bus\SelfHandling;
 
 class GenerateUsersLoginToken extends Job implements SelfHandling

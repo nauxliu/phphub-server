@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace PHPHub\Providers;
 
 use Dingo\Api\Auth\Provider\OAuth2;
 use Illuminate\Support\ServiceProvider;

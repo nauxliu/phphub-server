@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Presenters;
+namespace PHPHub\Presenters;
 
-use App\Transformers\UserTransformer;
+use PHPHub\Transformers\UserTransformer;
 use Prettus\Repository\Presenter\FractalPresenter;
 
 /**

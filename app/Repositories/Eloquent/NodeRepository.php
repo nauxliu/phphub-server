@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories\Eloquent;
+namespace PHPHub\Repositories\Eloquent;
 
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\NodeRepositoryInterface;
-use App\Node;
+use PHPHub\Repositories\NodeRepositoryInterface;
+use PHPHub\Node;
 
 /**
  * Class NodeRepositoryEloquent.

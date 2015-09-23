@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\ApiControllers;
+namespace PHPHub\Http\ApiControllers;
 
-use App\Repositories\ReplyRepositoryInterface;
-use App\User;
+use PHPHub\Repositories\ReplyRepositoryInterface;
+use PHPHub\User;
 use Illuminate\Http\Request;
 
 class RepliesController extends Controller

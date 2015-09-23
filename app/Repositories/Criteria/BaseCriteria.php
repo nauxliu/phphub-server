@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Criteria;
+namespace PHPHub\Repositories\Criteria;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
 use Prettus\Repository\Criteria\RequestCriteria;

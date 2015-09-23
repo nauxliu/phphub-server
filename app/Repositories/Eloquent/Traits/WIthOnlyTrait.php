@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Eloquent\Traits;
+namespace PHPHub\Repositories\Eloquent\Traits;
 
 trait WithOnlyTrait
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\ApiControllers;
+namespace PHPHub\Http\ApiControllers;
 
-use App\Node;
-use App\Reply;
-use App\Repositories\TopicRepositoryInterface;
-use App\User;
+use PHPHub\Node;
+use PHPHub\Reply;
+use PHPHub\Repositories\TopicRepositoryInterface;
+use PHPHub\User;
 use Illuminate\Http\Request;
 
 class TopicsController extends Controller

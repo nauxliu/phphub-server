@@ -6,7 +6,7 @@
  * Date: 9/23/15
  * Time: 10:02 AM.
  */
-namespace App\OAuth;
+namespace PHPHub\OAuth;
 
 use League\OAuth2\Server\Entity\AccessTokenEntity;
 use League\OAuth2\Server\Entity\ClientEntity;

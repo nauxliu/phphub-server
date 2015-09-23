@@ -6,10 +6,10 @@
  * Date: 9/21/15
  * Time: 6:30 PM.
  */
-namespace App\Repositories\Eloquent;
+namespace PHPHub\Repositories\Eloquent;
 
-use App\Repositories\Eloquent\Traits\AutoWithTrait;
-use App\Repositories\Eloquent\Traits\WithOnlyTrait;
+use PHPHub\Repositories\Eloquent\Traits\AutoWithTrait;
+use PHPHub\Repositories\Eloquent\Traits\WithOnlyTrait;
 use Prettus\Repository\Eloquent\BaseRepository as Repository;
 
 abstract class BaseRepository extends Repository

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Transformers;
+namespace PHPHub\Transformers;
 
-use App\Transformers\Traits\HelpersTrait;
+use PHPHub\Transformers\Traits\HelpersTrait;
 use League\Fractal\TransformerAbstract;
 
 /**

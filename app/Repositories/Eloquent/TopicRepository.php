@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories\Eloquent;
+namespace PHPHub\Repositories\Eloquent;
 
-use App\Presenters\TopicPresenter;
-use App\Repositories\Criteria\TopicCriteria;
-use App\Repositories\TopicRepositoryInterface;
-use App\Topic;
+use PHPHub\Presenters\TopicPresenter;
+use PHPHub\Repositories\Criteria\TopicCriteria;
+use PHPHub\Repositories\TopicRepositoryInterface;
+use PHPHub\Topic;
 
 /**
  * Class TopicRepositoryEloquent.

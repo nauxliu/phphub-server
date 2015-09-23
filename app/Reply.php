@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace PHPHub;
 
-use App\Presenters\ReplyPresenter;
+use PHPHub\Presenters\ReplyPresenter;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\PresenterInterface;
 use Prettus\Repository\Traits\PresentableTrait;

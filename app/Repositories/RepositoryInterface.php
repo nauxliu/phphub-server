@@ -14,11 +14,11 @@
  * @link      https://github.com/phphub/phphub-server
  * @link      http://overtrue.me
  */
-namespace App\Repositories;
+namespace PHPHub\Repositories;
 
-use App\Repositories\TraitsInterface\AutoWIthInterface;
+use PHPHub\Repositories\TraitsInterface\AutoWIthInterface;
 use Prettus\Repository\Contracts\RepositoryInterface as PrettusRepositoryInterface;
-use App\Repositories\TraitsInterface\WithOnlyInterface;
+use PHPHub\Repositories\TraitsInterface\WithOnlyInterface;
 
 /**
  * Interface RepositoryInterface.

@@ -6,7 +6,7 @@
  * Date: 9/22/15
  * Time: 1:13 AM.
  */
-namespace App\Repositories\TraitsInterface;
+namespace PHPHub\Repositories\TraitsInterface;
 
 interface AutoWIthInterface
 {

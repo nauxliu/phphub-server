@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace PHPHub;
 
-use App\Presenters\NodePresenter;
+use PHPHub\Presenters\NodePresenter;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\PresenterInterface;
 

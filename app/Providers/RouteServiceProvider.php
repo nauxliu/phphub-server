@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Providers;
+namespace PHPHub\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    protected $controller_namespace = 'App\Http\Controllers';
+    protected $controller_namespace = 'PHPHub\Http\Controllers';
 
-    protected $api_controller_namespace = 'App\Http\ApiControllers';
+    protected $api_controller_namespace = 'PHPHub\Http\ApiControllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.

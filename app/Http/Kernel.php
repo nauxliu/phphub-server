@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http;
+namespace PHPHub\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -13,7 +13,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \App\Http\Middleware\EncryptCookies::class,
+        \PHPHub\Http\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
@@ -26,10 +26,10 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'csrf'                       => \App\Http\Middleware\VerifyCsrfToken::class,
-        'auth'                       => \App\Http\Middleware\Authenticate::class,
+        'csrf'                       => \PHPHub\Http\Middleware\VerifyCsrfToken::class,
+        'auth'                       => \PHPHub\Http\Middleware\Authenticate::class,
         'auth.basic'                 => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest'                      => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest'                      => \PHPHub\Http\Middleware\RedirectIfAuthenticated::class,
         'oauth'                      => \LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware::class,
         'oauth-user'                 => \LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware::class,
         'oauth-client'               => \LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware::class,

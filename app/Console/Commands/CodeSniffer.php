@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace PHPHub\Console\Commands;
 
 use Exception;
 use Illuminate\Console\Command;

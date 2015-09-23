@@ -149,12 +149,12 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-        App\Providers\LocalProvidersRegister::class,
-        App\Providers\RepositoriesServiceProvider::class,
+        PHPHub\Providers\AppServiceProvider::class,
+        PHPHub\Providers\AuthServiceProvider::class,
+        PHPHub\Providers\EventServiceProvider::class,
+        PHPHub\Providers\RouteServiceProvider::class,
+        PHPHub\Providers\LocalProvidersRegister::class,
+        PHPHub\Providers\RepositoriesServiceProvider::class,
 
         /*
          * Third Party Service Providers...

@@ -27,7 +27,7 @@
             "database"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "PHPHub\\": "app/"
         },
         "files" : ["app/Helpers.php"]
     },
