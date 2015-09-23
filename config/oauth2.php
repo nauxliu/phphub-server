@@ -29,6 +29,31 @@ return [
 
     'grant_types' => [
 
+        /*
+         * 使用 login_token 获取 access_token
+         */
+        'password' => [
+            'class'            => 'League\OAuth2\Server\Grant\PasswordGrant',
+            'callback'         => '\App\LoginTokenVerifier@verify',
+            'access_token_ttl' => 3600,
+        ],
+
+        /*
+         * 在用户还未登陆的时候使用，可访问部分资源
+         */
+        'client_credentials' => [
+            'class'            => \League\OAuth2\Server\Grant\ClientCredentialsGrant::class,
+            'access_token_ttl' => 3600,
+        ],
+
+        /*
+         * 使用此授权方法来更新过期的 Token
+         */
+        'refresh_token' => [
+            'class'             => \League\OAuth2\Server\Grant\RefreshTokenGrant::class,
+            'access_token_ttl'  => 3600,
+            'refresh_token_ttl' => 36000,
+        ],
     ],
 
     /*
@@ -43,8 +68,7 @@ return [
     |
     */
 
-    'token_type' => 'League\OAuth2\Server\TokenType\Bearer',
-
+    'token_type' => League\OAuth2\Server\TokenType\Bearer::class,
     /*
     |--------------------------------------------------------------------------
     | State Parameter
@@ -55,7 +79,6 @@ return [
     */
 
     'state_param' => false,
-
     /*
     |--------------------------------------------------------------------------
     | Scope Parameter
@@ -66,7 +89,6 @@ return [
     */
 
     'scope_param' => false,
-
     /*
     |--------------------------------------------------------------------------
     | Scope Delimiter
@@ -77,7 +99,6 @@ return [
     */
 
     'scope_delimiter' => ',',
-
     /*
     |--------------------------------------------------------------------------
     | Default Scope
@@ -88,7 +109,6 @@ return [
     */
 
     'default_scope' => null,
-
     /*
     |--------------------------------------------------------------------------
     | Access Token TTL
@@ -100,7 +120,6 @@ return [
     */
 
     'access_token_ttl' => 3600,
-
     /*
     |--------------------------------------------------------------------------
     | Limit clients to specific grants
@@ -112,7 +131,6 @@ return [
     */
 
     'limit_clients_to_grants' => false,
-
     /*
     |--------------------------------------------------------------------------
     | Limit clients to specific scopes
@@ -124,7 +142,6 @@ return [
     */
 
     'limit_clients_to_scopes' => false,
-
     /*
     |--------------------------------------------------------------------------
     | Limit scopes to specific grants
@@ -136,7 +153,6 @@ return [
     */
 
     'limit_scopes_to_grants' => false,
-
     /*
     |--------------------------------------------------------------------------
     | HTTP Header Only
@@ -147,6 +163,6 @@ return [
     |
     */
 
-    'http_headers_only' => false,
+    'http_headers_only' => true,
 
 ];

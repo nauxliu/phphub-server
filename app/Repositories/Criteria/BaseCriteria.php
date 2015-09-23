@@ -31,7 +31,7 @@ abstract class BaseCriteria extends RequestCriteria
             $search             = $this->parserSearchValue($search);
             $modelForceAndWhere = false;
 
-            $model = $model->where(function ($query) use ($fields, $search, $searchData, $isFirstField,$modelForceAndWhere) {
+            $model = $model->where(function ($query) use ($fields, $search, $searchData, $isFirstField, $modelForceAndWhere) {
                 foreach ($fields as $field => $condition) {
                     if (is_numeric($field)) {
                         $field = $condition;

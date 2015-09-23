@@ -63,11 +63,12 @@ class TopicCriteria extends BaseCriteria
     }
 
     /**
-     * 招聘节点下的帖子
+     * 招聘节点下的帖子.
      *
      * @param $model
      */
-    public function filterJobs(Builder $model){
+    public function filterJobs(Builder $model)
+    {
         $model->where('node_id', 40);
     }
 }
