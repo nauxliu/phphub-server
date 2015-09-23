@@ -3,14 +3,17 @@
 ##基本参数使用说明
 
 * `include`
+
 使用 `include` 参数来引入关联的数据，多个关联使用 `,` 隔开。如获取帖子列表想要同时获取发布者
 `https://api.phphub.org/topics?include=user`
 
 * `filter`
+
 使用 `filter` 应用查询过滤器，如要想获取推荐的帖子列表
 `https://api.phphub.org/topics?filter=excellent`
 
 * `per_page`
+
 使用 `per_page` 参数设置分页每页显示数量，`{url}?per_page=30`
 eg: `https://api.phphub.org/topics?per_page=30`
 
@@ -35,7 +38,7 @@ __POST 参数__
 
 ### login_token 认证
 
-扫描用户的登陆二维码，解析后会获得用户名和用于登陆的token, `{username},{login_token}`
+扫描用户的登陆二维码，解析后会获得用户名和用于登陆的token, `{username},{login_token}`,然后使用 username 和 login_token 获取 access_token
 
 例：
 
