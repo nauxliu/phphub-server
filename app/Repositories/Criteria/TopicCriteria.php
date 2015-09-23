@@ -8,34 +8,36 @@
  */
 namespace App\Repositories\Criteria;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class TopicCriteria extends BaseCriteria
 {
     /**
-     * 精华帖.
+     * 精华帖子.
      *
      * @param $model
      */
-    public function filterExcellent($model)
+    public function filterExcellent(Builder $model)
     {
         $model->where('is_excellent', 1);
     }
 
     /**
-     * Wiki 帖.
+     * Wiki 帖子.
      *
      * @param $model
      */
-    public function filterWiki($model)
+    public function filterWiki(Builder $model)
     {
         $model->where('is_wiki', 1);
     }
 
     /**
-     * 最新发表的贴.
+     * 最新发表的帖子.
      *
      * @param $model
      */
-    public function filterRecent($model)
+    public function filterRecent(Builder $model)
     {
         $model->orderBy('created_at', 'desc');
     }
@@ -45,18 +47,27 @@ class TopicCriteria extends BaseCriteria
      *
      * @param $model
      */
-    public function filterVote($model)
+    public function filterVote(Builder $model)
     {
         $model->orderBy('vote_count', 'desc');
     }
 
     /**
-     * 无人回复的贴.
+     * 无人回复的帖子.
      *
      * @param $model
      */
-    public function filterNobody($model)
+    public function filterNobody(Builder $model)
     {
         $model->where('reply_count', 0);
+    }
+
+    /**
+     * 招聘节点下的帖子
+     *
+     * @param $model
+     */
+    public function filterJobs(Builder $model){
+        $model->where('node_id', 40);
     }
 }
