@@ -6,7 +6,9 @@
  * Date: 9/22/15
  * Time: 9:12 PM.
  */
-namespace App;
+namespace App\OAuth;
+
+use App\User;
 
 class LoginTokenVerifier
 {

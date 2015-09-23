@@ -32,9 +32,9 @@ return [
         /*
          * 使用 login_token 获取 access_token
          */
-        'password' => [
-            'class'            => 'League\OAuth2\Server\Grant\PasswordGrant',
-            'callback'         => '\App\LoginTokenVerifier@verify',
+        'login_token' => [
+            'class'            => \App\OAuth\LoginTokenGrant::class,
+            'callback'         => '\App\OAuth\LoginTokenVerifier@verify',
             'access_token_ttl' => 3600,
         ],
 
