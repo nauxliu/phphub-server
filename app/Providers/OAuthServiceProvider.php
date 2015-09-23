@@ -2,8 +2,10 @@
 
 namespace PHPHub\Providers;
 
+use Auth;
 use Dingo\Api\Auth\Provider\OAuth2;
 use Illuminate\Support\ServiceProvider;
+use PHPHub\User;
 
 class OAuthServiceProvider extends ServiceProvider
 {
@@ -16,7 +18,9 @@ class OAuthServiceProvider extends ServiceProvider
             $provider = new OAuth2($app['oauth2-server.authorizer']->getChecker());
 
             $provider->setUserResolver(function ($id) {
-                // Logic to return a user by their ID.
+                Auth::loginUsingId($id);
+
+                return User::findOrFail($id);
             });
 
             $provider->setClientResolver(function ($id) {
