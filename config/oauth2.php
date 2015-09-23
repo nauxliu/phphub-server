@@ -33,8 +33,8 @@ return [
          * 使用 login_token 获取 access_token
          */
         'login_token' => [
-            'class'            => \App\OAuth\LoginTokenGrant::class,
-            'callback'         => \App\OAuth\LoginTokenVerifier::class.'@verify',
+            'class'            => \PHPHub\OAuth\LoginTokenGrant::class,
+            'callback'         => \PHPHub\OAuth\LoginTokenVerifier::class.'@verify',
             'access_token_ttl' => 3600,
         ],
         /*
