@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f0e674c3d29fe485cca470e19d47b7b1",
+    "hash": "1d6d71de59814862e771bc618173f648",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -164,12 +164,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dingo/api.git",
-                "reference": "eb22dd101349b51e447e3baa865067ef3944991a"
+                "reference": "4468b88b5f43a4e9c3f64d3a1e8803309e2b9625"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/dingo/api/zipball/4468b88b5f43a4e9c3f64d3a1e8803309e2b9625",
-                "reference": "eb22dd101349b51e447e3baa865067ef3944991a",
+                "reference": "4468b88b5f43a4e9c3f64d3a1e8803309e2b9625",
                 "shasum": ""
             },
             "require": {
@@ -232,7 +232,7 @@
                 "laravel",
                 "restful"
             ],
-            "time": "2015-09-04 01:35:06"
+            "time": "2015-09-22 00:46:33"
         },
         {
             "name": "dingo/blueprint",
