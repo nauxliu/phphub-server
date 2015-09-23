@@ -64,7 +64,7 @@ abstract class BaseCriteria extends RequestCriteria
             });
         }
 
-        if (isset($orderBy) && in_array(strtolower($orderBy), ['asc', 'desc'])) {
+        if (isset($orderBy) && in_array(strtolower($sortedBy), ['asc', 'desc'])) {
             $model = $model->orderBy($orderBy, $sortedBy);
         }
 
