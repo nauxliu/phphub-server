@@ -59,7 +59,7 @@ class TopicTransformer extends TransformerAbstract
 
     public function includeLastReplyUser($model)
     {
-        return $this->item($model->lastReplyUser, new UserTransformer());
+        return $this->item($model->lastReplyUser ?: $model->user, new UserTransformer());
     }
 
     public function includeReplies($model)
