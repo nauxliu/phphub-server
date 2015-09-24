@@ -41,6 +41,13 @@ class RepliesController extends Controller
             ->paginate(per_page());
     }
 
+    public function indexByUserId($user_id)
+    {
+        return $this->repository
+            ->byUserId($user_id)
+            ->paginate(per_page());
+    }
+
     /**
      * Store a newly created resource in storage.
      *

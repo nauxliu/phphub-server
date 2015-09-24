@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: xuan
  * Date: 9/24/15
- * Time: 9:55 AM
+ * Time: 9:55 AM.
  */
-
 namespace PHPHub\Repositories\Criteria;
 
 trait OrderByCreatedTimeTrait

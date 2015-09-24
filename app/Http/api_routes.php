@@ -26,5 +26,8 @@ $router->group(['middleware' => ['oauth', 'oauth-client']], function ($router) {
 $router->resource('topics', 'TopicsController');
 $router->get('topics/{id}/replies', 'RepliesController@indexByTopicId');
 
+// Replies
+$router->get('users/{id}/replies', 'RepliesController@indexByUserId');
+
 // User
 $router->resource('users', 'UsersController');

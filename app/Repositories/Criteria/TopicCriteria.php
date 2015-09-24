@@ -8,8 +8,6 @@
  */
 namespace PHPHub\Repositories\Criteria;
 
-use Illuminate\Database\Eloquent\Builder;
-
 class TopicCriteria extends BaseCriteria
 {
     use OrderByCreatedTimeTrait;

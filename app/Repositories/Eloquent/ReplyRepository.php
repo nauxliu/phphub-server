@@ -3,8 +3,8 @@
 namespace PHPHub\Repositories\Eloquent;
 
 use PHPHub\Presenters\ReplyPresenter;
+use PHPHub\Repositories\Criteria\ReplyCriteria;
 use PHPHub\Repositories\ReplyRepositoryInterface;
-use Prettus\Repository\Criteria\RequestCriteria;
 use PHPHub\Reply;
 
 /**
@@ -27,7 +27,7 @@ class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria(app(ReplyCriteria::class));
     }
 
     public function presenter()
@@ -39,13 +39,26 @@ class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
      * 通过 TopicId 过滤.
      *
      * @param $topic_id
-     * @param string $columns
      *
      * @return $this
      */
     public function byTopicId($topic_id)
     {
         $this->model->where('topic_id', $topic_id);
+
+        return $this;
+    }
+
+    /**
+     * 通过 UserId 过滤.
+     *
+     * @param $user_id
+     *
+     * @return $this
+     */
+    public function byUserId($user_id)
+    {
+        $this->model->where('user_id', $user_id);
 
         return $this;
     }
