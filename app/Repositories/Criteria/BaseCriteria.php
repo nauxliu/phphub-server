@@ -70,7 +70,7 @@ abstract class BaseCriteria extends RequestCriteria
 
         if (isset($filter) && !empty($filter)) {
             if (is_string($filter)) {
-                foreach (explode(',', $filter) as $filter) {
+                foreach (array_unique(explode(',', $filter)) as $filter) {
                     // eg. filter 'hot' 会调用方法 'filterHot'
                     $method_name = camel_case('filter_'.$filter);
                     if (method_exists($this, $method_name)) {
