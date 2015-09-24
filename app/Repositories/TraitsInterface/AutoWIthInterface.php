@@ -10,7 +10,6 @@ namespace PHPHub\Repositories\TraitsInterface;
 
 interface AutoWIthInterface
 {
-    public function addIncludable($include, array $default_columns, array $includable_columns, $foreign_key = null);
 
     /**
      * 自动 with include 的数据.

@@ -9,30 +9,16 @@
 namespace PHPHub\Repositories\Eloquent\Traits;
 
 use Input;
+use PHPHub\Transformers\IncludeManager\IncludeManager;
 
 trait AutoWithTrait
 {
-    protected $auto_with    = [];
-    protected $foreign_keys = [];
-
     /**
-     * 添加自动 With 规则.
-     *
-     * @param $include
-     * @param array $default_columns    默认字段
-     * @param array $includable_columns 可允许字段
-     * @param null  $foreign_key        只有 belongsTo 关联需要传
-     * @param null  $limit              HasMany 关系是需要传，
+     * 用户请求引入字段
+     * @var array
      */
-    public function addIncludable($include, array $default_columns, array $includable_columns, $foreign_key = null, $limit = null)
-    {
-        $limit                     = $limit ?: per_page();
-        $this->auto_with[$include] = compact('default_columns', 'includable_columns', 'foreign_key', 'limit');
+    protected $param_columns = null;
 
-        if ($foreign_key) {
-            $this->foreign_keys[] = $foreign_key;
-        }
-    }
 
     /**
      * 自动 with include 的关联.
@@ -41,25 +27,26 @@ trait AutoWithTrait
      */
     public function autoWith()
     {
-        $includes = explode(',', Input::get('include'));
-        $columns  = $this->parseColumns();
+        $include_manager = app(IncludeManager::class);
 
-        foreach ($includes as $include) {
-            if (!array_key_exists($include, $this->auto_with)) {
-                continue;
-            }
+        if(null == $this->param_columns){
+            $this->param_columns = $this->parseColumnsParam();
+        }
 
-            $default_columns = $this->getAutoWithConfig($include, 'default_columns');
-            $foreign_key     = $this->getAutoWithConfig($include, 'foreign_key');
-            $limit           = $this->getAutoWithConfig($include, 'limit');
-            $manual_columns  = array_get($columns, $include, []);
-            $relation        = camel_case($include);
+        foreach ($include_manager->getIncludableNames() as $include_name) {
+            $include = $include_manager->getIncludable($include_name);
+            $include->setColumns(array_get($this->param_columns, $include_name, []));
 
             // 没有传 $foreign_key 时不是 belongsTo 关系，不能走 withOnly，会获取不到数据
-            if (!$foreign_key) {
-                $this->with([$relation => function ($query) use ($limit) {$query->limit($limit);}]);
+            if (!$include->isNested() && !$include->getForeignKey()) {
+                $limit = $include->getLimit();
+                $this->with([
+                    $include->getRelation() => function ($query) use ($limit) {
+                        $query->limit($limit);
+                    }
+                ]);
             } else {
-                $this->withOnly($relation, array_filter(array_merge($default_columns, $manual_columns)));
+                $this->withOnly($include->getRelation(), $include->figureOutWhichColumns());
             }
         }
 
@@ -88,8 +75,9 @@ trait AutoWithTrait
      */
     public function autoWithRootColumns($columns)
     {
-        $this->model = $this->model->select(array_merge($columns, $this->foreign_keys));
-
+        $include_manager = app(IncludeManager::class);
+        $this->model = $this->model
+            ->select(array_merge($columns, $include_manager->getForeignKeys()));
         return $this;
     }
 
@@ -99,10 +87,10 @@ trait AutoWithTrait
      *
      * @return array
      */
-    private function parseColumns()
+    private function parseColumnsParam()
     {
         $result = [];
-        $items  = explode(',', Input::get('columns'));
+        $items = explode(',', Input::get('columns'));
 
         foreach ($items as $item) {
             $arr = explode('(', $item);

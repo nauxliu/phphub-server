@@ -6,7 +6,7 @@
  * Time: 12:08 PM
  */
 
-namespace PHPHub\Transformers;
+namespace PHPHub\Transformers\IncludeManager;
 
 use Dingo\Api\Http\Request;
 use Dingo\Api\Transformer\Adapter\Fractal;
@@ -14,7 +14,7 @@ use Dingo\Api\Transformer\Binding;
 use Dingo\Api\Contract\Transformer\Adapter;
 use Illuminate\Contracts\Pagination\Paginator as IlluminatePaginator;
 
-class PHPHubTransformerLayer extends Fractal implements Adapter
+class TransformerLayer extends Fractal implements Adapter
 {
     public function transform($response, $transformer, Binding $binding, Request $request)
     {

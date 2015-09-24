@@ -5,6 +5,9 @@ namespace PHPHub\Http\ApiControllers;
 use PHPHub\Node;
 use PHPHub\Reply;
 use PHPHub\Repositories\TopicRepositoryInterface;
+use PHPHub\Transformers\IncludeManager\Includable;
+use PHPHub\Transformers\IncludeManager\IncludeManager;
+use PHPHub\Transformers\TopicTransformer;
 use PHPHub\User;
 use Illuminate\Http\Request;
 
@@ -32,16 +35,32 @@ class TopicsController extends Controller
      */
     public function index()
     {
-        $this->repository->addIncludable('user', ['name', 'avatar'], User::$includable, 'user_id');
-        $this->repository->addIncludable('last_reply_user', ['name'], User::$includable, 'last_reply_user_id');
-        $this->repository->addIncludable('node', ['name'], Node::$includable, 'node_id');
+        $include_manager = app(IncludeManager::class);
 
-        return $this->repository
+        $include_manager->add((new Includable('user'))
+            ->setDefaultColumns(['name', 'avatar'])
+            ->setAllowColumns(User::$includable)
+            ->setForeignKey('user_id'));
+
+        $include_manager->add((new Includable('last_reply_user'))
+            ->setDefaultColumns('name')
+            ->setAllowColumns(User::$includable)
+            ->setForeignKey('last_reply_user_id'));
+
+        $include_manager->add((new Includable('node'))
+            ->setDefaultColumns('name')
+            ->setAllowColumns(Node::$includable)
+            ->setForeignKey('node_id'));
+
+        $data = $this->repository
             ->autoWith()
+            ->skipPresenter()
             ->autoWithRootColumns([
                 'id', 'title', 'is_excellent', 'reply_count', 'updated_at',
             ])
             ->paginate(per_page());
+
+        return $this->response()->paginator($data, new TopicTransformer());
     }
 
     /**
@@ -75,11 +94,26 @@ class TopicsController extends Controller
      */
     public function show($id)
     {
-        $this->repository->addIncludable('user', ['name', 'avatar'], User::$includable, 'user_id');
-        $this->repository->addIncludable('replies', ['body_original', 'vote_count'], Reply::$includable, null);
-        $this->repository->addIncludable('replies.user', ['name', 'avatar'], User::$includable, null);
+        $include_manager = app(IncludeManager::class);
 
-        return $this->repository->autoWith()->find($id);
+        $include_manager->add((new Includable('user'))
+            ->setDefaultColumns(['name', 'avatar'])
+            ->setAllowColumns(User::$includable)
+            ->setForeignKey('user_id'));
+
+        $include_manager->add((new Includable('replies'))
+            ->setDefaultColumns(['body_original', 'vote_count'])
+            ->setAllowColumns(User::$includable)
+            ->setLimit(per_page()));
+
+        $include_manager->add((new Includable('replies.user'))
+            ->setDefaultColumns(['name', 'avatar'])
+            ->setAllowColumns(Node::$includable)
+            ->nested());
+
+        $data = $this->repository->skipPresenter()->autoWith()->find($id);
+
+        return $this->response()->item($data, new TopicTransformer());
     }
 
     /**

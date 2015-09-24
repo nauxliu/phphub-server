@@ -1,7 +1,5 @@
 <?php
 
-use PHPHub\Transformers\PHPHubTransformerLayer;
-
 return [
 
     /*
@@ -187,7 +185,7 @@ return [
     |
     */
 
-    'transformer' => env('API_TRANSFORMER', PHPHubTransformerLayer::class),
+    'transformer' => env('API_TRANSFORMER', PHPHub\Transformers\IncludeManager\TransformerLayer::class),
 
     /*
     |--------------------------------------------------------------------------
