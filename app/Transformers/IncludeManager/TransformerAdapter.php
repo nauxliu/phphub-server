@@ -18,8 +18,9 @@ class TransformerLayer extends Fractal implements Adapter
 {
     public function transform($response, $transformer, Binding $binding, Request $request)
     {
-        // TODO: 过滤 include，仅允许当前接口允许的 include 项
-        $this->parseFractalIncludes($request);
+        // 过滤掉未允许的 include 项
+        $include_manager = app(IncludeManager::class);
+        $this->fractal->parseIncludes($include_manager->figureOutWhichIncludes());
 
         $resource = $this->createResource($response, $transformer, $binding->getParameters());
 
