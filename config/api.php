@@ -1,5 +1,7 @@
 <?php
 
+use PHPHub\Transformers\PHPHubTransformerLayer;
+
 return [
 
     /*
@@ -185,7 +187,7 @@ return [
     |
     */
 
-    'transformer' => env('API_TRANSFORMER', 'Dingo\Api\Transformer\Adapter\Fractal'),
+    'transformer' => env('API_TRANSFORMER', PHPHubTransformerLayer::class),
 
     /*
     |--------------------------------------------------------------------------
