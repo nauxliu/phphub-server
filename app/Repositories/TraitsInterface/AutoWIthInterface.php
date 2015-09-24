@@ -10,7 +10,6 @@ namespace PHPHub\Repositories\TraitsInterface;
 
 interface AutoWIthInterface
 {
-
     /**
      * 自动 with include 的数据.
      *

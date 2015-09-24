@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: xuan
  * Date: 9/24/15
- * Time: 12:08 PM
+ * Time: 12:08 PM.
  */
-
 namespace PHPHub\Transformers\IncludeManager;
 
 use Dingo\Api\Http\Request;

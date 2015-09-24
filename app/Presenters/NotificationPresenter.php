@@ -6,16 +6,14 @@ use PHPHub\Transformers\NotificationTransformer;
 use Prettus\Repository\Presenter\FractalPresenter;
 
 /**
- * Class NotificationPresenter
- *
- * @package namespace PHPHub\Presenters;
+ * Class NotificationPresenter.
  */
 class NotificationPresenter extends FractalPresenter
 {
     use HelpersTrait;
 
     /**
-     * Transformer
+     * Transformer.
      *
      * @return \League\Fractal\TransformerAbstract
      */

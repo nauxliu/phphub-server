@@ -7,14 +7,12 @@ use PHPHub\Repositories\NotificationRepositoryInterface;
 use PHPHub\Notification;
 
 /**
- * Class NotificationRepositoryEloquent
- * @package namespace PHPHub\Repositories\Eloquent;
+ * Class NotificationRepositoryEloquent.
  */
 class NotificationRepository extends BaseRepository implements NotificationRepositoryInterface
 {
-
     /**
-     * Specify Model class name
+     * Specify Model class name.
      *
      * @return string
      */
@@ -24,7 +22,7 @@ class NotificationRepository extends BaseRepository implements NotificationRepos
     }
 
     /**
-     * Boot up the repository, pushing criteria
+     * Boot up the repository, pushing criteria.
      */
     public function boot()
     {

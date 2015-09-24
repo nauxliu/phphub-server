@@ -5,12 +5,9 @@ namespace PHPHub;
 use Illuminate\Database\Eloquent\Model;
 use PHPHub\Presenters\NotificationPresenter;
 use Prettus\Repository\Contracts\PresenterInterface;
-use Prettus\Repository\Contracts\Transformable;
-use Prettus\Repository\Traits\TransformableTrait;
 
 class Notification extends Model implements PresenterInterface
 {
-
     protected $fillable = [];
 
     public function fromUser()
@@ -19,12 +16,14 @@ class Notification extends Model implements PresenterInterface
     }
 
     /**
-     * Prepare data to present
+     * Prepare data to present.
      *
      * @param $data
+     *
      * @return mixed
      */
-    public function present($data){
+    public function present($data)
+    {
         return NotificationPresenter::class;
     }
 }

@@ -14,11 +14,11 @@ use PHPHub\Transformers\IncludeManager\IncludeManager;
 trait AutoWithTrait
 {
     /**
-     * 用户请求引入字段
+     * 用户请求引入字段.
+     *
      * @var array
      */
     protected $param_columns = null;
-
 
     /**
      * 自动 with include 的关联.
@@ -29,7 +29,7 @@ trait AutoWithTrait
     {
         $include_manager = app(IncludeManager::class);
 
-        if(null == $this->param_columns){
+        if (null == $this->param_columns) {
             $this->param_columns = $this->parseColumnsParam();
         }
 
@@ -43,7 +43,7 @@ trait AutoWithTrait
                 $this->with([
                     $include->getRelation() => function ($query) use ($limit) {
                         $query->limit($limit);
-                    }
+                    },
                 ]);
             } else {
                 $this->withOnly($include->getRelation(), $include->figureOutWhichColumns());
@@ -76,8 +76,9 @@ trait AutoWithTrait
     public function autoWithRootColumns($columns)
     {
         $include_manager = app(IncludeManager::class);
-        $this->model = $this->model
+        $this->model     = $this->model
             ->select(array_merge($columns, $include_manager->getForeignKeys()));
+
         return $this;
     }
 
@@ -90,7 +91,7 @@ trait AutoWithTrait
     private function parseColumnsParam()
     {
         $result = [];
-        $items = explode(',', Input::get('columns'));
+        $items  = explode(',', Input::get('columns'));
 
         foreach ($items as $item) {
             $arr = explode('(', $item);

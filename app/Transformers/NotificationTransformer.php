@@ -7,8 +7,7 @@ use PHPHub\Notification;
 use PHPHub\Transformers\Traits\HelpersTrait;
 
 /**
- * Class NotificationTransformer
- * @package namespace PHPHub\Transformers;
+ * Class NotificationTransformer.
  */
 class NotificationTransformer extends TransformerAbstract
 {
@@ -22,8 +21,10 @@ class NotificationTransformer extends TransformerAbstract
     protected $availableIncludes = array('from_user');
 
     /**
-     * Transform the \Notification entity
+     * Transform the \Notification entity.
+     *
      * @param Notification $model
+     *
      * @return array
      */
     public function transformData($model)

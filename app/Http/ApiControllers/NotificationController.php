@@ -3,8 +3,6 @@
 namespace PHPHub\Http\ApiControllers;
 
 use Illuminate\Http\Request;
-use PHPHub\Http\Requests;
-use PHPHub\Notification;
 use PHPHub\Repositories\NotificationRepositoryInterface;
 use PHPHub\Transformers\NotificationTransformer;
 use PHPHub\User;
@@ -18,6 +16,7 @@ class NotificationController extends Controller
 
     /**
      * NotificationController constructor.
+     *
      * @param NotificationRepositoryInterface $repository
      */
     public function __construct(NotificationRepositoryInterface $repository)
@@ -55,7 +54,8 @@ class NotificationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -66,7 +66,8 @@ class NotificationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -77,7 +78,8 @@ class NotificationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -88,8 +90,9 @@ class NotificationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -100,7 +103,8 @@ class NotificationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

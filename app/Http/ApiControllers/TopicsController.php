@@ -3,7 +3,6 @@
 namespace PHPHub\Http\ApiControllers;
 
 use PHPHub\Node;
-use PHPHub\Reply;
 use PHPHub\Repositories\TopicRepositoryInterface;
 use PHPHub\Transformers\IncludeManager\Includable;
 use PHPHub\Transformers\IncludeManager\IncludeManager;
