@@ -31,9 +31,8 @@ class NotificationTransformer extends TransformerAbstract
         return $model->toArray();
     }
 
-//    public function includeFromUser($model)
-//    {
-//        dd($model->FromUser);
-//        return $this->item($model->fromUser, new UserTransformer());
-//    }
+    public function includeFromUser($model)
+    {
+        return $this->item($model->fromUser, new UserTransformer());
+    }
 }

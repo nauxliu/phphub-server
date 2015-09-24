@@ -36,7 +36,7 @@ trait HelpersTrait
         $data = array_only($this->transformData($model), array_keys($model->toArray()));
 
         // 在 transformData 中使用 toArray 后，时间会丢失时区等信息
-        if(isset($model->created_at)){
+        if($model->created_at){
             $data['created_at'] = $model->created_at;
         }
         if($model->updated_at){
