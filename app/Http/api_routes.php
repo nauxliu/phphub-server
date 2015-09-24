@@ -13,6 +13,7 @@ $router->post('oauth/access_token', function () {
 $router->group(['middleware' => ['oauth', 'oauth-user']], function ($router) {
     $router->get('me', 'UsersController@me');
 });
+$router->get('me/notifications', 'NotificationController@index');
 
 /*
  * 需要 client_credentials 认证获得的 access_token

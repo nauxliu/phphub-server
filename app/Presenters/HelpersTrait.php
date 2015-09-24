@@ -56,7 +56,7 @@ trait HelpersTrait
     public function __isset($name)
     {
         $this->checkObject();
-        if (method_exists($this, $name) || method_exists($this->object, $name)) {
+        if (method_exists($this, $name) || isset($this->object, $name)) {
             return true;
         }
 

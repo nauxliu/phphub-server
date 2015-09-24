@@ -53,7 +53,7 @@ return [
          | Enable or disable cache
          |
          */
-        'enabled' => true,
+        'enabled' => false,
 
         /*
          |--------------------------------------------------------------------------
@@ -220,13 +220,13 @@ return [
     */
     'generator' => [
         'basePath'      => app_path(),
-        'rootNamespace' => 'App\\',
+        'rootNamespace' => 'PHPHub',
         'paths'         => [
             'models'       => '',
-            'repositories' => 'Repositories\\Eloquent',
-            'interfaces'   => 'Repositories',
-            'transformers' => 'Transformers',
-            'presenters'   => 'Presenters',
+            'repositories' => '\\Repositories\\Eloquent',
+            'interfaces'   => '\\Repositories',
+            'transformers' => '\\Transformers',
+            'presenters'   => '\\Presenters',
         ],
     ],
 ];
