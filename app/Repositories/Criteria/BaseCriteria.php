@@ -74,7 +74,7 @@ abstract class BaseCriteria extends RequestCriteria
                     // eg. filter 'hot' 会调用方法 'filterHot'
                     $method_name = camel_case('filter_'.$filter);
                     if (method_exists($this, $method_name)) {
-                        call_user_func([$this, $method_name], $builder);
+                        $builder = call_user_func([$this, $method_name], $builder);
                     }
                 }
             }

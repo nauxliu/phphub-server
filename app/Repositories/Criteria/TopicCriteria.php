@@ -12,14 +12,16 @@ use Illuminate\Database\Eloquent\Builder;
 
 class TopicCriteria extends BaseCriteria
 {
+    use OrderByCreatedTimeTrait;
+
     /**
      * 精华帖子.
      *
      * @param $model
      */
-    public function filterExcellent(Builder $model)
+    public function filterExcellent($model)
     {
-        $model->where('is_excellent', 1);
+        return $model->where('is_excellent', 1);
     }
 
     /**
@@ -27,29 +29,9 @@ class TopicCriteria extends BaseCriteria
      *
      * @param $model
      */
-    public function filterWiki(Builder $model)
+    public function filterWiki($model)
     {
-        $model->where('is_wiki', 1);
-    }
-
-    /**
-     * 最新发表的帖子.
-     *
-     * @param $model
-     */
-    public function filterNewest(Builder $model)
-    {
-        $model->orderBy('created_at', 'desc');
-    }
-
-    /**
-     * 最早发表的帖子.
-     *
-     * @param $model
-     */
-    public function filterEarliest(Builder $model)
-    {
-        $model->orderBy('created_at', 'asc');
+        return $model->where('is_wiki', 1);
     }
 
     /**
@@ -57,9 +39,9 @@ class TopicCriteria extends BaseCriteria
      *
      * @param $model
      */
-    public function filterVote(Builder $model)
+    public function filterVote($model)
     {
-        $model->orderBy('vote_count', 'desc');
+        return $model->orderBy('vote_count', 'desc');
     }
 
     /**
@@ -67,9 +49,9 @@ class TopicCriteria extends BaseCriteria
      *
      * @param $model
      */
-    public function filterNobody(Builder $model)
+    public function filterNobody($model)
     {
-        $model->where('reply_count', 0);
+        return $model->where('reply_count', 0);
     }
 
     /**
@@ -77,8 +59,8 @@ class TopicCriteria extends BaseCriteria
      *
      * @param $model
      */
-    public function filterJobs(Builder $model)
+    public function filterJobs($model)
     {
-        $model->where('node_id', 40);
+        return $model->where('node_id', 40);
     }
 }
