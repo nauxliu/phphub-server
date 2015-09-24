@@ -22,9 +22,10 @@ function per_page($default = null)
 };
 
 /**
- * 使用 cdn 镜像获取本地资源的加速连接
+ * 使用 cdn 镜像获取本地资源的加速连接.
  *
  * @param $file_path
+ *
  * @return string
  */
 function cdn($file_path)
@@ -35,11 +36,12 @@ function cdn($file_path)
 }
 
 /**
- * 在 Repository Criteria 中应用 filter
+ * 在 Repository Criteria 中应用 filter.
  *
  * @param array|string $filters
  */
-function add_filter($filters){
+function add_filter($filters)
+{
     $filters = (array) $filters;
-    Input::merge(['filter' => Input::get('filter') .',' . implode(',', $filters)]);
+    Input::merge(['filter' => Input::get('filter').','.implode(',', $filters)]);
 }
