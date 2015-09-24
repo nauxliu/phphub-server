@@ -3,6 +3,9 @@
 namespace PHPHub\Http\ApiControllers;
 
 use PHPHub\Repositories\ReplyRepositoryInterface;
+use PHPHub\Transformers\IncludeManager\Includable;
+use PHPHub\Transformers\IncludeManager\IncludeManager;
+use PHPHub\Transformers\ReplyTransformer;
 use PHPHub\User;
 use Illuminate\Http\Request;
 
@@ -32,20 +35,40 @@ class RepliesController extends Controller
      */
     public function indexByTopicId($topic_id)
     {
-        $this->repository->addIncludable('user', ['name', 'avatar'], User::$includable, 'user_id');
+        $include_manager = app(IncludeManager::class);
 
-        return $this->repository
+        $include_manager->add((new Includable('user'))
+            ->setDefaultColumns(['name', 'avatar'])
+            ->setAllowColumns(User::$includable)
+            ->setForeignKey('user_id'));
+
+        $data = $this->repository
             ->byTopicId($topic_id)
+            ->skipPresenter()
             ->autoWith()
-            ->autoWithRootColumns(['body_original'])
+            ->autoWithRootColumns(['id', 'vote_count', 'created_at'])
             ->paginate(per_page());
+
+        return $this->response()->paginator($data, new ReplyTransformer());
     }
 
     public function indexByUserId($user_id)
     {
-        return $this->repository
+        $include_manager = app(IncludeManager::class);
+
+        $include_manager->add((new Includable('user'))
+            ->setDefaultColumns(['name', 'avatar', 'created_at'])
+            ->setAllowColumns(User::$includable)
+            ->setForeignKey('user_id'));
+
+        $data = $this->repository
             ->byUserId($user_id)
+            ->skipPresenter()
+            ->autoWith()
+            ->autoWithRootColumns(['id', 'vote_count'])
             ->paginate(per_page());
+
+        return $this->response()->paginator($data, new ReplyTransformer());
     }
 
     /**

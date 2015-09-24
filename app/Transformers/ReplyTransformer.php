@@ -28,11 +28,7 @@ class ReplyTransformer extends TransformerAbstract
      */
     public function transformData($model)
     {
-        return [
-            'id'            => (int) $model->id,
-            'body_original' => $model->body_original,
-            'created_at'    => $model->created_at,
-        ];
+        return $model->toArray();
     }
 
     public function includeUser($model)
