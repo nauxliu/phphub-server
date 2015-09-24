@@ -222,7 +222,7 @@ return [
         'basePath'      => app_path(),
         'rootNamespace' => 'App\\',
         'paths'         => [
-            'models'       => 'Models',
+            'models'       => '',
             'repositories' => 'Repositories\\Eloquent',
             'interfaces'   => 'Repositories',
             'transformers' => 'Transformers',
