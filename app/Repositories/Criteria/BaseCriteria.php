@@ -13,7 +13,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
  */
 abstract class BaseCriteria extends RequestCriteria
 {
-    public function apply($model, RepositoryInterface $repository)
+    public function apply($builder, RepositoryInterface $repository)
     {
         $fieldsSearchable = $repository->getFieldsSearchable();
         $search           = $this->request->get(config('repository.criteria.params.search', 'search'), null);
@@ -31,7 +31,7 @@ abstract class BaseCriteria extends RequestCriteria
             $search             = $this->parserSearchValue($search);
             $modelForceAndWhere = false;
 
-            $model = $model->where(function ($query) use ($fields, $search, $searchData, $isFirstField, $modelForceAndWhere) {
+            $builder = $builder->where(function ($query) use ($fields, $search, $searchData, $isFirstField, $modelForceAndWhere) {
                 foreach ($fields as $field => $condition) {
                     if (is_numeric($field)) {
                         $field = $condition;
@@ -65,21 +65,21 @@ abstract class BaseCriteria extends RequestCriteria
         }
 
         if (isset($orderBy) && in_array(strtolower($sortedBy), ['asc', 'desc'])) {
-            $model = $model->orderBy($orderBy, $sortedBy);
+            $builder = $builder->orderBy($orderBy, $sortedBy);
         }
 
         if (isset($filter) && !empty($filter)) {
             if (is_string($filter)) {
-                foreach (explode(';', $filter) as $filter) {
+                foreach (explode(',', $filter) as $filter) {
                     // eg. filter 'hot' 会调用方法 'filterHot'
                     $method_name = camel_case('filter_'.$filter);
                     if (method_exists($this, $method_name)) {
-                        call_user_func([$this, $method_name], $model);
+                        call_user_func([$this, $method_name], $builder);
                     }
                 }
             }
         }
 
-        return $model;
+        return $builder;
     }
 }
