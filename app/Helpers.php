@@ -21,9 +21,25 @@ function per_page($default = null)
     return $per_page ?: config('api.default_per_page');
 };
 
+/**
+ * 使用 cdn 镜像获取本地资源的加速连接
+ *
+ * @param $file_path
+ * @return string
+ */
 function cdn($file_path)
 {
     $base_url = config('app.static_mirror_url') ?: config('app.url');
 
     return trim($base_url, '/').'/'.$file_path;
+}
+
+/**
+ * 在 Repository Criteria 中应用 filter
+ *
+ * @param array|string $filters
+ */
+function add_filter($filters){
+    $filters = (array) $filters;
+    Input::merge(['filter' => Input::get('filter') .',' . implode(',', $filters)]);
 }
