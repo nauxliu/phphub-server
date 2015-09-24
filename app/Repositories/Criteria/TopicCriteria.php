@@ -37,9 +37,19 @@ class TopicCriteria extends BaseCriteria
      *
      * @param $model
      */
-    public function filterRecent(Builder $model)
+    public function filterNewest(Builder $model)
     {
         $model->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * 最早发表的帖子.
+     *
+     * @param $model
+     */
+    public function filterEarliest(Builder $model)
+    {
+        $model->orderBy('created_at', 'asc');
     }
 
     /**
