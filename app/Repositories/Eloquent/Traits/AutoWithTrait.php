@@ -33,7 +33,7 @@ trait AutoWithTrait
             $this->param_columns = $this->parseColumnsParam();
         }
 
-        foreach ($include_manager->getIncludableNames() as $include_name) {
+        foreach ($include_manager->figureOutWhichIncludes() as $include_name) {
             $include = $include_manager->getIncludable($include_name);
             $include->setColumns(array_get($this->param_columns, $include_name, []));
 
@@ -77,7 +77,7 @@ trait AutoWithTrait
     {
         $include_manager = app(IncludeManager::class);
         $this->model     = $this->model
-            ->select(array_merge($columns, $include_manager->getForeignKeys()));
+                ->select(array_merge($columns, $include_manager->getForeignKeys()));
 
         return $this;
     }

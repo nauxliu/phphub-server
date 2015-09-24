@@ -8,10 +8,13 @@
  */
 namespace PHPHub\Transformers\IncludeManager;
 
+use Input;
+
 class IncludeManager
 {
-    private $includables = [];
+    private $available_includes = [];
     private $foreign_keys;
+    private $includes = null;
 
     /**
      * 添加一个可被引入的项.
@@ -20,8 +23,8 @@ class IncludeManager
      */
     public function add(Includable $includable)
     {
-        $this->includables[$includable->getName()] = $includable;
-        $this->foreign_keys[]                      = $includable->getForeignKey();
+        $this->available_includes[$includable->getName()] = $includable;
+        $this->foreign_keys[$includable->getName()]       = $includable->getForeignKey();
     }
 
     /**
@@ -33,7 +36,7 @@ class IncludeManager
      */
     public function getIncludable($name)
     {
-        return array_get($this->includables, $name, null);
+        return array_get($this->available_includes, $name, null);
     }
 
     /**
@@ -41,18 +44,40 @@ class IncludeManager
      *
      * @return array
      */
-    public function getIncludableNames()
+    public function getAvailableIncludableNames()
     {
-        return array_keys($this->includables);
+        return array_keys($this->available_includes);
     }
 
     /**
-     * 获取所有引入项的外键.
+     * 获取需要的引入项的外键.
      *
      * @return mixed
      */
     public function getForeignKeys()
     {
-        return $this->foreign_keys;
+        return array_only($this->foreign_keys, $this->figureOutWhichIncludes());
+    }
+
+    /**
+     * 计算出需要那些引入项.
+     */
+    public function figureOutWhichIncludes()
+    {
+        return array_intersect($this->parseIncludes(), $this->getAvailableIncludableNames());
+    }
+
+    /**
+     * 解析客户端的 include 参数.
+     *
+     * @return array
+     */
+    public function parseIncludes()
+    {
+        if ($this->includes == null) {
+            return $this->includes = explode(',', Input::get('include'));
+        }
+
+        return $this->includes;
     }
 }
