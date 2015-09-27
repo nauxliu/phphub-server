@@ -185,7 +185,7 @@ return [
     |
     */
 
-    'transformer' => env('API_TRANSFORMER', PHPHub\Transformers\IncludeManager\TransformerLayer::class),
+    'transformer' => env('API_TRANSFORMER', PHPHub\Transformers\IncludeManager\TransformerAdapter::class),
 
     /*
     |--------------------------------------------------------------------------

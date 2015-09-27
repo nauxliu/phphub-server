@@ -14,7 +14,7 @@ use Dingo\Api\Transformer\Binding;
 use Dingo\Api\Contract\Transformer\Adapter;
 use Illuminate\Contracts\Pagination\Paginator as IlluminatePaginator;
 
-class TransformerLayer extends Fractal implements Adapter
+class TransformerAdapter extends Fractal implements Adapter
 {
     public function transform($response, $transformer, Binding $binding, Request $request)
     {
