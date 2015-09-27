@@ -7,5 +7,4 @@ namespace PHPHub\Repositories;
  */
 interface TopicRepositoryInterface extends RepositoryInterface
 {
-    //TODO
 }

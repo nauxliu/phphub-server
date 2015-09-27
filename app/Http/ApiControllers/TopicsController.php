@@ -93,22 +93,9 @@ class TopicsController extends Controller
      */
     public function show($id)
     {
-        $include_manager = app(IncludeManager::class);
-
-        $include_manager->add((new Includable('user'))
-            ->setDefaultColumns(['name', 'avatar'])
-            ->setAllowColumns(User::$includable)
-            ->setForeignKey('user_id'));
-
-        $include_manager->add((new Includable('replies'))
-            ->setDefaultColumns(['body_original', 'vote_count'])
-            ->setAllowColumns(User::$includable)
-            ->setLimit(per_page()));
-
-        $include_manager->add((new Includable('replies.user'))
-            ->setDefaultColumns(['name', 'avatar'])
-            ->setAllowColumns(Node::$includable)
-            ->nested());
+        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
+        $this->repository->addAvailableInclude('replies', ['vote_count']);
+        $this->repository->addAvailableInclude('replies.user', ['name', 'avatar']);
 
         $data = $this->repository->skipPresenter()->autoWith()->find($id);
 

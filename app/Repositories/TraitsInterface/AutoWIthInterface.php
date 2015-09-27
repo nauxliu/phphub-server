@@ -16,4 +16,14 @@ interface AutoWIthInterface
      * @return $this
      */
     public function autoWith();
+
+    /**
+     * 添加一个可用的引入项.
+     *
+     * @param $string
+     * @param $array
+     *
+     * @return mixed
+     */
+    public function addAvailableInclude($string, $array);
 }

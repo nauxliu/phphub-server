@@ -18,6 +18,8 @@ class Includable
     private $name;
     private $foreign_key;
     private $limit;
+    private $parent_name;
+    private $children = [];
 
     public function __construct($name)
     {
@@ -235,11 +237,14 @@ class Includable
     /**
      * 设置这个引入项目是否是嵌套的.
      *
+     * @param $parent string 父引入项名
+     *
      * @return $this
      */
-    public function nested()
+    public function nested($parent)
     {
-        $this->nested = true;
+        $this->parent_name = $parent;
+        $this->nested      = true;
 
         return $this;
     }
@@ -252,5 +257,47 @@ class Includable
     public function isNested()
     {
         return $this->nested;
+    }
+
+    /**
+     * 获取一个新的自身的实例.
+     *
+     * @param $name
+     *
+     * @return Includable
+     */
+    public static function make($name)
+    {
+        return new self($name);
+    }
+
+    /**
+     * 获取父引入项名.
+     *
+     * @return mixed
+     */
+    public function getParentName()
+    {
+        return $this->parent_name;
+    }
+
+    /**
+     * 获取所有子引入项.
+     *
+     * @return Includable[]
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * 添加一个子引入项目.
+     *
+     * @param mixed $children
+     */
+    public function addChildren(Includable $children)
+    {
+        $this->children[$children->getName()] = $children;
     }
 }

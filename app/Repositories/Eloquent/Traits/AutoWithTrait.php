@@ -8,6 +8,7 @@
  */
 namespace PHPHub\Repositories\Eloquent\Traits;
 
+use Exception;
 use Input;
 use PHPHub\Transformers\IncludeManager\IncludeManager;
 
@@ -29,20 +30,29 @@ trait AutoWithTrait
     {
         $include_manager = app(IncludeManager::class);
 
-        if (null == $this->param_columns) {
-            $this->param_columns = $this->parseColumnsParam();
-        }
+        $param_columns  = $this->parseColumnsParam();
+        $which_includes = $include_manager->figureOutWhichIncludes();
 
-        foreach ($include_manager->figureOutWhichIncludes() as $include_name) {
+        foreach ($which_includes as $include_name) {
             $include = $include_manager->getIncludable($include_name);
-            $include->setColumns(array_get($this->param_columns, $include_name, []));
+            $include->setColumns(array_get($param_columns, $include_name, []));
 
-            // 没有传 $foreign_key 时不是 belongsTo 关系，不能走 withOnly，会获取不到数据
-            if (!$include->isNested() && !$include->getForeignKey()) {
-                $limit = $include->getLimit();
+            // 嵌套节点会在父节点被解析的时候解析到
+            if ($include->isNested()) {
+                continue;
+            } // 没有传 $foreign_key 时不是 belongsTo 关系，不能走 withOnly，会获取不到数据
+            elseif (!$include->getForeignKey()) {
                 $this->with([
-                    $include->getRelation() => function ($query) use ($limit) {
-                        $query->limit($limit);
+                    $include->getRelation() => function ($query) use ($include, &$which_includes) {
+                        $query->limit($include->getLimit());
+                        // hasMany 可能会有子引入项，也自动 with
+                        foreach ($include->getChildren() as $child_include) {
+                            if (!in_array($child_include->getName(), $which_includes)) {
+                                continue;
+                            }
+                            $name = explode('.', $child_include->getName());
+                            $query->with(end($name));
+                        }
                     },
                 ]);
             } else {
@@ -54,16 +64,26 @@ trait AutoWithTrait
     }
 
     /**
-     * @param $include
-     * @param $key
+     * 添加一个可用的引入项.
      *
-     * @return mixed
+     * @param $name
+     * @param $default_columns
+     *
+     * @return $this
+     *
+     * @throws Exception
      */
-    public function getAutoWithConfig($include, $key)
+    public function addAvailableInclude($name, $default_columns)
     {
-        $configs = array_get($this->auto_with, $include, []);
+        $method_name = camel_case('include_'.str_replace('.', '_', $name));
 
-        return array_get($configs, $key);
+        if (!method_exists($this, $method_name)) {
+            throw new Exception("You should define $method_name in your repository");
+        }
+
+        call_user_func([$this, $method_name], $default_columns);
+
+        return $this;
     }
 
     /**
@@ -77,7 +97,7 @@ trait AutoWithTrait
     {
         $include_manager = app(IncludeManager::class);
         $this->model     = $this->model
-                ->select(array_merge($columns, $include_manager->getForeignKeys()));
+            ->select(array_merge($columns, $include_manager->getForeignKeys()));
 
         return $this;
     }
@@ -90,6 +110,9 @@ trait AutoWithTrait
      */
     private function parseColumnsParam()
     {
+        if (null != $this->param_columns) {
+            $this->param_columns;
+        }
         $result = [];
         $items  = explode(',', Input::get('columns'));
 
@@ -104,6 +127,6 @@ trait AutoWithTrait
             $result[$include] = explode(':', trim($columns_str, ')'));
         }
 
-        return $result;
+        return $this->param_columns = $result;
     }
 }

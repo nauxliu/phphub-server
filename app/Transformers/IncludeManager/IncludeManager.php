@@ -8,6 +8,7 @@
  */
 namespace PHPHub\Transformers\IncludeManager;
 
+use Exception;
 use Input;
 
 class IncludeManager
@@ -23,6 +24,13 @@ class IncludeManager
      */
     public function add(Includable $includable)
     {
+        if ($includable->isNested()) {
+            $parent_includable = $this->getIncludable($includable->getParentName());
+            if (null == $parent_includable) {
+                throw new Exception('You must define includable '.$includable->getParentName());
+            }
+            $parent_includable->addChildren($includable);
+        }
         $this->available_includes[$includable->getName()] = $includable;
         $this->foreign_keys[$includable->getName()]       = $includable->getForeignKey();
     }
