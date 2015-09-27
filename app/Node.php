@@ -2,11 +2,11 @@
 
 namespace PHPHub;
 
+use McCool\LaravelAutoPresenter\HasPresenter;
 use PHPHub\Presenters\NodePresenter;
 use Illuminate\Database\Eloquent\Model;
-use Prettus\Repository\Contracts\PresenterInterface;
 
-class Node extends Model implements PresenterInterface
+class Node extends Model implements HasPresenter
 {
     public static $includable = [];
     protected $fillable       = [];
@@ -17,13 +17,11 @@ class Node extends Model implements PresenterInterface
     }
 
     /**
-     * Prepare data to present.
+     * Get the presenter class.
      *
-     * @param $data
-     *
-     * @return mixed
+     * @return string
      */
-    public function present($data)
+    public function getPresenterClass()
     {
         return NodePresenter::class;
     }

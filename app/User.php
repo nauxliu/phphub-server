@@ -2,10 +2,9 @@
 
 namespace PHPHub;
 
+use McCool\LaravelAutoPresenter\HasPresenter;
 use PHPHub\Presenters\UserPresenter;
 use Illuminate\Database\Eloquent\Model;
-use Prettus\Repository\Contracts\PresenterInterface;
-use Prettus\Repository\Traits\PresentableTrait;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\Access\Authorizable;
@@ -13,11 +12,11 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements PresenterInterface, AuthenticatableContract,
+class User extends Model implements HasPresenter, AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract
 {
-    use PresentableTrait, Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable, Authorizable, CanResetPassword;
 
     public static $includable = [
         'id',
@@ -57,13 +56,11 @@ class User extends Model implements PresenterInterface, AuthenticatableContract,
     }
 
     /**
-     * Prepare data to present.
+     * Get the presenter class.
      *
-     * @param $data
-     *
-     * @return mixed
+     * @return string
      */
-    public function present($data)
+    public function getPresenterClass()
     {
         return UserPresenter::class;
     }

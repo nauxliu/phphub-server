@@ -2,23 +2,11 @@
 
 namespace PHPHub\Presenters;
 
-use PHPHub\Transformers\TopicTransformer;
-use Prettus\Repository\Presenter\FractalPresenter;
+use McCool\LaravelAutoPresenter\BasePresenter;
 
 /**
  * Class TopicPresenter.
  */
-class TopicPresenter extends FractalPresenter
+class TopicPresenter extends BasePresenter
 {
-    use HelpersTrait;
-
-    /**
-     * Transformer.
-     *
-     * @return \League\Fractal\TransformerAbstract
-     */
-    public function getTransformer()
-    {
-        return new TopicTransformer();
-    }
 }

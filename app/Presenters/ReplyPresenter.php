@@ -2,23 +2,11 @@
 
 namespace PHPHub\Presenters;
 
-use PHPHub\Transformers\ReplyTransformer;
-use Prettus\Repository\Presenter\FractalPresenter;
+use McCool\LaravelAutoPresenter\BasePresenter;
 
 /**
  * Class ReplyPresenter.
  */
-class ReplyPresenter extends FractalPresenter
+class ReplyPresenter extends BasePresenter
 {
-    use HelpersTrait;
-
-    /**
-     * Transformer.
-     *
-     * @return \League\Fractal\TransformerAbstract
-     */
-    public function getTransformer()
-    {
-        return new ReplyTransformer();
-    }
 }

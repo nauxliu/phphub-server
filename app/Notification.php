@@ -3,10 +3,10 @@
 namespace PHPHub;
 
 use Illuminate\Database\Eloquent\Model;
+use McCool\LaravelAutoPresenter\HasPresenter;
 use PHPHub\Presenters\NotificationPresenter;
-use Prettus\Repository\Contracts\PresenterInterface;
 
-class Notification extends Model implements PresenterInterface
+class Notification extends Model implements HasPresenter
 {
     protected $fillable = [];
 
@@ -16,13 +16,11 @@ class Notification extends Model implements PresenterInterface
     }
 
     /**
-     * Prepare data to present.
+     * Get the presenter class.
      *
-     * @param $data
-     *
-     * @return mixed
+     * @return string
      */
-    public function present($data)
+    public function getPresenterClass()
     {
         return NotificationPresenter::class;
     }

@@ -2,14 +2,12 @@
 
 namespace PHPHub;
 
+use McCool\LaravelAutoPresenter\HasPresenter;
 use PHPHub\Presenters\ReplyPresenter;
 use Illuminate\Database\Eloquent\Model;
-use Prettus\Repository\Contracts\PresenterInterface;
-use Prettus\Repository\Traits\PresentableTrait;
 
-class Reply extends Model implements PresenterInterface
+class Reply extends Model implements HasPresenter
 {
-    use PresentableTrait;
     public static $includable = ['id', 'body', 'body_original', 'vote_count'];
     protected $fillable       = [];
 
@@ -24,13 +22,11 @@ class Reply extends Model implements PresenterInterface
     }
 
     /**
-     * Prepare data to present.
+     * Get the presenter class.
      *
-     * @param $data
-     *
-     * @return mixed
+     * @return string
      */
-    public function present($data)
+    public function getPresenterClass()
     {
         return ReplyPresenter::class;
     }

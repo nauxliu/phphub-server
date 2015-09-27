@@ -2,21 +2,11 @@
 
 namespace PHPHub\Presenters;
 
-use PHPHub\Transformers\NodeTransformer;
-use Prettus\Repository\Presenter\FractalPresenter;
+use McCool\LaravelAutoPresenter\BasePresenter;
 
 /**
  * Class NodePresenter.
  */
-class NodePresenter extends FractalPresenter
+class NodePresenter extends BasePresenter
 {
-    /**
-     * Transformer.
-     *
-     * @return \League\Fractal\TransformerAbstract
-     */
-    public function getTransformer()
-    {
-        return new NodeTransformer();
-    }
 }

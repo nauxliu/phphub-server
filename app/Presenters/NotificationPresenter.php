@@ -2,23 +2,11 @@
 
 namespace PHPHub\Presenters;
 
-use PHPHub\Transformers\NotificationTransformer;
-use Prettus\Repository\Presenter\FractalPresenter;
+use McCool\LaravelAutoPresenter\BasePresenter;
 
 /**
  * Class NotificationPresenter.
  */
-class NotificationPresenter extends FractalPresenter
+class NotificationPresenter extends BasePresenter
 {
-    use HelpersTrait;
-
-    /**
-     * Transformer.
-     *
-     * @return \League\Fractal\TransformerAbstract
-     */
-    public function getTransformer()
-    {
-        return new NotificationTransformer();
-    }
 }

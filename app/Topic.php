@@ -2,15 +2,12 @@
 
 namespace PHPHub;
 
+use McCool\LaravelAutoPresenter\HasPresenter;
 use PHPHub\Presenters\TopicPresenter;
 use Illuminate\Database\Eloquent\Model;
-use Prettus\Repository\Contracts\PresenterInterface;
-use Prettus\Repository\Traits\PresentableTrait;
 
-class Topic extends Model implements PresenterInterface
+class Topic extends Model implements HasPresenter
 {
-    use PresentableTrait;
-
     protected $fillable = [];
 
     public function user()
@@ -34,13 +31,11 @@ class Topic extends Model implements PresenterInterface
     }
 
     /**
-     * Prepare data to present.
+     * Get the presenter class.
      *
-     * @param $data
-     *
-     * @return mixed
+     * @return string
      */
-    public function present($data)
+    public function getPresenterClass()
     {
         return TopicPresenter::class;
     }
