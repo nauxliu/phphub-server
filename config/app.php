@@ -165,6 +165,7 @@ return [
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
         LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
+        McCool\LaravelAutoPresenter\AutoPresenterServiceProvider::class
 
     ],
 
