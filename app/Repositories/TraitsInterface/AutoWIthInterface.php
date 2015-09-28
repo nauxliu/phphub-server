@@ -26,4 +26,13 @@ interface AutoWIthInterface
      * @return mixed
      */
     public function addAvailableInclude($string, $array);
+
+    /**
+     * 设置数据要查询的字段,自动绑定 include 关联的外键.
+     *
+     * @param $columns
+     *
+     * @return $this
+     */
+    public function autoWithRootColumns($columns);
 }

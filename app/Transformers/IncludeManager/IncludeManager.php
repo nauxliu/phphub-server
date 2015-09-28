@@ -14,8 +14,8 @@ use Input;
 class IncludeManager
 {
     private $available_includes = [];
-    private $foreign_keys;
-    private $includes = null;
+    private $foreign_keys       = [];
+    private $includes           = null;
 
     /**
      * 添加一个可被引入的项.
