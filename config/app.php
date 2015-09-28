@@ -156,6 +156,8 @@ return [
         PHPHub\Providers\LocalProvidersRegister::class,
         PHPHub\Providers\RepositoriesServiceProvider::class,
         PHPHub\Providers\IncludeManagerProvider::class,
+        PHPHub\Providers\OAuthServiceProvider::class,
+
 
         /*
          * Third Party Service Providers...

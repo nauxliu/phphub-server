@@ -59,6 +59,7 @@ class UsersController extends Controller
      */
     public function me()
     {
+        dd(Auth::id());
         return $this->show(Auth::id());
     }
 

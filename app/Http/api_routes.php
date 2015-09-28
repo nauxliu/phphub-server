@@ -10,7 +10,7 @@ $router->post('oauth/access_token', function () {
 /*
  * 需要 login-token 认证获得的 access_token
  */
-$router->group(['middleware' => ['oauth', 'oauth-user']], function ($router) {
+$router->group(['middleware' => ['api.auth', 'oauth-user']], function ($router) {
     $router->get('me', 'UsersController@me');
 });
 $router->get('me/notifications', 'NotificationController@index');
