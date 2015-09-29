@@ -6,12 +6,27 @@ use PHPHub\Presenters\UserPresenter;
 use PHPHub\Repositories\UserRepositoryInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
 use PHPHub\User;
+use Prettus\Validator\Contracts\ValidatorInterface;
 
 /**
  * Class UserRepositoryEloquent.
  */
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
+    /**
+     * Specify Validator Rules.
+     *
+     * @var array
+     */
+    protected $rules = [
+        ValidatorInterface::RULE_CREATE => [
+
+        ],
+        ValidatorInterface::RULE_UPDATE => [
+
+        ],
+    ];
+
     /**
      * Specify Model class name.
      *

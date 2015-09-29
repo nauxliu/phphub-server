@@ -4,6 +4,8 @@ namespace PHPHub\Providers;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use PHPHub\Policies\UserPolicy;
+use PHPHub\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'PHPHub\Model' => 'PHPHub\Policies\ModelPolicy',
+        User::class => UserPolicy::class,
     ];
 
     /**

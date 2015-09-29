@@ -3,9 +3,13 @@
 namespace PHPHub\Http\ApiControllers;
 
 use Auth;
+use Dingo\Api\Exception\UpdateResourceFailedException;
+use Gate;
 use PHPHub\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use PHPHub\Transformers\UserTransformer;
+use Prettus\Validator\Exceptions\ValidatorException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class UsersController extends Controller
 {
@@ -58,6 +62,18 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = $this->repository->find($id);
+
+        if (Gate::denies('update', $user)) {
+            throw new AccessDeniedHttpException();
+        }
+
+        try {
+            $user = $this->repository->update($request->all(), $id);
+
+            return $this->response()->item($user, new UserTransformer());
+        } catch (ValidatorException $e) {
+            throw new UpdateResourceFailedException('Could not update user.', $e->getMessageBag()->all());
+        }
     }
 }

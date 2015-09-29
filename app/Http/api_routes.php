@@ -12,6 +12,8 @@ $router->post('oauth/access_token', function () {
  */
 $router->group(['middleware' => ['api.auth', 'oauth-user']], function ($router) {
     $router->get('me', 'UsersController@me');
+    $router->put('users/{id}', 'UsersController@update');
+
     $router->get('me/notifications', 'NotificationController@index');
 });
 

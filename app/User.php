@@ -39,7 +39,15 @@ class User extends Model implements HasPresenter, AuthenticatableContract,
         'updated_at',
     ];
 
-    protected $fillable = [];
+    protected $fillable = [
+        'real_name',
+        'city',
+        'company',
+        'twitter_account',
+        'personal_website',
+        'signature',
+        'introduction',
+    ];
 
     protected $casts = [
         'id'                 => 'int',
