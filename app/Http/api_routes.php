@@ -18,6 +18,9 @@ $router->group(['middleware' => ['api.auth', 'oauth-user']], function ($router) 
     //Topics
     $router->delete('topic/{id}', 'TopicController@delete');
 
+    //Replies
+    $router->post('replies', 'RepliesController@store');
+
     //Notifications
     $router->get('me/notifications', 'NotificationController@index');
 });

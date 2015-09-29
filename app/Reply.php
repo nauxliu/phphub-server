@@ -9,7 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 class Reply extends Model implements HasPresenter
 {
     public static $includable = ['id', 'body', 'body_original', 'vote_count'];
-    protected $fillable       = [];
+    protected $fillable       = ['body', 'topic_id'];
+
+    protected $casts = [
+        'user_id'    => 'int',
+        'topic_id'   => 'int',
+        'is_block'   => 'boolean',
+        'vote_count' => 'int',
+    ];
 
     public function topic()
     {

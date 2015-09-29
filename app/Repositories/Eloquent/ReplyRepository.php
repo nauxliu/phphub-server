@@ -2,11 +2,12 @@
 
 namespace PHPHub\Repositories\Eloquent;
 
-use PHPHub\Presenters\ReplyPresenter;
+use Auth;
 use PHPHub\Repositories\Criteria\ReplyCriteria;
 use PHPHub\Repositories\Eloquent\Traits\IncludeUserTrait;
 use PHPHub\Repositories\ReplyRepositoryInterface;
 use PHPHub\Reply;
+use Prettus\Validator\Contracts\ValidatorInterface;
 
 /**
  * Class ReplyRepositoryEloquent.
@@ -14,6 +15,41 @@ use PHPHub\Reply;
 class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
 {
     use IncludeUserTrait;
+
+    /**
+     * Specify Validator Rules.
+     *
+     * @var array
+     */
+    protected $rules = [
+        ValidatorInterface::RULE_CREATE => [
+            'body'     => 'required|min:2',
+            'topic_id' => 'required|integer',
+        ],
+        ValidatorInterface::RULE_UPDATE => [
+
+        ],
+    ];
+
+    public function create(array $attributes)
+    {
+        if (!is_null($this->validator)) {
+            $this->validator->with($attributes)
+                ->passesOrFail(ValidatorInterface::RULE_CREATE);
+        }
+
+        $attributes = array_merge($attributes, [
+            'user_id'       => Auth::id(),
+            'body'          => $attributes['body'],  //TODO: 解析为 Markdown
+            'body_original' => $attributes['body'],
+        ]);
+
+        $reply = new Reply($attributes);
+        $reply->setRawAttributes($attributes);
+        $reply->save();
+
+        return $reply;
+    }
 
     /**
      * Specify Model class name.
@@ -31,11 +67,6 @@ class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
     public function boot()
     {
         $this->pushCriteria(app(ReplyCriteria::class));
-    }
-
-    public function presenter()
-    {
-        return ReplyPresenter::class;
     }
 
     /**

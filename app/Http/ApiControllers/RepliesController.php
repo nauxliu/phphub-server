@@ -2,12 +2,12 @@
 
 namespace PHPHub\Http\ApiControllers;
 
+use Dingo\Api\Exception\StoreResourceFailedException;
 use PHPHub\Repositories\ReplyRepositoryInterface;
-use PHPHub\Transformers\IncludeManager\Includable;
-use PHPHub\Transformers\IncludeManager\IncludeManager;
 use PHPHub\Transformers\ReplyTransformer;
 use PHPHub\User;
 use Illuminate\Http\Request;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 class RepliesController extends Controller
 {
@@ -66,11 +66,17 @@ class RepliesController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Resonse
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $reply = $this->repository->create($request->all());
+
+            return $this->response()->item($reply, new ReplyTransformer());
+        } catch (ValidatorException $e) {
+            throw new StoreResourceFailedException('Could not create new topic.', $e->getMessageBag()->all());
+        }
     }
 
     /**
