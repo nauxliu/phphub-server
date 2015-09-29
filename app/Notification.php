@@ -15,6 +15,16 @@ class Notification extends Model implements HasPresenter
         return $this->belongsTo(User::class, 'from_user_id');
     }
 
+    public function reply()
+    {
+        return $this->belongsTo(Reply::class);
+    }
+
+    public function topic()
+    {
+        return $this->belongsTo(Topic::class);
+    }
+
     /**
      * Get the presenter class.
      *

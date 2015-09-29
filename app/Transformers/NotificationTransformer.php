@@ -18,7 +18,7 @@ class NotificationTransformer extends TransformerAbstract
      *
      * @var array
      */
-    protected $availableIncludes = array('from_user');
+    protected $availableIncludes = array('from_user', 'topic', 'reply');
 
     /**
      * Transform the \Notification entity.
@@ -35,5 +35,17 @@ class NotificationTransformer extends TransformerAbstract
     public function includeFromUser($model)
     {
         return $this->item($model->fromUser, new UserTransformer());
+    }
+
+    public function includeReply($model)
+    {
+        if($model->reply == null) return null;
+        return $this->item($model->reply, new ReplyTransformer());
+    }
+
+    public function includeTopic($model)
+    {
+        if($model->topic == null) return null;
+        return $this->item($model->topic, new TopicTransformer());
     }
 }
