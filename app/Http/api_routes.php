@@ -11,9 +11,14 @@ $router->post('oauth/access_token', function () {
  * 需要 login-token 认证获得的 access_token
  */
 $router->group(['middleware' => ['api.auth', 'oauth-user']], function ($router) {
+    //Users
     $router->get('me', 'UsersController@me');
     $router->put('users/{id}', 'UsersController@update');
 
+    //Topics
+    $router->delete('topic/{id}', 'TopicController@delete');
+
+    //Notifications
     $router->get('me/notifications', 'NotificationController@index');
 });
 

@@ -10,24 +10,19 @@ class ApiExceptionHandlerProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
-     *
-     * @return void
      */
     public function boot()
     {
         $handler = app('api.exception');
         $handler->register(function (ModelNotFoundException $exception) {
-            throw new NotFoundHttpException;
+            throw new NotFoundHttpException();
         });
     }
 
     /**
      * Register the application services.
-     *
-     * @return void
      */
     public function register()
     {
-
     }
 }

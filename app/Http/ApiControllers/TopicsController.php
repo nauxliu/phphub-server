@@ -2,11 +2,11 @@
 
 namespace PHPHub\Http\ApiControllers;
 
-use PHPHub\Node;
+use Gate;
 use PHPHub\Repositories\TopicRepositoryInterface;
 use PHPHub\Transformers\TopicTransformer;
-use PHPHub\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class TopicsController extends Controller
 {
@@ -48,16 +48,6 @@ class TopicsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
@@ -88,18 +78,6 @@ class TopicsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
@@ -121,6 +99,12 @@ class TopicsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $topic = $this->repository->find($id);
+
+        if (Gate::denies('delete', $topic)) {
+            throw new AccessDeniedHttpException();
+        }
+
+        $this->repository->delete($id);
     }
 }
