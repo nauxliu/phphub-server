@@ -4,8 +4,6 @@ namespace PHPHub\Http\ApiControllers;
 
 use PHPHub\Node;
 use PHPHub\Repositories\TopicRepositoryInterface;
-use PHPHub\Transformers\IncludeManager\Includable;
-use PHPHub\Transformers\IncludeManager\IncludeManager;
 use PHPHub\Transformers\TopicTransformer;
 use PHPHub\User;
 use Illuminate\Http\Request;
@@ -34,22 +32,9 @@ class TopicsController extends Controller
      */
     public function index()
     {
-        $include_manager = app(IncludeManager::class);
-
-        $include_manager->add((new Includable('user'))
-            ->setDefaultColumns(['name', 'avatar'])
-            ->setAllowColumns(User::$includable)
-            ->setForeignKey('user_id'));
-
-        $include_manager->add((new Includable('last_reply_user'))
-            ->setDefaultColumns('name')
-            ->setAllowColumns(User::$includable)
-            ->setForeignKey('last_reply_user_id'));
-
-        $include_manager->add((new Includable('node'))
-            ->setDefaultColumns('name')
-            ->setAllowColumns(Node::$includable)
-            ->setForeignKey('node_id'));
+        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
+        $this->repository->addAvailableInclude('last_reply_user', ['name']);
+        $this->repository->addAvailableInclude('node', ['name']);
 
         $data = $this->repository
             ->autoWith()

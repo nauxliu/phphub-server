@@ -30,6 +30,36 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
     }
 
     /**
+     * 引入帖子最后评论者.
+     *
+     * @param $default_columns
+     */
+    public function includeLastReplyUser($default_columns)
+    {
+        $available_include = Includable::make('last_reply_user')
+            ->setDefaultColumns($default_columns)
+            ->setAllowColumns(Reply::$includable)
+            ->setForeignKey('user_id');
+
+        app(IncludeManager::class)->add($available_include);
+    }
+
+    /**
+     * 引入帖子所属节点.
+     *
+     * @param $default_columns
+     */
+    public function includeNode($default_columns)
+    {
+        $available_include = Includable::make('node')
+            ->setDefaultColumns($default_columns)
+            ->setAllowColumns(Reply::$includable)
+            ->setForeignKey('node_id');
+
+        app(IncludeManager::class)->add($available_include);
+    }
+
+    /**
      * 引入帖子的评论.
      *
      * @param $default_columns
