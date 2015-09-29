@@ -2,10 +2,12 @@
 
 namespace PHPHub\Providers;
 
+use PHPHub\Repositories\Eloquent\NodeRepository;
 use PHPHub\Repositories\Eloquent\NotificationRepository;
 use PHPHub\Repositories\Eloquent\ReplyRepository;
 use PHPHub\Repositories\Eloquent\TopicRepository;
 use PHPHub\Repositories\Eloquent\UserRepository;
+use PHPHub\Repositories\NodeRepositoryInterface;
 use PHPHub\Repositories\NotificationRepositoryInterface;
 use PHPHub\Repositories\ReplyRepositoryInterface;
 use PHPHub\Repositories\TopicRepositoryInterface;
@@ -23,6 +25,7 @@ class RepositoriesServiceProvider extends ServiceProvider
         app()->bind(TopicRepositoryInterface::class, TopicRepository::class);
         app()->bind(ReplyRepositoryInterface::class, ReplyRepository::class);
         app()->bind(NotificationRepositoryInterface::class, NotificationRepository::class);
+        app()->bind(NodeRepositoryInterface::class, NodeRepository::class);
     }
 
     /**

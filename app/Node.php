@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Node extends Model implements HasPresenter
 {
-    public static $includable = [];
+    public static $includable = ['id', 'name', 'slug', 'parent_node', 'description'];
     protected $fillable       = [];
 
     public function topics()

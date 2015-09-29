@@ -19,6 +19,7 @@ $router->group(['middleware' => ['api.auth', 'oauth-user']], function ($router) 
  * 需要 client_credentials 认证获得的 access_token
  */
 $router->group(['middleware' => ['oauth', 'oauth-client']], function ($router) {
+    $router->get('nodes', 'NodesController@index');
 });
 
 //TODO： 客户端还未完成认证，路由都先不用 token

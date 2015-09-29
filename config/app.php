@@ -158,7 +158,6 @@ return [
         PHPHub\Providers\IncludeManagerProvider::class,
         PHPHub\Providers\OAuthServiceProvider::class,
 
-
         /*
          * Third Party Service Providers...
          */

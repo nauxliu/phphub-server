@@ -2,10 +2,8 @@
 
 namespace PHPHub\Http\ApiControllers;
 
-use Illuminate\Http\Request;
 use PHPHub\Repositories\NotificationRepositoryInterface;
 use PHPHub\Transformers\NotificationTransformer;
-use PHPHub\User;
 
 class NotificationController extends Controller
 {

@@ -39,13 +39,19 @@ class NotificationTransformer extends TransformerAbstract
 
     public function includeReply($model)
     {
-        if($model->reply == null) return null;
+        if ($model->reply == null) {
+            return;
+        }
+
         return $this->item($model->reply, new ReplyTransformer());
     }
 
     public function includeTopic($model)
     {
-        if($model->topic == null) return null;
+        if ($model->topic == null) {
+            return;
+        }
+
         return $this->item($model->topic, new TopicTransformer());
     }
 }
