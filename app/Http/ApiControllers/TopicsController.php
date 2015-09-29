@@ -2,10 +2,12 @@
 
 namespace PHPHub\Http\ApiControllers;
 
+use Dingo\Api\Exception\StoreResourceFailedException;
 use Gate;
 use PHPHub\Repositories\TopicRepositoryInterface;
 use PHPHub\Transformers\TopicTransformer;
 use Illuminate\Http\Request;
+use Prettus\Validator\Exceptions\ValidatorException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class TopicsController extends Controller
@@ -56,7 +58,13 @@ class TopicsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $topic = $this->repository->create($request->all());
+
+            return $this->response()->item($topic, new TopicTransformer());
+        } catch (ValidatorException $e) {
+            throw new StoreResourceFailedException('Could not create new topic.', $e->getMessageBag()->all());
+        }
     }
 
     /**

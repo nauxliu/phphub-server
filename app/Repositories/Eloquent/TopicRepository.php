@@ -2,6 +2,7 @@
 
 namespace PHPHub\Repositories\Eloquent;
 
+use Auth;
 use PHPHub\Presenters\TopicPresenter;
 use PHPHub\Reply;
 use PHPHub\Repositories\Criteria\TopicCriteria;
@@ -11,6 +12,7 @@ use PHPHub\Topic;
 use PHPHub\Transformers\IncludeManager\Includable;
 use PHPHub\Transformers\IncludeManager\IncludeManager;
 use PHPHub\User;
+use Prettus\Validator\Contracts\ValidatorInterface;
 
 /**
  * Class TopicRepositoryEloquent.
@@ -18,6 +20,46 @@ use PHPHub\User;
 class TopicRepository extends BaseRepository implements TopicRepositoryInterface
 {
     use IncludeUserTrait;
+
+    /**
+     * Specify Validator Rules.
+     *
+     * @var array
+     */
+    protected $rules = [
+        ValidatorInterface::RULE_CREATE => [
+            'title'   => 'required|min:2',
+            'body'    => 'required|min:2',
+            'node_id' => 'required|integer',
+        ],
+        ValidatorInterface::RULE_UPDATE => [
+
+        ],
+    ];
+
+    public function create(array $attributes)
+    {
+        if (!is_null($this->validator)) {
+            $this->validator->with($attributes)
+                ->passesOrFail(ValidatorInterface::RULE_CREATE);
+        }
+
+        $attributes = array_merge($attributes, [
+            'user_id'       => Auth::id(),
+            'title'         => $attributes['title'], //TODO: 使用 auto-correct
+            'body'          => $attributes['body'],  //TODO: 解析为 Markdown
+            'body_original' => $attributes['body'],
+            'excerpt'       => $attributes['body'],  //TODO: 生成摘要
+        ]);
+
+        $topic = new Topic($attributes);
+
+        $topic->setRawAttributes($attributes);
+
+        $topic->save();
+
+        return $topic;
+    }
 
     /**
      * Specify Model class name.

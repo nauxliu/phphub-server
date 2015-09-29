@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model implements HasPresenter
 {
-    protected $fillable = [];
+    protected $fillable = ['body', 'title'];
 
     public function user()
     {
