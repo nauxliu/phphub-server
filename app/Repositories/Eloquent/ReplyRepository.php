@@ -4,6 +4,7 @@ namespace PHPHub\Repositories\Eloquent;
 
 use PHPHub\Presenters\ReplyPresenter;
 use PHPHub\Repositories\Criteria\ReplyCriteria;
+use PHPHub\Repositories\Eloquent\Traits\IncludeUserTrait;
 use PHPHub\Repositories\ReplyRepositoryInterface;
 use PHPHub\Reply;
 
@@ -12,6 +13,8 @@ use PHPHub\Reply;
  */
 class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
 {
+    use IncludeUserTrait;
+
     /**
      * Specify Model class name.
      *

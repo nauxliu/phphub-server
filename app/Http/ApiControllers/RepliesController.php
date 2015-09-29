@@ -35,12 +35,7 @@ class RepliesController extends Controller
      */
     public function indexByTopicId($topic_id)
     {
-        $include_manager = app(IncludeManager::class);
-
-        $include_manager->add((new Includable('user'))
-            ->setDefaultColumns(['name', 'avatar'])
-            ->setAllowColumns(User::$includable)
-            ->setForeignKey('user_id'));
+        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
 
         $data = $this->repository
             ->byTopicId($topic_id)
@@ -54,12 +49,7 @@ class RepliesController extends Controller
 
     public function indexByUserId($user_id)
     {
-        $include_manager = app(IncludeManager::class);
-
-        $include_manager->add((new Includable('user'))
-            ->setDefaultColumns(['name', 'avatar', 'created_at'])
-            ->setAllowColumns(User::$includable)
-            ->setForeignKey('user_id'));
+        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
 
         $data = $this->repository
             ->byUserId($user_id)
@@ -76,21 +66,9 @@ class RepliesController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resonse
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }
