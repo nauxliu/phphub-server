@@ -157,6 +157,7 @@ return [
         PHPHub\Providers\RepositoriesServiceProvider::class,
         PHPHub\Providers\IncludeManagerProvider::class,
         PHPHub\Providers\OAuthServiceProvider::class,
+        PHPHub\Providers\ApiExceptionHandlerProvider::class,
 
         /*
          * Third Party Service Providers...
