@@ -46,7 +46,6 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
 
         $attributes = array_merge($attributes, [
             'user_id'       => Auth::id(),
-            'title'         => $attributes['title'], //TODO: 使用 auto-correct
             'body'          => $attributes['body'],  //TODO: 解析为 Markdown
             'body_original' => $attributes['body'],
             'excerpt'       => $attributes['body'],  //TODO: 生成摘要

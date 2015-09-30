@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "de556ebdafeef91cf37c6a33c8866317",
-    "content-hash": "329fe5f4f7a92b887088deba76d97c30",
+    "hash": "5880f4594ba3d14c5f47da970ab33f71",
+    "content-hash": "e1e5cb058029975da63628b9bb67ff98",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1291,6 +1291,38 @@
                 "schedule"
             ],
             "time": "2015-01-11 23:07:46"
+        },
+        {
+            "name": "naux/auto-correct",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NauxLiu/auto-correct.git",
+                "reference": "efc67725c7e26d8421d6025005c220e32cd62167"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NauxLiu/auto-correct/zipball/efc67725c7e26d8421d6025005c220e32cd62167",
+                "reference": "efc67725c7e26d8421d6025005c220e32cd62167",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Naux\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NauxLiu",
+                    "email": "nauxliu@gmail.com"
+                }
+            ],
+            "time": "2015-07-22 01:11:23"
         },
         {
             "name": "nesbot/carbon",

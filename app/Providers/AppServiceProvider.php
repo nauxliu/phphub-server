@@ -3,6 +3,7 @@
 namespace PHPHub\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Naux\AutoCorrect;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+         $this->app->singleton('auto-correct', function(){
+             return new AutoCorrect;
+         });
     }
 }
