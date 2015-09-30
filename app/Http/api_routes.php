@@ -1,5 +1,9 @@
 <?php
 
+use Dingo\Api\Routing\Router;
+
+$router = app('api.router');
+
 /**
  * 申请 access_token 或者刷新 access_token.
  */
@@ -10,13 +14,14 @@ $router->post('oauth/access_token', function () {
 /*
  * 需要 login-token 认证获得的 access_token
  */
-$router->group(['middleware' => ['api.auth', 'oauth-user']], function ($router) {
+$router->group(['middleware' => ['api.auth', 'oauth-user']], function (Router $router) {
     //Users
     $router->get('me', 'UsersController@me');
     $router->put('users/{id}', 'UsersController@update');
 
     //Topics
-    $router->delete('topic/{id}', 'TopicController@delete');
+    $router->post('topics', 'TopicsController@store');
+    $router->delete('topics/{id}', 'TopicsController@delete');
 
     //Replies
     $router->post('replies', 'RepliesController@store');
@@ -28,18 +33,18 @@ $router->group(['middleware' => ['api.auth', 'oauth-user']], function ($router) 
 /*
  * 需要 client_credentials 认证获得的 access_token
  */
-$router->group(['middleware' => ['oauth', 'oauth-client']], function ($router) {
+$router->group(['middleware' => ['oauth', 'oauth-client']], function (Router $router) {
+    //Topics
+    $router->get('topics', 'TopicsController@index');
+    $router->get('topics/{id}', 'TopicsController@show');
+
+    //Nodes
     $router->get('nodes', 'NodesController@index');
+
+    //Replies
+    $router->get('topics/{id}/replies', 'RepliesController@indexByTopicId');
+    $router->get('users/{id}/replies', 'RepliesController@indexByUserId');
+
+    //Users
+    $router->get('users/{id}', 'UsersController@show');
 });
-
-//TODO： 客户端还未完成认证，路由都先不用 token
-
-// Topics
-$router->resource('topics', 'TopicsController');
-$router->get('topics/{id}/replies', 'RepliesController@indexByTopicId');
-
-// Replies
-$router->get('users/{id}/replies', 'RepliesController@indexByUserId');
-
-// User
-$router->resource('users', 'UsersController');
