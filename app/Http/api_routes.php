@@ -22,6 +22,8 @@ $router->group(['middleware' => ['api.auth', 'oauth-user']], function (Router $r
     //Topics
     $router->post('topics', 'TopicsController@store');
     $router->delete('topics/{id}', 'TopicsController@delete');
+    $router->post('topics/{id}/vote-up', 'TopicsController@voteUp');
+    $router->post('topics/{id}/vote-down', 'TopicsController@voteDown');
 
     //Replies
     $router->post('replies', 'RepliesController@store');
@@ -47,4 +49,9 @@ $router->group(['middleware' => ['oauth', 'oauth-client']], function (Router $ro
 
     //Users
     $router->get('users/{id}', 'UsersController@show');
+});
+
+$router->get('test', function () {
+    $topic = PHPHub\Topic::find(1);
+    $topic->votes()->create(['user_id' => 2, 'is' => 'upvote']);
 });

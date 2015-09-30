@@ -115,4 +115,38 @@ class TopicsController extends Controller
 
         $this->repository->delete($id);
     }
+
+    /**
+     * 支持帖子.
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function voteUp($id)
+    {
+        $topic = $this->repository->find($id);
+
+        return response([
+            'vote-up'    => $this->repository->voteUp($topic),
+            'vote_count' => $topic->vote_count,
+        ]);
+    }
+
+    /**
+     * 反对帖子.
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function voteDown($id)
+    {
+        $topic = $this->repository->find($id);
+
+        return response([
+            'vote-down'  => $this->repository->voteDown($topic),
+            'vote_count' => $topic->vote_count,
+        ]);
+    }
 }

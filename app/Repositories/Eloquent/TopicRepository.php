@@ -5,7 +5,6 @@ namespace PHPHub\Repositories\Eloquent;
 use Auth;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use PHPHub\Jobs\SaveTopic;
-use PHPHub\Presenters\TopicPresenter;
 use PHPHub\Reply;
 use PHPHub\Repositories\Criteria\TopicCriteria;
 use PHPHub\Repositories\Eloquent\Traits\IncludeUserTrait;
@@ -14,6 +13,7 @@ use PHPHub\Topic;
 use PHPHub\Transformers\IncludeManager\Includable;
 use PHPHub\Transformers\IncludeManager\IncludeManager;
 use PHPHub\User;
+use PHPHub\Vote;
 use Prettus\Validator\Contracts\ValidatorInterface;
 
 /**
@@ -21,7 +21,7 @@ use Prettus\Validator\Contracts\ValidatorInterface;
  */
 class TopicRepository extends BaseRepository implements TopicRepositoryInterface
 {
-    use IncludeUserTrait,DispatchesJobs;
+    use IncludeUserTrait, DispatchesJobs;
 
     /**
      * Specify Validator Rules.
@@ -39,6 +39,13 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
         ],
     ];
 
+    /**
+     * 创建新帖子.
+     *
+     * @param array $attributes
+     *
+     * @return mixed|Topic
+     */
     public function create(array $attributes)
     {
         if (!is_null($this->validator)) {
@@ -132,8 +139,121 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
         $this->pushCriteria(app(TopicCriteria::class));
     }
 
-    public function presenter()
+    /**
+     * 支持帖子.
+     *
+     * @param Topic $topic
+     *
+     * @return bool
+     */
+    public function voteUp(Topic $topic)
     {
-        return TopicPresenter::class;
+        if ($this->isUpVoted($topic->id, Auth::id())) {
+            $this->resetVote($topic->id, Auth::id());
+            $topic->decrement('vote_count', 1);
+
+            return false;
+        }
+
+        $vote_count = 0;
+
+        if ($this->isDownVoted($topic->id, Auth::id())) {
+            $this->resetVote($topic->id, Auth::id());
+            $vote_count = 1;
+        }
+
+        $topic->votes()->create([
+            'is'      => 'upvote',
+            'user_id' => Auth::id(),
+        ]);
+
+        $topic->increment('vote_count', $vote_count + 1);
+
+        return true;
+    }
+
+    /**
+     * 反对帖子.
+     *
+     * @param Topic $topic
+     * @return bool
+     */
+    public function voteDown(Topic $topic)
+    {
+        if ($this->isDownVoted($topic->id, Auth::id())) {
+            $this->resetVote($topic->id, Auth::id());
+            $topic->increment('vote_count', 1);
+
+            return false;
+        }
+
+        $vote_count = 0;
+
+        if ($this->isUpVoted($topic->id, Auth::id())) {
+            $this->resetVote($topic->id, Auth::id());
+            $vote_count = 1;
+        }
+
+        $topic->votes()->create([
+            'is'      => 'downvote',
+            'user_id' => Auth::id(),
+        ]);
+
+        $topic->decrement('vote_count', $vote_count + 1);
+
+        return true;
+    }
+
+    /**
+     * 是否已经支持帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     *
+     * @return bool
+     */
+    protected function isUpVoted($topic_id, $user_id)
+    {
+        return Vote::where([
+            'user_id'      => $user_id,
+            'votable_id'   => $topic_id,
+            'votable_type' => 'Topic',
+            'is'           => 'upvote',
+        ])->exists();
+    }
+
+    /**
+     * 重置投票.
+     *
+     * @param $topic_id
+     * @param $user_id
+     *
+     * @return mixed
+     */
+    protected function resetVote($topic_id, $user_id)
+    {
+        return Vote::where([
+            'user_id'      => $user_id,
+            'votable_id'   => $topic_id,
+            'votable_type' => 'Topic',
+        ])->delete();
+    }
+
+    /**
+     * 是否已经反对帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     *
+     * @return bool
+     */
+    protected function isDownVoted($topic_id, $user_id)
+    {
+        return Vote::where([
+            'user_id'      => $user_id,
+            'votable_id'   => $topic_id,
+            'votable_type' => 'Topic',
+            'is'           => 'downvote',
+        ])->exists();
     }
 }

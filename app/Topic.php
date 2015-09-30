@@ -8,11 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model implements HasPresenter
 {
-    protected $fillable = ['body', 'title'];
+    protected $fillable   = ['body', 'title'];
+    protected $morphClass = 'Topic';
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function votes()
+    {
+        return $this->morphMany(Vote::class, 'votable');
     }
 
     public function node()
