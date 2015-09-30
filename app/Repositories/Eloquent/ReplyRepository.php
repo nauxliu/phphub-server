@@ -38,14 +38,12 @@ class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
                 ->passesOrFail(ValidatorInterface::RULE_CREATE);
         }
 
-        $attributes = array_merge($attributes, [
-            'user_id'       => Auth::id(),
-            'body'          => $attributes['body'],  //TODO: 解析为 Markdown
-            'body_original' => $attributes['body'],
-        ]);
-
         $reply = new Reply($attributes);
-        $reply->setRawAttributes($attributes);
+
+        $reply->user_id       = Auth::id();
+        $reply->body          = app('markdown')->text($attributes['body']);
+        $reply->body_original = $attributes['body'];
+
         $reply->save();
 
         return $reply;

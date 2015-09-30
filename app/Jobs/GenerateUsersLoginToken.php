@@ -26,6 +26,8 @@ class GenerateUsersLoginToken extends Job implements SelfHandling
      * Execute the command.
      *
      * @param UserRepositoryInterface $repository
+     *
+     * @return string
      */
     public function handle(UserRepositoryInterface $repository)
     {

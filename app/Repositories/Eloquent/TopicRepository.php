@@ -44,16 +44,12 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
                 ->passesOrFail(ValidatorInterface::RULE_CREATE);
         }
 
-        $attributes = array_merge($attributes, [
-            'user_id'       => Auth::id(),
-            'body'          => $attributes['body'],  //TODO: 解析为 Markdown
-            'body_original' => $attributes['body'],
-            'excerpt'       => $attributes['body'],  //TODO: 生成摘要
-        ]);
-
         $topic = new Topic($attributes);
 
-        $topic->setRawAttributes($attributes);
+        $topic->user_id       = Auth::id();
+        $topic->body          = app('markdown')->text($attributes['body']);
+        $topic->body_original = $attributes['body'];
+        $topic->excerpt       = $attributes['body']; //TODO: 生成摘要
 
         $topic->save();
 

@@ -4,6 +4,7 @@ namespace PHPHub\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Naux\AutoCorrect;
+use Parsedown;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,8 +21,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-         $this->app->singleton('auto-correct', function(){
-             return new AutoCorrect;
+        $this->app->singleton('auto-correct', function () {
+             return new AutoCorrect();
          });
+
+        $this->app->singleton('markdown', function () {
+            return new Parsedown();
+        });
     }
 }
