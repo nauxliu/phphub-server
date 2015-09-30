@@ -47,9 +47,9 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
         $topic = new Topic($attributes);
 
         $topic->user_id       = Auth::id();
-        $topic->body          = app('markdown')->text($attributes['body']);
-        $topic->body_original = $attributes['body'];
-        $topic->excerpt       = $attributes['body']; //TODO: 生成摘要
+        $topic->body_original = trim($attributes['body']);
+        $topic->body          = app('markdown')->text($topic->body_original);
+        $topic->excerpt       = $this->excerpt($topic->body_original);
 
         $topic->save();
 
@@ -109,6 +109,20 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
             ->setLimit(per_page());
 
         app(IncludeManager::class)->add($available_include);
+    }
+
+    /**
+     * 生成正文摘要.
+     *
+     * @param $body
+     *
+     * @return string
+     */
+    public function excerpt($body)
+    {
+        $excerpt = trim(preg_replace('/\s+/', ' ', strip_tags($body)));
+
+        return str_limit($excerpt, 200);
     }
 
     /**
