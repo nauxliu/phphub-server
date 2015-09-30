@@ -3,6 +3,8 @@
 namespace PHPHub\Repositories\Eloquent;
 
 use Auth;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use PHPHub\Jobs\SaveTopic;
 use PHPHub\Presenters\TopicPresenter;
 use PHPHub\Reply;
 use PHPHub\Repositories\Criteria\TopicCriteria;
@@ -19,7 +21,7 @@ use Prettus\Validator\Contracts\ValidatorInterface;
  */
 class TopicRepository extends BaseRepository implements TopicRepositoryInterface
 {
-    use IncludeUserTrait;
+    use IncludeUserTrait,DispatchesJobs;
 
     /**
      * Specify Validator Rules.
@@ -46,12 +48,8 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
 
         $topic = new Topic($attributes);
 
-        $topic->user_id       = Auth::id();
-        $topic->body_original = trim($attributes['body']);
-        $topic->body          = app('markdown')->text($topic->body_original);
-        $topic->excerpt       = $this->excerpt($topic->body_original);
-
-        $topic->save();
+        $topic->user_id = Auth::id();
+        $topic          = $this->dispatch(new SaveTopic($topic));
 
         return $topic;
     }
@@ -109,20 +107,6 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
             ->setLimit(per_page());
 
         app(IncludeManager::class)->add($available_include);
-    }
-
-    /**
-     * 生成正文摘要.
-     *
-     * @param $body
-     *
-     * @return string
-     */
-    public function excerpt($body)
-    {
-        $excerpt = trim(preg_replace('/\s+/', ' ', strip_tags($body)));
-
-        return str_limit($excerpt, 200);
     }
 
     /**
