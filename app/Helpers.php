@@ -16,9 +16,10 @@
  */
 function per_page($default = null)
 {
-    $per_page = Input::get('per_page') ?: $default;
+    $max_per_page = config('api.max_per_page');
+    $per_page     = (Input::get('per_page') ?: $default) ?: config('api.default_per_page');
 
-    return $per_page ?: config('api.default_per_page');
+    return (int) ($per_page < $max_per_page ? $per_page : $max_per_page);
 };
 
 /**
