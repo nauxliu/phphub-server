@@ -176,6 +176,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      * 反对帖子.
      *
      * @param Topic $topic
+     *
      * @return bool
      */
     public function voteDown(Topic $topic)

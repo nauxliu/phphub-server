@@ -8,6 +8,7 @@ use Gate;
 use PHPHub\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use PHPHub\Transformers\UserTransformer;
+use PHPHub\User;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -33,7 +34,11 @@ class UsersController extends Controller
      */
     public function me()
     {
-        return $this->show(Auth::id());
+        $data = $this->repository
+            ->autoWithRootColumns(User::$includable)
+            ->find(Auth::id());
+
+        return $this->response()->item($data, new UserTransformer());
     }
 
     /**
