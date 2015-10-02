@@ -50,6 +50,29 @@ class TopicsController extends Controller
     }
 
     /**
+     * 用户收藏的帖子列表.
+     *
+     * @param $user_id
+     *
+     * @return \Dingo\Api\Http\Response
+     *
+     * @internal param UserRepository $repository
+     */
+    public function indexByUserFavorite($user_id)
+    {
+        $data = $this->repository
+            ->favoriteTopices($user_id)
+            ->autoWith()
+            ->skipPresenter()
+            ->autoWithRootColumns([
+                'id', 'title', 'is_excellent', 'reply_count', 'updated_at',
+            ])
+            ->paginate(per_page());
+
+        return $this->response()->paginator($data, new TopicTransformer());
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request

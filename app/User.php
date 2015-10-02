@@ -22,7 +22,6 @@ class User extends Model implements HasPresenter, AuthenticatableContract,
         'id',
         'name',
         'avatar',
-        'github_id',
         'topic_count',
         'reply_count',
         'notification_count',
@@ -34,7 +33,9 @@ class User extends Model implements HasPresenter, AuthenticatableContract,
         'signature',
         'introduction',
         'github_name',
+        'github_url',
         'real_name',
+        'personal_website',
         'created_at',
         'updated_at',
     ];
@@ -61,6 +62,11 @@ class User extends Model implements HasPresenter, AuthenticatableContract,
     public function topics()
     {
         return $this->hasMany(Topic::class);
+    }
+
+    public function favoriteTopics()
+    {
+        return $this->belongsToMany(Topic::class, 'favorites')->withPivot('created_at');
     }
 
     /**

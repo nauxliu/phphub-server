@@ -39,6 +39,7 @@ $router->group(['middleware' => ['oauth', 'oauth-client']], function (Router $ro
     //Topics
     $router->get('topics', 'TopicsController@index');
     $router->get('topics/{id}', 'TopicsController@show');
+    $router->get('user/{id}/favorite/topics', 'TopicsController@indexByUserFavorite');
 
     //Nodes
     $router->get('nodes', 'NodesController@index');
@@ -49,9 +50,4 @@ $router->group(['middleware' => ['oauth', 'oauth-client']], function (Router $ro
 
     //Users
     $router->get('users/{id}', 'UsersController@show');
-});
-
-$router->get('test', function () {
-    $topic = PHPHub\Topic::find(1);
-    $topic->votes()->create(['user_id' => 2, 'is' => 'upvote']);
 });

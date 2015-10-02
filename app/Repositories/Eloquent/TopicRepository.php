@@ -3,6 +3,7 @@
 namespace PHPHub\Repositories\Eloquent;
 
 use Auth;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use PHPHub\Jobs\SaveTopic;
 use PHPHub\Reply;
@@ -256,5 +257,16 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
             'votable_type' => 'Topic',
             'is'           => 'downvote',
         ])->exists();
+    }
+
+    public function favoriteTopices($user_id)
+    {
+        $this->model = $this->model->whereIn('id', function (Builder $query) use ($user_id) {
+            $query->select('topic_id')
+                ->from('favorites')
+                ->where('user_id', $user_id);
+        });
+
+        return $this;
     }
 }
