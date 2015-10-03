@@ -11,6 +11,14 @@ class Topic extends Model implements HasPresenter
     protected $fillable   = ['body', 'title'];
     protected $morphClass = 'Topic';
 
+    protected $casts = [
+        'id'                 => 'int',
+        'github_id'          => 'int',
+        'topic_count'        => 'int',
+        'reply_count'        => 'int',
+        'notification_count' => 'int',
+        'is_banned'          => 'boolean',
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);
