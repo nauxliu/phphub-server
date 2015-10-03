@@ -50,6 +50,54 @@ class TopicsController extends Controller
     }
 
     /**
+     * 获取指定用户发布的帖子.
+     *
+     * @param $user_id
+     *
+     * @return \Dingo\Api\Http\Response
+     */
+    public function indexByUserId($user_id)
+    {
+        $this->repository->addAvailableInclude('last_reply_user', ['name']);
+        $this->repository->addAvailableInclude('node', ['name']);
+
+        $data = $this->repository
+            ->byUserId($user_id)
+            ->autoWith()
+            ->skipPresenter()
+            ->autoWithRootColumns([
+                'id', 'title', 'is_excellent', 'reply_count', 'updated_at',
+            ])
+            ->paginate(per_page());
+
+        return $this->response()->paginator($data, new TopicTransformer());
+    }
+
+    /**
+     * 获取指定节点下的帖子.
+     *
+     * @param $node_id
+     *
+     * @return \Dingo\Api\Http\Response
+     */
+    public function indexByNodeId($node_id)
+    {
+        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
+        $this->repository->addAvailableInclude('last_reply_user', ['name']);
+
+        $data = $this->repository
+            ->byNodeId($node_id)
+            ->autoWith()
+            ->skipPresenter()
+            ->autoWithRootColumns([
+                'id', 'title', 'is_excellent', 'reply_count', 'updated_at',
+            ])
+            ->paginate(per_page());
+
+        return $this->response()->paginator($data, new TopicTransformer());
+    }
+
+    /**
      * 用户收藏的帖子列表.
      *
      * @param $user_id

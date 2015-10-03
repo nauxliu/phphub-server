@@ -37,4 +37,22 @@ interface TopicRepositoryInterface extends RepositoryInterface
      * @return Paginator
      */
     public function favoriteTopicsWithPaginator($user_id, $columns = ['*']);
+
+    /**
+     * 添加 node_id 过滤条件.
+     *
+     * @param $node_id
+     *
+     * @return $this
+     */
+    public function byNodeId($node_id);
+
+    /**
+     * 添加 user_id 过滤条件.
+     *
+     * @param $user_id
+     *
+     * @return $this
+     */
+    public function byUserId($user_id);
 }

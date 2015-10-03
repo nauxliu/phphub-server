@@ -319,4 +319,32 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
 
         return $paginator;
     }
+
+    /**
+     * 添加 node_id 过滤条件.
+     *
+     * @param $node_id
+     *
+     * @return $this
+     */
+    public function byNodeId($node_id)
+    {
+        $this->model = $this->model->where(compact('node_id'));
+
+        return $this;
+    }
+
+    /**
+     * 添加 user_id 过滤条件.
+     *
+     * @param $user_id
+     *
+     * @return $this
+     */
+    public function byUserId($user_id)
+    {
+        $this->model = $this->model->where(compact('user_id'));
+
+        return $this;
+    }
 }
