@@ -13,11 +13,17 @@ class Topic extends Model implements HasPresenter
 
     protected $casts = [
         'id'                 => 'int',
-        'github_id'          => 'int',
-        'topic_count'        => 'int',
+        'user_id'            => 'int',
+        'node_id'            => 'int',
+        'last_reply_user_id' => 'int',
+        'favorite_count'     => 'int',
+        'view_count'         => 'int',
         'reply_count'        => 'int',
+        'vote_count'         => 'int',
         'notification_count' => 'int',
-        'is_banned'          => 'boolean',
+        'is_excellent'       => 'boolean',
+        'is_wiki'            => 'boolean',
+        'is_blocked'         => 'boolean',
     ];
     public function user()
     {

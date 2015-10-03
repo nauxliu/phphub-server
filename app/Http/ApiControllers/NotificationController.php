@@ -35,7 +35,7 @@ class NotificationController extends Controller
 
         $data = $this->repository
             ->autoWith()
-            ->autoWithRootColumns(['id', 'type', 'body'])
+            ->autoWithRootColumns(['id', 'type', 'body', 'topic_id', 'reply_id', 'created_at'])
             ->paginate(per_page());
 
         return $this->response()->paginator($data, new NotificationTransformer());
