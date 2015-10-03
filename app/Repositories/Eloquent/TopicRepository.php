@@ -84,7 +84,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
         $available_include = Includable::make('last_reply_user')
             ->setDefaultColumns($default_columns)
             ->setAllowColumns(Reply::$includable)
-            ->setForeignKey('user_id');
+            ->setForeignKey('last_reply_user_id');
 
         app(IncludeManager::class)->add($available_include);
     }
