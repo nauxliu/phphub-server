@@ -40,6 +40,7 @@ $router->group(['middleware' => ['oauth', 'oauth-client']], function (Router $ro
     $router->get('topics', 'TopicsController@index');
     $router->get('topics/{id}', 'TopicsController@show');
     $router->get('user/{id}/favorite/topics', 'TopicsController@indexByUserFavorite');
+    $router->get('user/{id}/attention/topics', 'TopicsController@indexByUserAttention');
 
     //Nodes
     $router->get('nodes', 'NodesController@index');

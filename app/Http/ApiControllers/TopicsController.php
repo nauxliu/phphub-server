@@ -68,6 +68,25 @@ class TopicsController extends Controller
 
         return $this->response()->paginator($data, new TopicTransformer());
     }
+    /**
+     * 用户收藏的帖子列表.
+     *
+     * @param $user_id
+     *
+     * @return \Dingo\Api\Http\Response
+     */
+    public function indexByUserAttention($user_id)
+    {
+        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
+        $this->repository->addAvailableInclude('last_reply_user', ['name']);
+        $this->repository->addAvailableInclude('node', ['name']);
+
+        $data = $this->repository
+            ->attentionTopicsWithPaginator($user_id,
+                ['id', 'title', 'is_excellent', 'reply_count']);
+
+        return $this->response()->paginator($data, new TopicTransformer());
+    }
 
     /**
      * Store a newly created resource in storage.

@@ -271,21 +271,52 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     public function favoriteTopicsWithPaginator($user_id, $columns = ['*'])
     {
-        $favorites = DB::table('favorites')
+        return $this->getTopicsWithPaginatorBy('favorites', $user_id, $columns);
+    }
+
+    /**
+     * 用户关注的帖子.
+     *
+     * @param $user_id
+     * @param $columns
+     *
+     * @return Paginator
+     */
+    public function attentionTopicsWithPaginator($user_id, $columns = ['*'])
+    {
+        return $this->getTopicsWithPaginatorBy('attentions', $user_id, $columns);
+    }
+
+    /**
+     * 通过 attentions 或 favorites 查找帖子.
+     *
+     * @param $table
+     * @param $user_id
+     * @param $columns
+     *
+     * @return Paginator
+     */
+    public function getTopicsWithPaginatorBy($table, $user_id, $columns)
+    {
+        $paginator = DB::table($table)
             ->orderBy('created_at', 'desc')
             ->where(compact('user_id'))
             ->paginate(per_page(), ['topic_id']);
 
-        $topic_ids = array_pluck($favorites->items(), 'topic_id');
+        if ($paginator->count() === 0) {
+            return $paginator;
+        }
+
+        $topic_ids = array_pluck($paginator->items(), 'topic_id');
         $topics    = $this->whereInAndOrderBy($topic_ids)
             ->autoWith()
             ->autoWithRootColumns($columns)
             ->get();
 
-        $items = (new ReflectionObject($favorites))->getProperty('items');
+        $items = (new ReflectionObject($paginator))->getProperty('items');
         $items->setAccessible(true);
-        $items->setValue($favorites, $topics);
+        $items->setValue($paginator, $topics);
 
-        return $favorites;
+        return $paginator;
     }
 }
