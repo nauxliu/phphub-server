@@ -2,6 +2,7 @@
 
 namespace PHPHub\Repositories;
 
+use Illuminate\Pagination\Paginator;
 use PHPHub\Topic;
 
 /**
@@ -26,4 +27,14 @@ interface TopicRepositoryInterface extends RepositoryInterface
      * @return bool
      */
     public function voteDown(Topic $topic);
+
+    /**
+     * 用户收藏的帖子.
+     *
+     * @param $user_id
+     * @param $columns
+     *
+     * @return Paginator
+     */
+    public function favoriteTopicsWithPaginator($user_id, $columns = ['*']);
 }

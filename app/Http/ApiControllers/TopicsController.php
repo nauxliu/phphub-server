@@ -55,19 +55,16 @@ class TopicsController extends Controller
      * @param $user_id
      *
      * @return \Dingo\Api\Http\Response
-     *
-     * @internal param UserRepository $repository
      */
     public function indexByUserFavorite($user_id)
     {
+        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
+        $this->repository->addAvailableInclude('last_reply_user', ['name']);
+        $this->repository->addAvailableInclude('node', ['name']);
+
         $data = $this->repository
-            ->favoriteTopices($user_id)
-            ->autoWith()
-            ->skipPresenter()
-            ->autoWithRootColumns([
-                'id', 'title', 'is_excellent', 'reply_count', 'updated_at',
-            ])
-            ->paginate(per_page());
+            ->favoriteTopicsWithPaginator($user_id,
+                ['id', 'title', 'is_excellent', 'reply_count']);
 
         return $this->response()->paginator($data, new TopicTransformer());
     }

@@ -27,4 +27,13 @@ interface RepositoryInterface extends PrettusRepositoryInterface,
     WithOnlyInterface,
     AutoWIthInterface
 {
+    /**
+     * whereIn 查询并按照数组内数据排序.
+     *
+     * @param array  $data
+     * @param string $column
+     *
+     * @return $this
+     */
+    public function whereInAndOrderBy(array $data, $column = 'id');
 }

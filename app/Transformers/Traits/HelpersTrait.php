@@ -27,14 +27,17 @@ trait HelpersTrait
 
         $transformData = $this->transformData($model);
 
-        $data = array_filter($transformData, function ($v){
-            if(is_null($v)){return false;}
+        $data = array_filter($transformData, function ($v) {
+            if (is_null($v)) {
+                return false;
+            }
+
             return true;
         });
 
         // 转换 null 字段为空字符串
-        foreach(array_keys($model->toArray()) as $key){
-            if(!is_null($transformData[$key])){
+        foreach (array_keys($model->toArray()) as $key) {
+            if (!is_null($transformData[$key])) {
                 continue;
             }
 

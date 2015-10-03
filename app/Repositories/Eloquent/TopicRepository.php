@@ -3,8 +3,9 @@
 namespace PHPHub\Repositories\Eloquent;
 
 use Auth;
-use Illuminate\Database\Query\Builder;
+use DB;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Pagination\Paginator;
 use PHPHub\Jobs\SaveTopic;
 use PHPHub\Reply;
 use PHPHub\Repositories\Criteria\TopicCriteria;
@@ -16,6 +17,7 @@ use PHPHub\Transformers\IncludeManager\IncludeManager;
 use PHPHub\User;
 use PHPHub\Vote;
 use Prettus\Validator\Contracts\ValidatorInterface;
+use ReflectionObject;
 
 /**
  * Class TopicRepositoryEloquent.
@@ -259,14 +261,31 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
         ])->exists();
     }
 
-    public function favoriteTopices($user_id)
+    /**
+     * 用户收藏的帖子.
+     *
+     * @param $user_id
+     * @param $columns
+     *
+     * @return Paginator
+     */
+    public function favoriteTopicsWithPaginator($user_id, $columns = ['*'])
     {
-        $this->model = $this->model->whereIn('id', function (Builder $query) use ($user_id) {
-            $query->select('topic_id')
-                ->from('favorites')
-                ->where('user_id', $user_id);
-        });
+        $favorites = DB::table('favorites')
+            ->orderBy('created_at', 'desc')
+            ->where(compact('user_id'))
+            ->paginate(per_page(), ['topic_id']);
 
-        return $this;
+        $topic_ids = array_pluck($favorites->items(), 'topic_id');
+        $topics    = $this->whereInAndOrderBy($topic_ids)
+            ->autoWith()
+            ->autoWithRootColumns($columns)
+            ->get();
+
+        $items = (new ReflectionObject($favorites))->getProperty('items');
+        $items->setAccessible(true);
+        $items->setValue($favorites, $topics);
+
+        return $favorites;
     }
 }

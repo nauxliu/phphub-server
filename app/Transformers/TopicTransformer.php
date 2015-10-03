@@ -36,6 +36,7 @@ class TopicTransformer extends TransformerAbstract
     public function transformData($model)
     {
         return $model->toArray();
+
         return [
             'id'             => (int) $model->id,
             'title'          => $model->title,
