@@ -25,7 +25,21 @@ trait HelpersTrait
             $model = app('autopresenter')->decorate($model);
         }
 
-        $data = array_only($this->transformData($model), array_keys($model->toArray()));
+        $transformData = $this->transformData($model);
+
+        $data = array_filter($transformData, function ($v){
+            if(is_null($v)){return false;}
+            return true;
+        });
+
+        // 转换 null 字段为空字符串
+        foreach(array_keys($model->toArray()) as $key){
+            if(!is_null($transformData[$key])){
+                continue;
+            }
+
+            $data[$key] = '';
+        }
 
         // 在 transformData 中使用 toArray 后，时间会丢失时区等信息
         if ($model->created_at) {
