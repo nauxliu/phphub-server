@@ -44,14 +44,6 @@ trait HelpersTrait
             $data[$key] = '';
         }
 
-        // 在 transformData 中使用 toArray 后，时间会丢失时区等信息
-        if ($model->created_at) {
-            $data['created_at'] = $model->created_at->format('c');
-        }
-        if ($model->updated_at) {
-            $data['updated_at'] = $model->updated_at->format('c');
-        }
-
         return $data;
     }
 }
