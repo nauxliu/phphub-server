@@ -37,11 +37,13 @@ trait HelpersTrait
 
         // 转换 null 字段为空字符串
         foreach (array_keys($model->toArray()) as $key) {
-            if (!is_null($transformData[$key])) {
+            if (!isset($data[$key])) {
+                $data[$key] = '';
                 continue;
             }
-
-            $data[$key] = '';
+            if (is_null($data[$key])) {
+                $data[$key] = '';
+            }
         }
 
         return $data;
