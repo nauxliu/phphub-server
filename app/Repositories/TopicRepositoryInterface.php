@@ -39,6 +39,16 @@ interface TopicRepositoryInterface extends RepositoryInterface
     public function favoriteTopicsWithPaginator($user_id, $columns = ['*']);
 
     /**
+     * 用户关注的帖子.
+     *
+     * @param $user_id
+     * @param $columns
+     *
+     * @return Paginator
+     */
+    public function attentionTopicsWithPaginator($user_id, $columns = ['*']);
+
+    /**
      * 添加 node_id 过滤条件.
      *
      * @param $node_id

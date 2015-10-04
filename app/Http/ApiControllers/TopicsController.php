@@ -34,19 +34,7 @@ class TopicsController extends Controller
      */
     public function index()
     {
-        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
-        $this->repository->addAvailableInclude('last_reply_user', ['name']);
-        $this->repository->addAvailableInclude('node', ['name']);
-
-        $data = $this->repository
-            ->autoWith()
-            ->skipPresenter()
-            ->autoWithRootColumns([
-                'id', 'title', 'is_excellent', 'reply_count', 'updated_at',
-            ])
-            ->paginate(per_page());
-
-        return $this->response()->paginator($data, new TopicTransformer());
+        return $this->commonIndex();
     }
 
     /**
@@ -58,19 +46,9 @@ class TopicsController extends Controller
      */
     public function indexByUserId($user_id)
     {
-        $this->repository->addAvailableInclude('last_reply_user', ['name']);
-        $this->repository->addAvailableInclude('node', ['name']);
+        $this->repository->byUserId($user_id);
 
-        $data = $this->repository
-            ->byUserId($user_id)
-            ->autoWith()
-            ->skipPresenter()
-            ->autoWithRootColumns([
-                'id', 'title', 'is_excellent', 'reply_count', 'updated_at',
-            ])
-            ->paginate(per_page());
-
-        return $this->response()->paginator($data, new TopicTransformer());
+        return $this->commonIndex();
     }
 
     /**
@@ -82,19 +60,9 @@ class TopicsController extends Controller
      */
     public function indexByNodeId($node_id)
     {
-        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
-        $this->repository->addAvailableInclude('last_reply_user', ['name']);
+        $this->repository->byNodeId($node_id);
 
-        $data = $this->repository
-            ->byNodeId($node_id)
-            ->autoWith()
-            ->skipPresenter()
-            ->autoWithRootColumns([
-                'id', 'title', 'is_excellent', 'reply_count', 'updated_at',
-            ])
-            ->paginate(per_page());
-
-        return $this->response()->paginator($data, new TopicTransformer());
+        return $this->commonIndex();
     }
 
     /**
@@ -106,13 +74,11 @@ class TopicsController extends Controller
      */
     public function indexByUserFavorite($user_id)
     {
-        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
-        $this->repository->addAvailableInclude('last_reply_user', ['name']);
-        $this->repository->addAvailableInclude('node', ['name']);
+        $this->registerListApiIncludes();
 
         $data = $this->repository
             ->favoriteTopicsWithPaginator($user_id,
-                ['id', 'title', 'is_excellent', 'reply_count']);
+                ['id', 'title', 'is_excellent', 'reply_count', 'updated_at', 'created_at']);
 
         return $this->response()->paginator($data, new TopicTransformer());
     }
@@ -125,13 +91,11 @@ class TopicsController extends Controller
      */
     public function indexByUserAttention($user_id)
     {
-        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
-        $this->repository->addAvailableInclude('last_reply_user', ['name']);
-        $this->repository->addAvailableInclude('node', ['name']);
+        $this->registerListApiIncludes();
 
         $data = $this->repository
             ->attentionTopicsWithPaginator($user_id,
-                ['id', 'title', 'is_excellent', 'reply_count']);
+                ['id', 'title', 'is_excellent', 'reply_count', 'updated_at', 'created_at']);
 
         return $this->response()->paginator($data, new TopicTransformer());
     }
@@ -164,8 +128,6 @@ class TopicsController extends Controller
     public function show($id)
     {
         $this->repository->addAvailableInclude('user', ['name', 'avatar']);
-        $this->repository->addAvailableInclude('replies', ['vote_count']);
-        $this->repository->addAvailableInclude('replies.user', ['name', 'avatar']);
 
         $data = $this->repository->skipPresenter()->autoWith()->find($id);
 
@@ -235,5 +197,35 @@ class TopicsController extends Controller
             'vote-down'  => $this->repository->voteDown($topic),
             'vote_count' => $topic->vote_count,
         ]);
+    }
+
+    /**
+     * 所有帖子列表接口的通用部分.
+     *
+     * @return \Dingo\Api\Http\Response
+     */
+    protected function commonIndex()
+    {
+        $this->registerListApiIncludes();
+
+        $data = $this->repository
+            ->autoWith()
+            ->skipPresenter()
+            ->autoWithRootColumns([
+                'id', 'title', 'is_excellent', 'reply_count', 'updated_at', 'created_at',
+            ])
+            ->paginate(per_page());
+
+        return $this->response()->paginator($data, new TopicTransformer());
+    }
+
+    /**
+     * 注册帖子列表接口通用的引入项.
+     */
+    protected function registerListApiIncludes()
+    {
+        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
+        $this->repository->addAvailableInclude('last_reply_user', ['name']);
+        $this->repository->addAvailableInclude('node', ['name']);
     }
 }

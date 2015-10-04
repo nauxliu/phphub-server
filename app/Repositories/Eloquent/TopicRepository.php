@@ -296,7 +296,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      *
      * @return Paginator
      */
-    public function getTopicsWithPaginatorBy($table, $user_id, $columns)
+    public function getTopicsWithPaginatorBy($table, $user_id, $columns = ['*'])
     {
         $paginator = DB::table($table)
             ->orderBy('created_at', 'desc')
