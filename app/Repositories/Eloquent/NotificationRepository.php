@@ -54,4 +54,18 @@ class NotificationRepository extends BaseRepository implements NotificationRepos
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
+    /**
+     * 添加 UserId 筛选条件.
+     *
+     * @param $user_id
+     *
+     * @return $this
+     */
+    public function byUserId($user_id)
+    {
+        $this->model = $this->model->where(compact('user_id'));
+
+        return $this;
+    }
 }

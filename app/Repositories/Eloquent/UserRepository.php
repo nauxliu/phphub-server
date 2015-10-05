@@ -2,6 +2,7 @@
 
 namespace PHPHub\Repositories\Eloquent;
 
+use Auth;
 use PHPHub\Presenters\UserPresenter;
 use PHPHub\Repositories\UserRepositoryInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -48,5 +49,41 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function presenter()
     {
         return UserPresenter::class;
+    }
+
+    /**
+     * 获取指定或当前用户的未读消息数.
+     *
+     * @param null $user_id
+     *
+     * @return int|mixed
+     */
+    public function getUnreadMessagesCount($user_id = null)
+    {
+        return is_null($user_id) && Auth::check()
+            ? Auth::user()->notification_count
+            : User::whereId($user_id)->pluck('notification_count');
+    }
+
+    /**
+     * 设置指定用户的未读消息数.
+     *
+     * @param $user_id
+     * @param $count
+     */
+    public function setUnreadMessagesCount($user_id, $count)
+    {
+        User::whereId($user_id)->update(['notification_count' => $count]);
+    }
+
+    /**
+     * 增加用户的未读消息数.
+     *
+     * @param $user_id
+     * @param $amount
+     */
+    public function incrementUnreadMessagesCount($user_id, $amount)
+    {
+        User::whereId($user_id)->increment(['notification_count' => $amount]);
     }
 }

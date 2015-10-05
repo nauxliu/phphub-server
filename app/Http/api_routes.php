@@ -30,6 +30,7 @@ $router->group(['middleware' => ['api.auth', 'oauth-user']], function (Router $r
 
     //Notifications
     $router->get('me/notifications', 'NotificationController@index');
+    $router->get('me/notifications/count', 'NotificationController@unreadMessagesCount');
 });
 
 /*
