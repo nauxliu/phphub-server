@@ -42,7 +42,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 获取指定用户的资料.
      *
      * @param int $id
      *
@@ -58,7 +58,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更新指定用户的资料.
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id

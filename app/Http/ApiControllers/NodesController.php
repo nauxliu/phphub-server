@@ -23,7 +23,7 @@ class NodesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * 获取节点列表.
      *
      * @return \Illuminate\Http\Response
      */

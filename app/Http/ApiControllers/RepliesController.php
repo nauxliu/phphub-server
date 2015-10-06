@@ -27,7 +27,7 @@ class RepliesController extends Controller
     }
 
     /**
-     * Display a listing of the replies by topic id.
+     * 获取指定用户的回复.
      *
      * @param $topic_id
      *
@@ -47,6 +47,13 @@ class RepliesController extends Controller
         return $this->response()->paginator($data, new ReplyTransformer());
     }
 
+    /**
+     * 获取指定用户的回复.
+     *
+     * @param $user_id
+     *
+     * @return \Dingo\Api\Http\Response
+     */
     public function indexByUserId($user_id)
     {
         $this->repository->addAvailableInclude('user', ['name', 'avatar']);
@@ -62,7 +69,7 @@ class RepliesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 发布一条新回复.
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -80,7 +87,7 @@ class RepliesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更新回复.
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
@@ -93,7 +100,7 @@ class RepliesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除一条回复.
      *
      * @param int $id
      *

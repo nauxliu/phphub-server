@@ -28,7 +28,7 @@ class TopicsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * 默认帖子列表.
      *
      * @return \Illuminate\Http\Response
      */
@@ -101,7 +101,7 @@ class TopicsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 发布新帖子.
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -119,7 +119,7 @@ class TopicsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 获取指定帖子的详细.
      *
      * @param int $id
      *
@@ -135,7 +135,7 @@ class TopicsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更新帖子.
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $id
@@ -148,7 +148,7 @@ class TopicsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除帖子.
      *
      * @param int $id
      *
