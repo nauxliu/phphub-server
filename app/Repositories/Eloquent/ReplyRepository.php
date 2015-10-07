@@ -46,6 +46,8 @@ class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
 
         $reply->save();
 
+        $reply->topic()->getQuery()->increment('reply_count');
+
         return $reply;
     }
 
