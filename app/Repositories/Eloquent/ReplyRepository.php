@@ -78,7 +78,7 @@ class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
      */
     public function byTopicId($topic_id)
     {
-        $this->model->where('topic_id', $topic_id);
+        $this->model = $this->model->query()->where('topic_id', $topic_id);
 
         return $this;
     }

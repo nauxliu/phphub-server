@@ -110,4 +110,24 @@ class RepliesController extends Controller
     {
         //
     }
+
+    /**
+     * 指定帖子下评论列表的 Web View.
+     *
+     * @param $topic_id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function indexWebView($topic_id)
+    {
+        $replies = $this->repository
+            ->byTopicId($topic_id)
+            ->with('user')
+            ->all(['id', 'body', 'created_at', 'user_id']);
+
+        // 楼层计数
+        $count = 1;
+
+        return view('api_web_views.replies_list', compact('replies', 'count'));
+    }
 }

@@ -1,2 +1,10 @@
 // 应用于 API WebView 的样式表
 @import "markdown";
+
+.list-comment-item { padding: 10px 15px; border-bottom: 1px solid #ddd; line-height: 1.42857143; list-style: none;}
+.list-comment-item::before, .list-comment-item::after { content: ""; display: table;}
+.list-comment-item::after { clear: both;}
+.list-comment-item:last-of-type { border-bottom: none;}
+.list-comment-item .avatar { float: left; width: 48px; height: 48px; margin-right: 10px;}
+.list-comment-item .meta a { padding: 1px 2px 1px 0; text-decoration: none; color: #B9BDCB;}
+.list-comment-item .meta { margin-bottom: 5px; font-size: 12px; color: #d0d0d0;}
