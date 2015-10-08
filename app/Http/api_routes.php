@@ -45,6 +45,10 @@ $router->group(['middleware' => ['oauth', 'oauth-client']], function (Router $ro
     $router->get('user/{id}/topics', 'TopicsController@indexByUserId');
     $router->get('node/{id}/topics', 'TopicsController@indexByNodeId');
 
+    //Web Views
+    $router->get('topics/{id}/web_view',
+        ['as' => 'topic.web_view', 'uses' => 'TopicsController@showWebView']);
+
     //Nodes
     $router->get('nodes', 'NodesController@index');
 

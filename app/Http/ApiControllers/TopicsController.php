@@ -220,6 +220,20 @@ class TopicsController extends Controller
     }
 
     /**
+     * 用于客户端的帖子详细 Web View.
+     *
+     * @param $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showWebView($id)
+    {
+        $topic = $this->repository->find($id, ['title', 'body', 'created_at']);
+
+        return view('api_web_views.topic', compact('topic'));
+    }
+
+    /**
      * 注册帖子列表接口通用的引入项.
      */
     protected function registerListApiIncludes()
