@@ -12,3 +12,6 @@ _ide_helper_models.php
 .phpstorm.meta.php
 
 .php_cs.cache
+
+/public/build
+/public/css
