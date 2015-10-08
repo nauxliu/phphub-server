@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{!! $topic->title !!}</title>
-    <link rel="stylesheet" href="{!! elixir('css/markdown.css') !!}">
+    <link rel="stylesheet" href="{!! cdn_elixir('css/api.css') !!}">
 </head>
 <body>
     <div class="markdown-content">
