@@ -212,7 +212,7 @@ class TopicsController extends Controller
             ->autoWith()
             ->skipPresenter()
             ->autoWithRootColumns([
-                'id', 'title', 'is_excellent', 'reply_count', 'updated_at', 'created_at',
+                'id', 'title', 'is_excellent', 'reply_count', 'updated_at', 'created_at', 'vote_count',
             ])
             ->paginate(per_page());
 
@@ -228,7 +228,7 @@ class TopicsController extends Controller
      */
     public function showWebView($id)
     {
-        $topic = $this->repository->find($id, ['title', 'body', 'created_at']);
+        $topic = $this->repository->find($id, ['title', 'body', 'created_at', 'vote_count']);
 
         return view('api_web_views.topic', compact('topic'));
     }
@@ -238,7 +238,7 @@ class TopicsController extends Controller
      */
     protected function registerListApiIncludes()
     {
-        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
+        $this->repository->addAvailableInclude('user', ['name', 'avatar', 'signature']);
         $this->repository->addAvailableInclude('last_reply_user', ['name']);
         $this->repository->addAvailableInclude('node', ['name']);
     }
