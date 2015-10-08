@@ -37,6 +37,17 @@ function cdn($file_path)
 }
 
 /**
+ * 获取 elixir 的 CDN 连接
+ * @param $file
+ * @return string
+ */
+function cdn_elixir($file)
+{
+    $cdn_url = config('app.static_mirror_url');
+    return $cdn_url ? trim($cdn_url, '/').elixir($file) : elixir($file);
+}
+
+/**
  * 在 Repository Criteria 中应用 filter.
  *
  * @param array|string $filters
