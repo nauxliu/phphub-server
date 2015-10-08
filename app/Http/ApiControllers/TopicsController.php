@@ -238,7 +238,7 @@ class TopicsController extends Controller
      */
     protected function registerListApiIncludes()
     {
-        $this->repository->addAvailableInclude('user', ['name', 'avatar', 'signature']);
+        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
         $this->repository->addAvailableInclude('last_reply_user', ['name']);
         $this->repository->addAvailableInclude('node', ['name']);
     }
