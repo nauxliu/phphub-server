@@ -50,6 +50,16 @@ class Topic extends Model implements HasPresenter
         return $this->hasMany(Reply::class);
     }
 
+    public function favoriteBy()
+    {
+        return $this->belongsToMany(User::class, 'favorites');
+    }
+
+    public function attentionBy()
+    {
+        return $this->belongsToMany(User::class, 'attentions');
+    }
+
     /**
      * Get the presenter class.
      *

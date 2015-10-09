@@ -151,7 +151,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     public function voteUp(Topic $topic)
     {
-        if ($this->isUpVoted($topic->id, Auth::id())) {
+        if ($this->userUpVoted($topic->id, Auth::id())) {
             $this->resetVote($topic->id, Auth::id());
             $topic->decrement('vote_count', 1);
 
@@ -160,7 +160,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
 
         $vote_count = 0;
 
-        if ($this->isDownVoted($topic->id, Auth::id())) {
+        if ($this->userDownVoted($topic->id, Auth::id())) {
             $this->resetVote($topic->id, Auth::id());
             $vote_count = 1;
         }
@@ -184,7 +184,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     public function voteDown(Topic $topic)
     {
-        if ($this->isDownVoted($topic->id, Auth::id())) {
+        if ($this->userDownVoted($topic->id, Auth::id())) {
             $this->resetVote($topic->id, Auth::id());
             $topic->increment('vote_count', 1);
 
@@ -193,7 +193,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
 
         $vote_count = 0;
 
-        if ($this->isUpVoted($topic->id, Auth::id())) {
+        if ($this->userUpVoted($topic->id, Auth::id())) {
             $this->resetVote($topic->id, Auth::id());
             $vote_count = 1;
         }
@@ -209,24 +209,6 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
     }
 
     /**
-     * 是否已经支持帖子.
-     *
-     * @param $topic_id
-     * @param $user_id
-     *
-     * @return bool
-     */
-    protected function isUpVoted($topic_id, $user_id)
-    {
-        return Vote::where([
-            'user_id'      => $user_id,
-            'votable_id'   => $topic_id,
-            'votable_type' => 'Topic',
-            'is'           => 'upvote',
-        ])->exists();
-    }
-
-    /**
      * 重置投票.
      *
      * @param $topic_id
@@ -236,11 +218,29 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     protected function resetVote($topic_id, $user_id)
     {
-        return Vote::where([
+        return Vote::query()->where([
             'user_id'      => $user_id,
             'votable_id'   => $topic_id,
             'votable_type' => 'Topic',
         ])->delete();
+    }
+
+    /**
+     * 是否已经支持帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     *
+     * @return bool
+     */
+    protected function userUpVoted($topic_id, $user_id)
+    {
+        return Vote::query()->where([
+            'user_id'      => $user_id,
+            'votable_id'   => $topic_id,
+            'votable_type' => 'Topic',
+            'is'           => 'upvote',
+        ])->exists();
     }
 
     /**
@@ -251,14 +251,40 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      *
      * @return bool
      */
-    protected function isDownVoted($topic_id, $user_id)
+    protected function userDownVoted($topic_id, $user_id)
     {
-        return Vote::where([
+        return Vote::query()->where([
             'user_id'      => $user_id,
             'votable_id'   => $topic_id,
             'votable_type' => 'Topic',
             'is'           => 'downvote',
         ])->exists();
+    }
+
+    /**
+     * 用户是否已经收藏帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     *
+     * @return bool
+     */
+    public function userFavorite($topic_id, $user_id)
+    {
+        return DB::table('favorites')->where(compact('topic_id', 'user_id'))->exists();
+    }
+
+    /**
+     * 用户是否已经关注帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     *
+     * @return bool
+     */
+    public function userAttention($topic_id, $user_id)
+    {
+        return DB::table('attentions')->where(compact('topic_id', 'user_id'))->exists();
     }
 
     /**

@@ -74,4 +74,24 @@ interface TopicRepositoryInterface extends RepositoryInterface
      * @return mixed|Topic
      */
     public function store(array $attributes);
+
+    /**
+     * 用户是否已经收藏帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     *
+     * @return bool
+     */
+    public function userFavorite($topic_id, $user_id);
+
+    /**
+     * 用户是否已经关注帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     *
+     * @return bool
+     */
+    public function userAttention($topic_id, $user_id);
 }

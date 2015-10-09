@@ -12,7 +12,7 @@ $router->post('oauth/access_token', function () {
 });
 
 /*
- * 需要 login-token 认证获得的 access_token
+ *  此分组下路由 需要通过 login-token 方式认证的 access token
  */
 $router->group(['middleware' => ['api.auth', 'oauth-user']], function (Router $router) {
     //Users
@@ -34,12 +34,11 @@ $router->group(['middleware' => ['api.auth', 'oauth-user']], function (Router $r
 });
 
 /*
- * 需要 client_credentials 认证获得的 access_token
+ * 此分组下路由 需要通过 client_credentials 方式认证的 access_token
  */
-$router->group(['middleware' => ['oauth', 'oauth-client']], function (Router $router) {
+$router->group(['middleware' => ['api.auth', 'oauth-client']], function (Router $router) {
     //Topics
     $router->get('topics', 'TopicsController@index');
-    $router->get('topics/{id}', 'TopicsController@show');
     $router->get('user/{id}/favorite/topics', 'TopicsController@indexByUserFavorite');
     $router->get('user/{id}/attention/topics', 'TopicsController@indexByUserAttention');
     $router->get('user/{id}/topics', 'TopicsController@indexByUserId');
@@ -60,4 +59,11 @@ $router->group(['middleware' => ['oauth', 'oauth-client']], function (Router $ro
 
     //Users
     $router->get('users/{id}', 'UsersController@show');
+});
+
+/*
+ * 此分组下路由 同时支持两种认证方式获取的 access_token
+ */
+$router->group(['middleware' => ['api.auth']], function (Router $router) {
+    $router->get('topics/{id}', 'TopicsController@show');
 });

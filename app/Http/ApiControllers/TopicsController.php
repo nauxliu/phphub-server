@@ -2,6 +2,7 @@
 
 namespace PHPHub\Http\ApiControllers;
 
+use Auth;
 use Dingo\Api\Exception\StoreResourceFailedException;
 use Gate;
 use PHPHub\Repositories\TopicRepositoryInterface;
@@ -129,9 +130,14 @@ class TopicsController extends Controller
     {
         $this->topics->addAvailableInclude('user', ['name', 'avatar']);
 
-        $data = $this->topics->skipPresenter()->autoWith()->find($id);
+        $topic = $this->topics->skipPresenter()->autoWith()->find($id);
 
-        return $this->response()->item($data, new TopicTransformer());
+        if (Auth::check()) {
+            $topic->favorite  = $this->topics->userFavorite($topic->id, Auth::id());
+            $topic->attention = $this->topics->userAttention($topic->id, Auth::id());
+        }
+
+        return $this->response()->item($topic, new TopicTransformer());
     }
 
     /**
