@@ -51,7 +51,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $data = $this->users
-            ->autoWithRootColumns(['id', 'name', 'avatar', 'is_banned'])
+            ->autoWithRootColumns(User::$includable)
             ->find($id);
 
         return $this->response()->item($data, new UserTransformer());
