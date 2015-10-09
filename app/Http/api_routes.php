@@ -24,8 +24,12 @@ $router->group(['middleware' => ['api.auth', 'oauth-user']], function (Router $r
     $router->delete('topics/{id}', 'TopicsController@delete');
     $router->post('topics/{id}/vote-up', 'TopicsController@voteUp');
     $router->post('topics/{id}/vote-down', 'TopicsController@voteDown');
+    //Topics 收藏
     $router->post('topics/{id}/favorite', 'TopicsController@favorite');
     $router->delete('topics/{id}/favorite', 'TopicsController@unFavorite');
+    //Topics 关注
+    $router->post('topics/{id}/attention', 'TopicsController@attention');
+    $router->delete('topics/{id}/attention', 'TopicsController@unAttention');
 
     //Replies
     $router->post('replies', 'RepliesController@store');

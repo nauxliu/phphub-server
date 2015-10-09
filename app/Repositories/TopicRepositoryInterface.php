@@ -114,4 +114,20 @@ interface TopicRepositoryInterface extends RepositoryInterface
      * @return
      */
     public function unFavorite($topic_id, $user_id);
+
+    /**
+     * 关注帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     */
+    public function attention($topic_id, $user_id);
+
+    /**
+     * 取消关注帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     */
+    public function unAttention($topic_id, $user_id);
 }

@@ -407,4 +407,35 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
         $topic->id = $topic_id;
         $topic->favoriteBy()->detach($user_id);
     }
+
+    /**
+     * 关注帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     */
+    public function attention($topic_id, $user_id)
+    {
+        $topic     = new Topic();
+        $topic->id = $topic_id;
+
+        if ($topic->attentionBy()->wherePivot('user_id', $user_id)->exists()) {
+            return;
+        }
+
+        $topic->attentionBy()->attach($user_id);
+    }
+
+    /**
+     * 取消关注帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     */
+    public function unAttention($topic_id, $user_id)
+    {
+        $topic     = new Topic();
+        $topic->id = $topic_id;
+        $topic->attentionBy()->detach($user_id);
+    }
 }

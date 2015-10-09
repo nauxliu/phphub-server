@@ -248,10 +248,14 @@ class TopicsController extends Controller
      */
     public function favorite($topic_id)
     {
-        $this->topics->favorite($topic_id, Auth::id());
+        try {
+            $this->topics->favorite($topic_id, Auth::id());
+        } catch (\Exception $e) {
+            $filed = true;
+        }
 
         return response([
-            'status' => true,
+            'status' => isset($filed) ? false : true,
         ]);
     }
 
@@ -264,10 +268,54 @@ class TopicsController extends Controller
      */
     public function unFavorite($topic_id)
     {
-        $this->topics->unFavorite($topic_id, Auth::id());
+        try {
+            $this->topics->unFavorite($topic_id, Auth::id());
+        } catch (\Exception $e) {
+            $filed = true;
+        }
 
         return response([
-            'status' => true,
+            'status' => isset($filed) ? false : true,
+        ]);
+    }
+
+    /**
+     * 关注帖子.
+     *
+     * @param $topic_id
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function attention($topic_id)
+    {
+        try {
+            $this->topics->attention($topic_id, Auth::id());
+        } catch (\Exception $e) {
+            $filed = true;
+        }
+
+        return response([
+            'status' => isset($filed) ? false : true,
+        ]);
+    }
+
+    /**
+     * 取消关注帖子.
+     *
+     * @param $topic_id
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function unAttention($topic_id)
+    {
+        try {
+            $this->topics->unAttention($topic_id, Auth::id());
+        } catch (\Exception $e) {
+            $filed = true;
+        }
+
+        return response([
+            'status' => isset($filed) ? false : true,
         ]);
     }
 
