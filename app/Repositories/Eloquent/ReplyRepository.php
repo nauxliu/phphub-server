@@ -31,7 +31,14 @@ class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
         ],
     ];
 
-    public function create(array $attributes)
+    /**
+     * 发布新的评论.
+     *
+     * @param array $attributes
+     *
+     * @return Reply
+     */
+    public function store(array $attributes)
     {
         if (!is_null($this->validator)) {
             $this->validator->with($attributes)

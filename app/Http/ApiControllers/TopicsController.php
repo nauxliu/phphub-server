@@ -15,7 +15,7 @@ class TopicsController extends Controller
     /**
      * @var TopicRepositoryInterface
      */
-    private $repository;
+    private $topics;
 
     /**
      * TopicController constructor.
@@ -24,7 +24,7 @@ class TopicsController extends Controller
      */
     public function __construct(TopicRepositoryInterface $repository)
     {
-        $this->repository = $repository;
+        $this->topics = $repository;
     }
 
     /**
@@ -46,7 +46,7 @@ class TopicsController extends Controller
      */
     public function indexByUserId($user_id)
     {
-        $this->repository->byUserId($user_id);
+        $this->topics->byUserId($user_id);
 
         return $this->commonIndex();
     }
@@ -60,7 +60,7 @@ class TopicsController extends Controller
      */
     public function indexByNodeId($node_id)
     {
-        $this->repository->byNodeId($node_id);
+        $this->topics->byNodeId($node_id);
 
         return $this->commonIndex();
     }
@@ -76,7 +76,7 @@ class TopicsController extends Controller
     {
         $this->registerListApiIncludes();
 
-        $data = $this->repository
+        $data = $this->topics
             ->favoriteTopicsWithPaginator($user_id,
                 ['id', 'title', 'is_excellent', 'reply_count', 'updated_at', 'created_at']);
 
@@ -93,7 +93,7 @@ class TopicsController extends Controller
     {
         $this->registerListApiIncludes();
 
-        $data = $this->repository
+        $data = $this->topics
             ->attentionTopicsWithPaginator($user_id,
                 ['id', 'title', 'is_excellent', 'reply_count', 'updated_at', 'created_at']);
 
@@ -110,7 +110,7 @@ class TopicsController extends Controller
     public function store(Request $request)
     {
         try {
-            $topic = $this->repository->create($request->all());
+            $topic = $this->topics->store($request->all());
 
             return $this->response()->item($topic, new TopicTransformer());
         } catch (ValidatorException $e) {
@@ -127,9 +127,9 @@ class TopicsController extends Controller
      */
     public function show($id)
     {
-        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
+        $this->topics->addAvailableInclude('user', ['name', 'avatar']);
 
-        $data = $this->repository->skipPresenter()->autoWith()->find($id);
+        $data = $this->topics->skipPresenter()->autoWith()->find($id);
 
         return $this->response()->item($data, new TopicTransformer());
     }
@@ -156,13 +156,13 @@ class TopicsController extends Controller
      */
     public function destroy($id)
     {
-        $topic = $this->repository->find($id);
+        $topic = $this->topics->find($id);
 
         if (Gate::denies('delete', $topic)) {
             throw new AccessDeniedHttpException();
         }
 
-        $this->repository->delete($id);
+        $this->topics->delete($id);
     }
 
     /**
@@ -174,10 +174,10 @@ class TopicsController extends Controller
      */
     public function voteUp($id)
     {
-        $topic = $this->repository->find($id);
+        $topic = $this->topics->find($id);
 
         return response([
-            'vote-up'    => $this->repository->voteUp($topic),
+            'vote-up'    => $this->topics->voteUp($topic),
             'vote_count' => $topic->vote_count,
         ]);
     }
@@ -191,10 +191,10 @@ class TopicsController extends Controller
      */
     public function voteDown($id)
     {
-        $topic = $this->repository->find($id);
+        $topic = $this->topics->find($id);
 
         return response([
-            'vote-down'  => $this->repository->voteDown($topic),
+            'vote-down'  => $this->topics->voteDown($topic),
             'vote_count' => $topic->vote_count,
         ]);
     }
@@ -208,7 +208,7 @@ class TopicsController extends Controller
     {
         $this->registerListApiIncludes();
 
-        $data = $this->repository
+        $data = $this->topics
             ->autoWith()
             ->skipPresenter()
             ->autoWithRootColumns([
@@ -228,7 +228,7 @@ class TopicsController extends Controller
      */
     public function showWebView($id)
     {
-        $topic = $this->repository->find($id, ['title', 'body', 'created_at', 'vote_count']);
+        $topic = $this->topics->find($id, ['title', 'body', 'created_at', 'vote_count']);
 
         return view('api_web_views.topic', compact('topic'));
     }
@@ -238,8 +238,8 @@ class TopicsController extends Controller
      */
     protected function registerListApiIncludes()
     {
-        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
-        $this->repository->addAvailableInclude('last_reply_user', ['name']);
-        $this->repository->addAvailableInclude('node', ['name']);
+        $this->topics->addAvailableInclude('user', ['name', 'avatar']);
+        $this->topics->addAvailableInclude('last_reply_user', ['name']);
+        $this->topics->addAvailableInclude('node', ['name']);
     }
 }

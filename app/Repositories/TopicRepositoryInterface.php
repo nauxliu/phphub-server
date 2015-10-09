@@ -65,4 +65,13 @@ interface TopicRepositoryInterface extends RepositoryInterface
      * @return $this
      */
     public function byUserId($user_id);
+
+    /**
+     * 创建新帖子.
+     *
+     * @param array $attributes
+     *
+     * @return mixed|Topic
+     */
+    public function store(array $attributes);
 }

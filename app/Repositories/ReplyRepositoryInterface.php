@@ -2,6 +2,8 @@
 
 namespace PHPHub\Repositories;
 
+use PHPHub\Reply;
+
 /**
  * Interface ReplyRepository.
  */
@@ -24,4 +26,13 @@ interface ReplyRepositoryInterface extends RepositoryInterface
      * @return $this
      */
     public function byUserId($user_id);
+
+    /**
+     * 发布新的评论.
+     *
+     * @param array $attributes
+     *
+     * @return Reply
+     */
+    public function store(array $attributes);
 }

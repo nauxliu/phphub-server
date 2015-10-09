@@ -14,7 +14,7 @@ class RepliesController extends Controller
     /**
      * @var ReplyRepositoryInterface
      */
-    private $repository;
+    private $replies;
 
     /**
      * TopicController constructor.
@@ -23,7 +23,7 @@ class RepliesController extends Controller
      */
     public function __construct(ReplyRepositoryInterface $repository)
     {
-        $this->repository = $repository;
+        $this->replies = $repository;
     }
 
     /**
@@ -35,9 +35,9 @@ class RepliesController extends Controller
      */
     public function indexByTopicId($topic_id)
     {
-        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
+        $this->replies->addAvailableInclude('user', ['name', 'avatar']);
 
-        $data = $this->repository
+        $data = $this->replies
             ->byTopicId($topic_id)
             ->skipPresenter()
             ->autoWith()
@@ -56,9 +56,9 @@ class RepliesController extends Controller
      */
     public function indexByUserId($user_id)
     {
-        $this->repository->addAvailableInclude('user', ['name', 'avatar']);
+        $this->replies->addAvailableInclude('user', ['name', 'avatar']);
 
-        $data = $this->repository
+        $data = $this->replies
             ->byUserId($user_id)
             ->skipPresenter()
             ->autoWith()
@@ -78,7 +78,7 @@ class RepliesController extends Controller
     public function store(Request $request)
     {
         try {
-            $reply = $this->repository->create($request->all());
+            $reply = $this->replies->store($request->all());
 
             return $this->response()->item($reply, new ReplyTransformer());
         } catch (ValidatorException $e) {
@@ -120,7 +120,7 @@ class RepliesController extends Controller
      */
     public function indexWebView($topic_id)
     {
-        $replies = $this->repository
+        $replies = $this->replies
             ->byTopicId($topic_id)
             ->with('user')
             ->all(['id', 'body', 'created_at', 'user_id']);

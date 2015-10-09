@@ -12,11 +12,11 @@ class NotificationController extends Controller
     /**
      * @var NotificationRepositoryInterface
      */
-    private $repository;
+    private $notifications;
     /**
      * @var UserRepositoryInterface
      */
-    private $user_repository;
+    private $users;
 
     /**
      * NotificationController constructor.
@@ -26,8 +26,8 @@ class NotificationController extends Controller
      */
     public function __construct(NotificationRepositoryInterface $repository, UserRepositoryInterface $user_repository)
     {
-        $this->repository      = $repository;
-        $this->user_repository = $user_repository;
+        $this->notifications = $repository;
+        $this->users         = $user_repository;
     }
 
     /**
@@ -37,17 +37,17 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $this->repository->addAvailableInclude('from_user', ['name', 'avatar']);
-        $this->repository->addAvailableInclude('reply', ['created_at']);
-        $this->repository->addAvailableInclude('topic', ['title']);
+        $this->notifications->addAvailableInclude('from_user', ['name', 'avatar']);
+        $this->notifications->addAvailableInclude('reply', ['created_at']);
+        $this->notifications->addAvailableInclude('topic', ['title']);
 
-        $data = $this->repository
+        $data = $this->notifications
             ->byUserId(Auth::id())
             ->autoWith()
             ->autoWithRootColumns(['id', 'type', 'body', 'topic_id', 'reply_id', 'created_at'])
             ->paginate(per_page());
 
-        $this->user_repository->setUnreadMessagesCount(Auth::id(), 0);
+        $this->users->setUnreadMessagesCount(Auth::id(), 0);
 
         return $this->response()->paginator($data, new NotificationTransformer());
     }
@@ -59,7 +59,7 @@ class NotificationController extends Controller
      */
     public function unreadMessagesCount()
     {
-        $count = $this->user_repository->getUnreadMessagesCount();
+        $count = $this->users->getUnreadMessagesCount();
 
         return response(compact('count'));
     }

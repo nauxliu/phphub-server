@@ -49,7 +49,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      *
      * @return mixed|Topic
      */
-    public function create(array $attributes)
+    public function store(array $attributes)
     {
         if (!is_null($this->validator)) {
             $this->validator->with($attributes)

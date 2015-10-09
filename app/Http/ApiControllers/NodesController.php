@@ -10,7 +10,7 @@ class NodesController extends Controller
     /**
      * @var NodeRepositoryInterface
      */
-    private $repository;
+    private $nodes;
 
     /**
      * TopicController constructor.
@@ -19,7 +19,7 @@ class NodesController extends Controller
      */
     public function __construct(NodeRepositoryInterface $repository)
     {
-        $this->repository = $repository;
+        $this->nodes = $repository;
     }
 
     /**
@@ -29,7 +29,7 @@ class NodesController extends Controller
      */
     public function index()
     {
-        $data = $this->repository->all(['id', 'name', 'parent_node']);
+        $data = $this->nodes->all(['id', 'name', 'parent_node']);
 
         return $this->response()->collection($data, new NodeTransformer());
     }

@@ -17,7 +17,7 @@ class UsersController extends Controller
     /**
      * @var UserRepositoryInterface
      */
-    private $repository;
+    private $users;
 
     /**
      * TopicController constructor.
@@ -26,7 +26,7 @@ class UsersController extends Controller
      */
     public function __construct(UserRepositoryInterface $repository)
     {
-        $this->repository = $repository;
+        $this->users = $repository;
     }
 
     /**
@@ -34,7 +34,7 @@ class UsersController extends Controller
      */
     public function me()
     {
-        $data = $this->repository
+        $data = $this->users
             ->autoWithRootColumns(User::$includable)
             ->find(Auth::id());
 
@@ -50,7 +50,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $data = $this->repository
+        $data = $this->users
             ->autoWithRootColumns(['id', 'name', 'avatar', 'is_banned'])
             ->find($id);
 
@@ -67,14 +67,14 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = $this->repository->find($id);
+        $user = $this->users->find($id);
 
         if (Gate::denies('update', $user)) {
             throw new AccessDeniedHttpException();
         }
 
         try {
-            $user = $this->repository->update($request->all(), $id);
+            $user = $this->users->update($request->all(), $id);
 
             return $this->response()->item($user, new UserTransformer());
         } catch (ValidatorException $e) {
