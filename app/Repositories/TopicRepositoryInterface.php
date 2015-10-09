@@ -94,4 +94,24 @@ interface TopicRepositoryInterface extends RepositoryInterface
      * @return bool
      */
     public function userAttention($topic_id, $user_id);
+
+    /**
+     * 收藏帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     *
+     * @return
+     */
+    public function favorite($topic_id, $user_id);
+
+    /**
+     * 取消收藏帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     *
+     * @return
+     */
+    public function unFavorite($topic_id, $user_id);
 }

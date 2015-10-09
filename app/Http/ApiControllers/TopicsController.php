@@ -240,6 +240,38 @@ class TopicsController extends Controller
     }
 
     /**
+     * 收藏帖子.
+     *
+     * @param $topic_id
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function favorite($topic_id)
+    {
+        $this->topics->favorite($topic_id, Auth::id());
+
+        return response([
+            'status' => true,
+        ]);
+    }
+
+    /**
+     * 取消收藏帖子.
+     *
+     * @param $topic_id
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function unFavorite($topic_id)
+    {
+        $this->topics->unFavorite($topic_id, Auth::id());
+
+        return response([
+            'status' => true,
+        ]);
+    }
+
+    /**
      * 注册帖子列表接口通用的引入项.
      */
     protected function registerListApiIncludes()

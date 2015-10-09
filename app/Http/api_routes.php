@@ -24,6 +24,8 @@ $router->group(['middleware' => ['api.auth', 'oauth-user']], function (Router $r
     $router->delete('topics/{id}', 'TopicsController@delete');
     $router->post('topics/{id}/vote-up', 'TopicsController@voteUp');
     $router->post('topics/{id}/vote-down', 'TopicsController@voteDown');
+    $router->post('topics/{id}/favorite', 'TopicsController@favorite');
+    $router->delete('topics/{id}/favorite', 'TopicsController@unFavorite');
 
     //Replies
     $router->post('replies', 'RepliesController@store');

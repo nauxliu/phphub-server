@@ -52,12 +52,12 @@ class Topic extends Model implements HasPresenter
 
     public function favoriteBy()
     {
-        return $this->belongsToMany(User::class, 'favorites');
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
     }
 
     public function attentionBy()
     {
-        return $this->belongsToMany(User::class, 'attentions');
+        return $this->belongsToMany(User::class, 'attentions')->withTimestamps();
     }
 
     /**

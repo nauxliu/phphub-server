@@ -26,6 +26,9 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
 {
     use IncludeUserTrait, DispatchesJobs;
 
+    protected $favorite_table  = 'favorites';
+    protected $attention_table = 'attentions';
+
     /**
      * Specify Validator Rules.
      *
@@ -271,7 +274,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     public function userFavorite($topic_id, $user_id)
     {
-        return DB::table('favorites')->where(compact('topic_id', 'user_id'))->exists();
+        return DB::table($this->favorite_table)->where(compact('topic_id', 'user_id'))->exists();
     }
 
     /**
@@ -284,7 +287,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     public function userAttention($topic_id, $user_id)
     {
-        return DB::table('attentions')->where(compact('topic_id', 'user_id'))->exists();
+        return DB::table($this->attention_table)->where(compact('topic_id', 'user_id'))->exists();
     }
 
     /**
@@ -297,7 +300,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     public function favoriteTopicsWithPaginator($user_id, $columns = ['*'])
     {
-        return $this->getTopicsWithPaginatorBy('favorites', $user_id, $columns);
+        return $this->getTopicsWithPaginatorBy($this->favorite_table, $user_id, $columns);
     }
 
     /**
@@ -310,7 +313,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     public function attentionTopicsWithPaginator($user_id, $columns = ['*'])
     {
-        return $this->getTopicsWithPaginatorBy('attentions', $user_id, $columns);
+        return $this->getTopicsWithPaginatorBy($this->attention_table, $user_id, $columns);
     }
 
     /**
@@ -372,5 +375,36 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
         $this->model = $this->model->where(compact('user_id'));
 
         return $this;
+    }
+
+    /**
+     * 收藏帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     */
+    public function favorite($topic_id, $user_id)
+    {
+        $topic     = new Topic();
+        $topic->id = $topic_id;
+
+        if ($topic->favoriteBy()->wherePivot('user_id', $user_id)->exists()) {
+            return;
+        }
+
+        $topic->favoriteBy()->attach($user_id);
+    }
+
+    /**
+     * 取消收藏帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     */
+    public function unFavorite($topic_id, $user_id)
+    {
+        $topic     = new Topic();
+        $topic->id = $topic_id;
+        $topic->favoriteBy()->detach($user_id);
     }
 }
