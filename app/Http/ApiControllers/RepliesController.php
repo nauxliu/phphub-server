@@ -118,7 +118,7 @@ class RepliesController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function indexWebView($topic_id)
+    public function indexWebViewByTopic($topic_id)
     {
         $replies = $this->replies
             ->byTopicId($topic_id)
@@ -129,5 +129,25 @@ class RepliesController extends Controller
         $count = 1;
 
         return view('api_web_views.replies_list', compact('replies', 'count'));
+    }
+
+    /**
+     * 指定帖子下评论列表的 Web View.
+     *
+     * @param $user_id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function indexWebViewByUser($user_id)
+    {
+        $replies = $this->replies
+            ->byUserId($user_id)
+            ->with('topic')
+            ->all(['id', 'body', 'created_at', 'topic_id']);
+
+        // 楼层计数
+        $count = 1;
+
+        return view('api_web_views.users_replies_list', compact('replies', 'count'));
     }
 }

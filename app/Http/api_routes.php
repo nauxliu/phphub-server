@@ -54,7 +54,9 @@ $router->group(['middleware' => ['api.auth', 'oauth-client']], function (Router 
     $router->get('topics/{id}/web_view',
         ['as' => 'topic.web_view', 'uses' => 'TopicsController@showWebView']);
     $router->get('topics/{id}/replies/web_view',
-        ['as' => 'replies.web_view', 'uses' => 'RepliesController@indexWebView']);
+        ['as' => 'replies.web_view', 'uses' => 'RepliesController@indexWebViewByTopic']);
+    $router->get('users/{id}/replies/web_view',
+        ['as' => 'users.replies.web_view', 'uses' => 'RepliesController@indexWebViewByUser']);
 
     //Nodes
     $router->get('nodes', 'NodesController@index');

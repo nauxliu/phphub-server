@@ -99,7 +99,7 @@ class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
      */
     public function byUserId($user_id)
     {
-        $this->model->where('user_id', $user_id);
+        $this->model = $this->model->where('user_id', $user_id);
 
         return $this;
     }

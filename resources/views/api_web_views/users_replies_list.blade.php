@@ -11,12 +11,11 @@
     @foreach($replies as $reply)
     <li class="list-comment-item">
         <div class="infos">
+
             <div class="meta">
-{{--                <a href="/users/{!! $reply->user->id !!}">{!! $reply->user->name !!}</a>--}}
+                <a class="topic-title" href="/topics/{!! $reply->topic->id !!}">{!! $reply->topic->title !!}</a>
                 <span>•</span>
-                <abbr>{!! $reply->created_at !!}</abbr>
-                <span>•</span>
-                <a class="anchor" href="#{!! $count !!}">#{!! $count++ !!}</a>
+                <abbr class="created_time">{!! $reply->created_at->format('Y-m-d') !!}</abbr>
             </div>
             <div class="markdown-content">
                 {!! $reply->body !!}
