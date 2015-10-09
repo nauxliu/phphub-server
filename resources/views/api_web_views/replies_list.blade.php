@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="{!! cdn_elixir('css/api.css') !!}">
 </head>
 <body>
-<ul>
-
+<ul class="list-comment">
     @foreach($replies as $reply)
     <li class="list-comment-item">
         <a class="avatar">
@@ -16,11 +15,11 @@
         </a>
         <div class="infos">
             <div class="meta">
-                <a href="https://phphub.org/users/1412">{!! $reply->user->name !!}</a>
+                <a href="/users/{!! $reply->user->id !!}">{!! $reply->user->name !!}</a>
                 <span>•</span>
                 <abbr title="{!! $reply->created_at !!}">{!! $reply->created_at !!}</abbr>
                 <span>•</span>
-                <a class="anchor" href="#{!! $count++ !!}">#{!! $count++ !!}</a>
+                <a class="anchor" href="#{!! $count !!}">#{!! $count++ !!}</a>
             </div>
             <div class="markdown-content">
                 {!! $reply->body !!}
