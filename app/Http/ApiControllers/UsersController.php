@@ -34,11 +34,7 @@ class UsersController extends Controller
      */
     public function me()
     {
-        $data = $this->users
-            ->autoWithRootColumns(User::$includable)
-            ->find(Auth::id());
-
-        return $this->response()->item($data, new UserTransformer());
+        return $this->show(Auth::id());
     }
 
     /**
@@ -50,11 +46,14 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $data = $this->users
+        $user = $this->users
             ->autoWithRootColumns(User::$includable)
             ->find($id);
 
-        return $this->response()->item($data, new UserTransformer());
+        // 在 Transformer 中返回 links
+        $user->links = true;
+
+        return $this->response()->item($user, new UserTransformer());
     }
 
     /**

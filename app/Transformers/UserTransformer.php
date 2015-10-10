@@ -21,12 +21,18 @@ class UserTransformer extends TransformerAbstract
      */
     public function transformData($model)
     {
-        $data = array_only($model->toArray(), User::$includable);
+        $user = array_only($model->toArray(), User::$includable);
 
         if ($model->getAttribute('avatar')) {
-            $data['avatar'] = $model->avatar();
+            $user['avatar'] = $model->avatar();
         }
 
-        return $data;
+        if ($model->getAttribute('links')) {
+            $user['links'] = [
+                'replies_web_view' => route('users.replies.web_view', $model->id),
+            ];
+        }
+
+        return $user;
     }
 }
