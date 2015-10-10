@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model implements HasPresenter
 {
-    protected $fillable   = ['body', 'title'];
+    protected $fillable   = ['body', 'title', 'node_id'];
     protected $morphClass = 'Topic';
 
     protected $casts = [

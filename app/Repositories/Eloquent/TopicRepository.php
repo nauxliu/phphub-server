@@ -38,7 +38,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
         ValidatorInterface::RULE_CREATE => [
             'title'   => 'required|min:2',
             'body'    => 'required|min:2',
-            'node_id' => 'required|integer',
+            'node_id' => 'required|integer|exists:nodes,id',
         ],
         ValidatorInterface::RULE_UPDATE => [
 
