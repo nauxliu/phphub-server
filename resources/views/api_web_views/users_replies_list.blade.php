@@ -11,7 +11,6 @@
     @foreach($replies as $reply)
     <li class="list-comment-item">
         <div class="infos">
-
             <div class="meta">
                 <a class="topic-title" href="/topics/{!! $reply->topic->id !!}">{!! $reply->topic->title !!}</a>
                 <span>•</span>

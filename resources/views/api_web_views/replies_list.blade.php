@@ -10,9 +10,12 @@
 <ul class="list-comment">
     @foreach($replies as $reply)
     <li class="list-comment-item">
+        <a class="avatar">
+            <img class="avatar" src="{!!  $reply->user->avatar.'?imageView2/1/w/80/h/80' !!}">
+        </a>
         <div class="infos">
             <div class="meta">
-{{--                <a href="/users/{!! $reply->user->id !!}">{!! $reply->user->name !!}</a>--}}
+                <a href="/users/{!! $reply->user->id !!}">{!! $reply->user->name !!}</a>
                 <span>•</span>
                 <abbr>{!! $reply->created_at !!}</abbr>
                 <span>•</span>
