@@ -236,7 +236,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      *
      * @return bool
      */
-    protected function userUpVoted($topic_id, $user_id)
+    public function userUpVoted($topic_id, $user_id)
     {
         return Vote::query()->where([
             'user_id'      => $user_id,
@@ -254,7 +254,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      *
      * @return bool
      */
-    protected function userDownVoted($topic_id, $user_id)
+    public function userDownVoted($topic_id, $user_id)
     {
         return Vote::query()->where([
             'user_id'      => $user_id,

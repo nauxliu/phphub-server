@@ -130,4 +130,24 @@ interface TopicRepositoryInterface extends RepositoryInterface
      * @param $user_id
      */
     public function unAttention($topic_id, $user_id);
+
+    /**
+     * 是否已经支持帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     *
+     * @return bool
+     */
+    public function userUpVoted($topic_id, $user_id);
+
+    /**
+     * 是否已经反对帖子.
+     *
+     * @param $topic_id
+     * @param $user_id
+     *
+     * @return bool
+     */
+    public function userDownVoted($topic_id, $user_id);
 }
