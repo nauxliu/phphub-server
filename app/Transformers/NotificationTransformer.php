@@ -31,6 +31,7 @@ class NotificationTransformer extends TransformerAbstract
     {
         $data             = $model->toArray();
         $data['type_msg'] = $model->typeMessage();
+        $data['message']  = $model->message();
 
         return $data;
     }

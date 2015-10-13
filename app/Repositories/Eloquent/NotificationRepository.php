@@ -22,7 +22,7 @@ class NotificationRepository extends BaseRepository implements NotificationRepos
         $available_include = Includable::make('from_user')
             ->setDefaultColumns($default_columns)
             ->setAllowColumns(User::$includable)
-            ->setForeignKey('user_id');
+            ->setForeignKey('from_user_id');
 
         app(IncludeManager::class)->add($available_include);
     }

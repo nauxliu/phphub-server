@@ -45,4 +45,18 @@ class NotificationPresenter extends BasePresenter
 
         return Lang::get($this->type_messages[$this->wrappedObject->type]);
     }
+
+    /**
+     * 拼装完整通知消息.
+     *
+     * @return string
+     *
+     * @throws \Exception
+     */
+    public function message()
+    {
+        return $this->wrappedObject->fromUser->name
+        .' • '.$this->typeMessage()
+        .' • '.$this->wrappedObject->topic->title;
+    }
 }
