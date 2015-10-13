@@ -29,7 +29,10 @@ class NotificationTransformer extends TransformerAbstract
      */
     public function transformData($model)
     {
-        return $model->toArray();
+        $data             = $model->toArray();
+        $data['type_msg'] = $model->typeMessage();
+
+        return $data;
     }
 
     public function includeFromUser($model)
