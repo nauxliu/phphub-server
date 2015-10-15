@@ -20,7 +20,9 @@ function per_page($default = null)
     $per_page     = (Input::get('per_page') ?: $default) ?: config('api.default_per_page');
 
     return (int) ($per_page < $max_per_page ? $per_page : $max_per_page);
-};
+}
+
+;
 
 /**
  * 使用 cdn 镜像获取本地资源的加速连接.
@@ -59,4 +61,19 @@ function add_filter($filters)
 {
     $filters = (array) $filters;
     Input::merge(['filter' => Input::get('filter').','.implode(',', $filters)]);
+}
+
+/**
+ * 生成用户客户端 URL Schema 技术的链接.
+ *
+ * @param $path
+ * @param $parameters
+ *
+ * @return string
+ */
+function schema_url($path, $parameters = [])
+{
+    $query = empty($parameters) ? '' : '?'.http_build_query($parameters);
+
+    return strtolower(config('app.name')).'://'.trim($path, '/').$query;
 }

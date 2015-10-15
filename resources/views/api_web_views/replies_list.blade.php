@@ -15,7 +15,7 @@
         </a>
         <div class="infos">
             <div class="meta">
-                <a href="/users/{!! $reply->user->id !!}">{!! $reply->user->name !!}</a>
+                <a href="{!! schema_url('users', ['id' => $reply->user->id]) !!}">{!! $reply->user->name !!}</a>
                 <span>•</span>
                 <abbr>{!! $reply->created_at !!}</abbr>
                 <span>•</span>
