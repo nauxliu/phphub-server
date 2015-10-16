@@ -11,6 +11,11 @@ class Node extends Model implements HasPresenter
     public static $includable = ['id', 'name', 'slug', 'parent_node', 'description'];
     protected $fillable       = [];
 
+    protected $casts = [
+        'id'          => 'int',
+        'parent_node' => 'int',
+    ];
+
     public function topics()
     {
         return $this->hasMany(Topic::class);

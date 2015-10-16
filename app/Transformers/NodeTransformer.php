@@ -21,6 +21,9 @@ class NodeTransformer extends TransformerAbstract
      */
     public function transformData($model)
     {
-        return $model->toArray();
+        $data                = $model->toArray();
+        $data['parent_node'] = $model->parent_node ?: 0;
+
+        return $data;
     }
 }
