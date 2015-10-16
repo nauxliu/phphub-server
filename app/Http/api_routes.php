@@ -67,6 +67,9 @@ $router->group(['middleware' => ['api.auth', 'oauth-client']], function (Router 
 
     //Users
     $router->get('users/{id}', 'UsersController@show');
+
+    //Adverts
+    $router->get('adverts/launch_screen', 'LaunchScreenAdvertsController@index');
 });
 
 /*
