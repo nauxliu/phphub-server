@@ -10,7 +10,7 @@
 <ul class="list-comment">
     @foreach($replies as $reply)
     <li class="list-comment-item">
-        <a class="avatar">
+        <a class="avatar" href="{!! schema_url('users', ['id' => $reply->user->id]) !!}">
             <img class="avatar" src="{!!  $reply->user->avatar.'?imageView2/1/w/80/h/80' !!}">
         </a>
         <div class="infos">
