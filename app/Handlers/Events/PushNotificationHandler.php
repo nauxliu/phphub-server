@@ -86,12 +86,18 @@ class PushNotificationHandler
 
         $presenter = app('autopresenter')->decorate($notification);
 
-        $this->push($event->getUserId(), $presenter->message(), array_only($data, [
+        $push_data = array_only($data, [
             'topic_id',
             'from_user_id',
             'type',
-            'reply_id',
-        ]));
+        ]);
+
+        if ($data['reply_id'] !== 0) {
+            $push_data['reply_id']    = $data['reply_id'];
+            $push_data['replies_url'] = route('replies.web_view', $data['reply_id']);
+        }
+
+        $this->push($event->getUserId(), $presenter->message(), $push_data);
     }
 
     /**
