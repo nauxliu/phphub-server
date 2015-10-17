@@ -6,6 +6,7 @@ use Auth;
 use DB;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Pagination\Paginator;
+use PHPHub\Events\TopicUpVoted;
 use PHPHub\Jobs\SaveTopic;
 use PHPHub\Reply;
 use PHPHub\Repositories\Criteria\TopicCriteria;
@@ -174,6 +175,8 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
         ]);
 
         $topic->increment('vote_count', $vote_count + 1);
+
+        \Event::fire(new TopicUpVoted($topic, Auth::id()));
 
         return true;
     }

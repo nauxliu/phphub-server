@@ -14,7 +14,8 @@
         "mccool/laravel-auto-presenter": "^4.0",
         "prettus/laravel-validation": "1.1.*",
         "naux/auto-correct": "^1.0",
-        "erusev/parsedown": "^1.5"
+        "erusev/parsedown": "^1.5",
+        "jpush/jpush": "^3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

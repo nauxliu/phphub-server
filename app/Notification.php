@@ -8,7 +8,7 @@ use PHPHub\Presenters\NotificationPresenter;
 
 class Notification extends Model implements HasPresenter
 {
-    protected $fillable = [];
+    protected $guarded = [];
 
     public function fromUser()
     {
