@@ -35,7 +35,7 @@ class PushNotificationHandler
      *
      * @param NotificationRepositoryInterface $notifications
      */
-    public function __construct(NotificationRepository $notifications)
+    public function __construct(NotificationRepositoryInterface $notifications)
     {
         $this->notifications = $notifications;
     }

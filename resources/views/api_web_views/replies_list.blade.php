@@ -8,6 +8,9 @@
 </head>
 <body>
 <ul class="list-comment">
+    @if(empty($replies))
+        <div class="content-blank">暂无内容</div>
+    @endif
     @foreach($replies as $reply)
     <li class="list-comment-item">
         <a class="avatar" href="{!! schema_url('users', ['id' => $reply->user->id]) !!}">
