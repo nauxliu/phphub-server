@@ -56,15 +56,17 @@ class NotificationRepository extends BaseRepository implements NotificationRepos
     }
 
     /**
-     * 添加 UserId 筛选条件.
+     * 用户最新的通知.
      *
      * @param $user_id
      *
      * @return $this
      */
-    public function byUserId($user_id)
+    public function userRecent($user_id)
     {
-        $this->model = $this->model->where(compact('user_id'));
+        $this->model = $this->model
+            ->where(compact('user_id'))
+            ->orderBy('created_at', 'desc');
 
         return $this;
     }

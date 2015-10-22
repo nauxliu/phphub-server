@@ -42,7 +42,7 @@ class NotificationController extends Controller
         $this->notifications->addAvailableInclude('topic', ['title']);
 
         $data = $this->notifications
-            ->byUserId(Auth::id())
+            ->userRecent(Auth::id())
             ->autoWith()
             ->autoWithRootColumns(['id', 'type', 'body', 'topic_id', 'reply_id', 'created_at'])
             ->paginate(per_page());

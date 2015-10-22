@@ -2,7 +2,6 @@
 
 namespace PHPHub\Presenters;
 
-use Lang;
 use McCool\LaravelAutoPresenter\BasePresenter;
 
 /**
@@ -43,7 +42,7 @@ class NotificationPresenter extends BasePresenter
             throw new \Exception('Type '.$this->wrappedObject->type.'not exists');
         }
 
-        return Lang::get($this->type_messages[$this->wrappedObject->type]);
+        return trans('notification.'.$this->type_messages[$this->wrappedObject->type]);
     }
 
     /**
