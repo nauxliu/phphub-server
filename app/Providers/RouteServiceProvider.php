@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
             'version'    => 'v1',
             'namespace'  => $this->api_controller_namespace,
             'middleware' => 'api.throttle',
-            'limit'      => env('API_LIMITS'),
+            'limit'      => env('RATE_LIMITS'),
             'expires'    => env('RATE_LIMITS_EXPIRES'),
         ], function ($router) {
             require app_path('Http/api_routes.php');
