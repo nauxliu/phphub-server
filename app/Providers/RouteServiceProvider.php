@@ -35,7 +35,13 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $api_router = app('Dingo\Api\Routing\Router');
-        $api_router->group(['version' => 'v1', 'namespace' => $this->api_controller_namespace], function ($router) {
+        $api_router->group([
+            'version'    => 'v1',
+            'namespace'  => $this->api_controller_namespace,
+            'middleware' => 'api.throttle',
+            'limit'      => env('API_LIMITS'),
+            'expires'    => env('RATE_LIMITS_EXPIRES'),
+        ], function ($router) {
             require app_path('Http/api_routes.php');
         });
     }
