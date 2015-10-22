@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'standardsTree' => env('API_STANDARDS_TREE', 'x'),
+    'standardsTree' => env('API_STANDARDS_TREE', 'vnd'),
 
     /*
     |--------------------------------------------------------------------------
