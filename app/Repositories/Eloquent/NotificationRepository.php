@@ -11,7 +11,7 @@ use PHPHub\Repositories\NotificationRepositoryInterface;
 use PHPHub\Notification;
 
 /**
- * Class NotificationRepositoryEloquent.
+ * Class NotificationRepository.
  */
 class NotificationRepository extends BaseRepository implements NotificationRepositoryInterface
 {

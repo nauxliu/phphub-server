@@ -4,7 +4,6 @@ namespace PHPHub\Handlers\Events;
 
 use PHPHub\Events\Event;
 use PHPHub\Events\TopicUpVoted;
-use PHPHub\Repositories\Eloquent\NotificationRepository;
 use PHPHub\Repositories\NotificationRepositoryInterface;
 use PHPHub\Services\PushService\Jpush;
 

@@ -23,12 +23,6 @@ class RepositoriesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        app()->bind(UserRepositoryInterface::class, UserRepository::class);
-        app()->bind(TopicRepositoryInterface::class, TopicRepository::class);
-        app()->bind(ReplyRepositoryInterface::class, ReplyRepository::class);
-        app()->bind(NotificationRepositoryInterface::class, NotificationRepository::class);
-        app()->bind(NodeRepositoryInterface::class, NodeRepository::class);
-        app()->bind(LaunchScreenAdvertRepositoryInterface::class, LaunchScreenAdvertRepository::class);
     }
 
     /**
@@ -36,6 +30,11 @@ class RepositoriesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        app()->bind(UserRepositoryInterface::class, UserRepository::class);
+        app()->bind(TopicRepositoryInterface::class, TopicRepository::class);
+        app()->bind(ReplyRepositoryInterface::class, ReplyRepository::class);
+        app()->bind(NodeRepositoryInterface::class, NodeRepository::class);
+        app()->bind(LaunchScreenAdvertRepositoryInterface::class, LaunchScreenAdvertRepository::class);
+        app()->bind(NotificationRepositoryInterface::class, NotificationRepository::class);
     }
 }

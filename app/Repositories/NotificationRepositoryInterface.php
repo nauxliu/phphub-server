@@ -3,7 +3,7 @@
 namespace PHPHub\Repositories;
 
 /**
- * Interface NotificationRepository.
+ * Interface NotificationRepositoryInterface.
  */
 interface NotificationRepositoryInterface extends RepositoryInterface
 {
