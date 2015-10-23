@@ -2,12 +2,15 @@
 
 namespace PHPHub;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use McCool\LaravelAutoPresenter\HasPresenter;
 use PHPHub\Presenters\TopicPresenter;
 use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model implements HasPresenter
 {
+    use SoftDeletes;
+
     public static $includable = [
         'id',
         'title',
