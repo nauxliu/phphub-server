@@ -7,6 +7,7 @@ use Dingo\Api\Exception\StoreResourceFailedException;
 use Gate;
 use PHPHub\Repositories\Criteria\FilterManager;
 use PHPHub\Repositories\TopicRepositoryInterface;
+use PHPHub\Topic;
 use PHPHub\Transformers\TopicTransformer;
 use Illuminate\Http\Request;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -84,6 +85,7 @@ class TopicsController extends Controller
 
         return $this->response()->paginator($data, new TopicTransformer());
     }
+
     /**
      * 用户收藏的帖子列表.
      *
@@ -131,7 +133,11 @@ class TopicsController extends Controller
     {
         $this->topics->addAvailableInclude('user', ['name', 'avatar']);
 
-        $topic = $this->topics->skipPresenter()->autoWith()->find($id);
+        $topic = $this->topics
+            ->skipPresenter()
+            ->autoWith()
+            ->autoWithRootColumns(array_diff(Topic::$includable, ['body', 'body_original', 'excerpt']))
+            ->find($id);
 
         if (Auth::check()) {
             $topic->favorite  = $this->topics->userFavorite($topic->id, Auth::id());
@@ -222,7 +228,13 @@ class TopicsController extends Controller
             ->autoWith()
             ->skipPresenter()
             ->autoWithRootColumns([
-                'id', 'title', 'is_excellent', 'reply_count', 'updated_at', 'created_at', 'vote_count',
+                'id',
+                'title',
+                'is_excellent',
+                'reply_count',
+                'updated_at',
+                'created_at',
+                'vote_count',
             ])
             ->paginate(per_page());
 

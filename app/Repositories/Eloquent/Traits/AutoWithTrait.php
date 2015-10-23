@@ -22,6 +22,13 @@ trait AutoWithTrait
     protected $param_columns = null;
 
     /**
+     * 根节点的字段.
+     *
+     * @var array
+     */
+    protected $param_root_columns = [];
+
+    /**
      * 自动 with include 的关联.
      *
      * @return $this
@@ -83,9 +90,11 @@ trait AutoWithTrait
      */
     public function autoWithRootColumns($columns)
     {
+        $this->parseColumnsParam();
+
         $include_manager = app(IncludeManager::class);
         $this->model     = $this->model
-            ->select(array_merge($columns, $include_manager->getForeignKeys()));
+            ->select(array_merge($this->param_root_columns, $columns, $include_manager->getForeignKeys()));
 
         return $this;
     }
@@ -115,6 +124,8 @@ trait AutoWithTrait
             $result[$include] = explode(':', trim($columns_str, ')'));
         }
 
-        return $this->param_columns = $result;
+        $this->param_root_columns = array_get($result, 'root', []);
+
+        return $this->param_columns = array_except($result, ['root']);
     }
 }

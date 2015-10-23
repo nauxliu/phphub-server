@@ -8,7 +8,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model implements HasPresenter
 {
-    protected $fillable   = ['body', 'title', 'node_id'];
+    public static $includable = [
+        'id',
+        'title',
+        'body',
+        'user_id',
+        'node_id',
+        'is_excellent',
+        'is_wiki',
+        'is_blocked',
+        'reply_count',
+        'view_count',
+        'favorite_count',
+        'vote_count',
+        'last_reply_user_id',
+        'created_at',
+        'updated_at',
+        'body_original',
+        'excerpt',
+    ];
+
+    protected $fillable = ['body', 'title', 'node_id'];
+
     protected $morphClass = 'Topic';
 
     protected $casts = [
@@ -25,6 +46,7 @@ class Topic extends Model implements HasPresenter
         'is_wiki'            => 'boolean',
         'is_blocked'         => 'boolean',
     ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
