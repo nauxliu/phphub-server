@@ -42,19 +42,7 @@ trait AutoWithTrait
                 continue;
             } // 没有传 $foreign_key 时不是 belongsTo 关系，不能走 withOnly，会获取不到数据
             elseif (!$include->getForeignKey()) {
-                $this->with([
-                    $include->getRelation() => function ($query) use ($include, &$which_includes) {
-                        $query->limit($include->getLimit());
-                        // hasMany 可能会有子引入项，也自动 with
-                        foreach ($include->getChildren() as $child_include) {
-                            if (!in_array($child_include->getName(), $which_includes)) {
-                                continue;
-                            }
-                            $name = explode('.', $child_include->getName());
-                            $query->with(end($name));
-                        }
-                    },
-                ]);
+                $this->with($include->getRelation());
             } else {
                 $this->withOnly($include->getRelation(), $include->figureOutWhichColumns());
             }

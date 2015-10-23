@@ -21,6 +21,8 @@ class IncludeManager
      * 添加一个可被引入的项.
      *
      * @param Includable $includable
+     *
+     * @throws Exception
      */
     public function add(Includable $includable)
     {
