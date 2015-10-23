@@ -53,17 +53,6 @@ function cdn_elixir($file)
 }
 
 /**
- * 在 Repository Criteria 中应用 filter.
- *
- * @param array|string $filters
- */
-function add_filter($filters)
-{
-    $filters = (array) $filters;
-    Input::merge(['filter' => Input::get('filter').','.implode(',', $filters)]);
-}
-
-/**
  * 生成用户客户端 URL Schema 技术的链接.
  *
  * @param $path

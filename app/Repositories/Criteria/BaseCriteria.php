@@ -24,14 +24,21 @@ abstract class BaseCriteria extends RequestCriteria
         $sortedBy         = !empty($sortedBy) ? $sortedBy : 'asc';
 
         if ($search && is_array($fieldsSearchable) && count($fieldsSearchable)) {
-            $searchFields       = is_array($searchFields) || is_null($searchFields) ? $searchFields : explode(';', $searchFields);
+            $searchFields = is_array($searchFields) || is_null($searchFields) ? $searchFields : explode(';',
+                $searchFields);
             $fields             = $this->parserFieldsSearch($fieldsSearchable, $searchFields);
             $isFirstField       = true;
             $searchData         = $this->parserSearchData($search);
             $search             = $this->parserSearchValue($search);
             $modelForceAndWhere = false;
 
-            $builder = $builder->where(function ($query) use ($fields, $search, $searchData, $isFirstField, $modelForceAndWhere) {
+            $builder = $builder->where(function ($query) use (
+                $fields,
+                $search,
+                $searchData,
+                $isFirstField,
+                $modelForceAndWhere
+            ) {
                 foreach ($fields as $field => $condition) {
                     if (is_numeric($field)) {
                         $field = $condition;
@@ -68,15 +75,11 @@ abstract class BaseCriteria extends RequestCriteria
             $builder = $builder->orderBy($orderBy, $sortedBy);
         }
 
-        if (isset($filter) && !empty($filter)) {
-            if (is_string($filter)) {
-                foreach (array_unique(explode(',', $filter)) as $filter) {
-                    // eg. filter 'hot' 会调用方法 'filterHot'
-                    $method_name = camel_case('filter_'.$filter);
-                    if (method_exists($this, $method_name)) {
-                        $builder = call_user_func([$this, $method_name], $builder);
-                    }
-                }
+        foreach (FilterManager::get() as $filter) {
+            // eg. filter 'hot' 会调用方法 'filterHot'
+            $method_name = camel_case('filter_'.$filter);
+            if (method_exists($this, $method_name)) {
+                $builder = call_user_func([$this, $method_name], $builder);
             }
         }
 

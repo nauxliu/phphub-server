@@ -5,6 +5,7 @@ namespace PHPHub\Http\ApiControllers;
 use Auth;
 use Dingo\Api\Exception\StoreResourceFailedException;
 use Gate;
+use PHPHub\Repositories\Criteria\FilterManager;
 use PHPHub\Repositories\TopicRepositoryInterface;
 use PHPHub\Transformers\TopicTransformer;
 use Illuminate\Http\Request;
@@ -214,6 +215,7 @@ class TopicsController extends Controller
      */
     protected function commonIndex()
     {
+        FilterManager::addFilter('newest');
         $this->registerListApiIncludes();
 
         $data = $this->topics
