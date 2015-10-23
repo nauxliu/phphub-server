@@ -146,7 +146,7 @@ class RepliesController extends Controller
                 $query->withTrashed()
                     ->select(['id', 'title']);
             }])
-            ->all(['id', '', 'created_at', 'topic_id']);
+            ->all(['id', 'body', 'created_at', 'topic_id']);
 
         // 楼层计数
         $count = 1;
