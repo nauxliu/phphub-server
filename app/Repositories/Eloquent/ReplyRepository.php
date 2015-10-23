@@ -3,6 +3,7 @@
 namespace PHPHub\Repositories\Eloquent;
 
 use Auth;
+use PHPHub\Events\NewReply;
 use PHPHub\Repositories\Criteria\ReplyCriteria;
 use PHPHub\Repositories\Eloquent\Traits\IncludeUserTrait;
 use PHPHub\Repositories\ReplyRepositoryInterface;
@@ -54,6 +55,8 @@ class ReplyRepository extends BaseRepository implements ReplyRepositoryInterface
         $reply->save();
 
         $reply->topic()->getQuery()->increment('reply_count');
+
+        event(new NewReply($reply, Auth::id(), $reply->topic()->getQuery()->pluck('user_id')));
 
         return $reply;
     }

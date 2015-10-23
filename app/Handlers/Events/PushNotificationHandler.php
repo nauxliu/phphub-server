@@ -2,7 +2,9 @@
 
 namespace PHPHub\Handlers\Events;
 
+use JPush\Exception\APIRequestException;
 use PHPHub\Events\Event;
+use PHPHub\Events\NewReply;
 use PHPHub\Events\TopicUpVoted;
 use PHPHub\Repositories\NotificationRepositoryInterface;
 use PHPHub\Services\PushService\Jpush;
@@ -16,6 +18,7 @@ class PushNotificationHandler
      */
     protected $subscribe_events = [
         TopicUpVoted::class => 'handle',
+        NewReply::class     => 'handle',
     ];
 
     /**
@@ -57,12 +60,16 @@ class PushNotificationHandler
             return 'userid_'.$user_id;
         }, $user_ids);
 
-        $this->jpush
-            ->platform('all')
-            ->message($msg)
-            ->toAlias($user_ids)
-            ->extras($extras)
-            ->send();
+        try {
+            $this->jpush
+                ->platform('all')
+                ->message($msg)
+                ->toAlias($user_ids)
+                ->extras($extras)
+                ->send();
+        } catch (APIRequestException $e) {
+            // Ignore
+        }
     }
 
     /**
