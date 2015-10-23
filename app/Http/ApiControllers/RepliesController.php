@@ -122,7 +122,7 @@ class RepliesController extends Controller
     {
         $replies = $this->replies
             ->byTopicId($topic_id)
-            ->with('user')
+            ->withOnly('user', ['id', 'name', 'avatar'])
             ->all(['id', 'body', 'created_at', 'user_id']);
 
         // 楼层计数
@@ -142,8 +142,11 @@ class RepliesController extends Controller
     {
         $replies = $this->replies
             ->byUserId($user_id)
-            ->with('topic')
-            ->all(['id', 'body', 'created_at', 'topic_id']);
+            ->with(['topic' => function ($query) {
+                $query->withTrashed()
+                    ->select(['id', 'title']);
+            }])
+            ->all(['id', '', 'created_at', 'topic_id']);
 
         // 楼层计数
         $count = 1;
