@@ -10,15 +10,13 @@
 <ul class="list-comment">
     @foreach($replies as $reply)
     <li class="list-comment-item">
-        <div class="infos">
-            <div class="meta">
-                <a class="topic-title" href="{!! schema_url('topics', ['id' => $reply->topic->id]) !!}">{!! $reply->topic->title !!}</a>
-                <span>•</span>
-                <abbr class="created_time">{!! $reply->created_at->format('Y-m-d') !!}</abbr>
-            </div>
-            <div class="markdown-content">
-                {!! $reply->body !!}
-            </div>
+        <div class="meta">
+            <a class="topic-title" href="{!! schema_url('topics', ['id' => $reply->topic_id]) !!}">{!! $reply->topic->title !!}</a>
+            <span>•</span>
+            <abbr class="created_time">{!! $reply->created_at->format('Y-m-d') !!}</abbr>
+        </div>
+        <div class="markdown-content">
+            {!! $reply->body !!}
         </div>
     </li>
     @endforeach

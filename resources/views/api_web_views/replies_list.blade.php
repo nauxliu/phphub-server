@@ -8,7 +8,7 @@
 </head>
 <body>
 <ul class="list-comment">
-    @if(empty($replies))
+    @if(0 == $replies->count())
         <div class="content-blank">暂无内容</div>
     @endif
     @foreach($replies as $reply)
@@ -16,7 +16,7 @@
         <a class="avatar" href="{!! schema_url('users', ['id' => $reply->user->id]) !!}">
             <img class="avatar" src="{!!  $reply->user->avatar.'?imageView2/1/w/80/h/80' !!}">
         </a>
-        <div class="infos">
+        <div class="info">
             <div class="meta">
                 <a href="{!! schema_url('users', ['id' => $reply->user->id]) !!}">{!! $reply->user->name !!}</a>
                 <span>•</span>
