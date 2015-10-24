@@ -19,7 +19,8 @@ class Includable
     private $foreign_key;
     private $limit;
     private $parent_name;
-    private $children = [];
+    private $children     = [];
+    private $with_trashed = false;
 
     public function __construct($name)
     {
@@ -247,6 +248,28 @@ class Includable
         $this->nested      = true;
 
         return $this;
+    }
+
+    /**
+     * 同时查询软删除的数据.
+     *
+     * @return $this
+     */
+    public function withTrashed()
+    {
+        $this->with_trashed = true;
+
+        return $this;
+    }
+
+    /**
+     * 是否要查询软删除的数据.
+     *
+     * @return bool
+     */
+    public function isWithTrashed()
+    {
+        return $this->with_trashed;
     }
 
     /**

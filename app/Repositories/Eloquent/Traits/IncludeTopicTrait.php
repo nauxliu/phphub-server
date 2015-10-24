@@ -24,6 +24,7 @@ trait IncludeTopicTrait
         $available_include = Includable::make('topic')
             ->setDefaultColumns($default_columns)
             ->setAllowColumns(User::$includable)
+            ->withTrashed()
             ->setForeignKey('topic_id');
 
         app(IncludeManager::class)->add($available_include);

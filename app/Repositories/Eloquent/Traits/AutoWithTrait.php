@@ -44,14 +44,10 @@ trait AutoWithTrait
             $include = $include_manager->getIncludable($include_name);
             $include->setColumns(array_get($param_columns, $include_name, []));
 
-            // 嵌套节点会在父节点被解析的时候解析到
-            if ($include->isNested()) {
-                continue;
-            } // 没有传 $foreign_key 时不是 belongsTo 关系，不能走 withOnly，会获取不到数据
-            elseif (!$include->getForeignKey()) {
+            if (!$include->getForeignKey()) {
                 $this->with($include->getRelation());
             } else {
-                $this->withOnly($include->getRelation(), $include->figureOutWhichColumns());
+                $this->withOnly($include->getRelation(), $include->figureOutWhichColumns(), $include->isWithTrashed());
             }
         }
 
