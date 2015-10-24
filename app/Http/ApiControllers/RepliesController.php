@@ -142,10 +142,7 @@ class RepliesController extends Controller
     {
         $replies = $this->replies
             ->byUserId($user_id)
-            ->with(['topic' => function ($query) {
-                $query->withTrashed()
-                    ->select(['id', 'title']);
-            }])
+            ->withOnly('topic', ['id', 'title'], true)
             ->all(['id', 'body', 'created_at', 'topic_id']);
 
         // 楼层计数

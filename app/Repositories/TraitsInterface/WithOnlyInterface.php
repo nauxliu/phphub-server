@@ -26,8 +26,9 @@ interface WithOnlyInterface
      *
      * @param array|string $relations
      * @param null         $columns
+     * @param bool         $with_trashed
      *
      * @return $this
      */
-    public function withOnly($relations, $columns = null);
+    public function withOnly($relations, $columns = null, $with_trashed = false);
 }
