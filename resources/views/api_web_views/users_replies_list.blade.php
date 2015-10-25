@@ -21,5 +21,7 @@
     </li>
     @endforeach
 </ul>
+
+<script src="{!! cdn_elixir('js/api.js') !!}"></script>
 </body>
 </html>

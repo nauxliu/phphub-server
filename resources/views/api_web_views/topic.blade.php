@@ -13,5 +13,7 @@
     <div class="markdown-content">
         {!! $topic->body !!}
     </div>
+
+    <script src="{!! cdn_elixir('js/api.js') !!}"></script>
 </body>
 </html>

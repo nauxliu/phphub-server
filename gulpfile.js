@@ -15,5 +15,13 @@ elixir(function(mix) {
     mix
         .sass('app.scss') //WEB
         .sass('api.scss') //API Web View
-        .version(['css/api.css', 'css/app.css']);
+        .version([]);
+    mix
+        .scripts(['emojify.js', 'api.js'], 'public/js/api.js');
+    mix
+        .version([
+            'css/api.css',
+            'css/app.css',
+            'js/api.js',
+        ]);
 });
