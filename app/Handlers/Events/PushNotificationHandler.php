@@ -88,7 +88,7 @@ class PushNotificationHandler
             'reply_id'     => $event->getReplyId(),
         ];
 
-        $notification = $this->notifications->create($data);
+        $notification = $this->notifications->store($data);
 
         $presenter = app('autopresenter')->decorate($notification);
 

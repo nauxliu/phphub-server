@@ -17,6 +17,19 @@ class NotificationRepository extends BaseRepository implements NotificationRepos
 {
     use IncludeTopicTrait;
 
+    /**
+     * 生成一条新的 Notification
+     *
+     * @param $attributes
+     * @return Notification
+     */
+    public function store($attributes)
+    {
+        $notification = parent::create($attributes);
+        User::whereId($notification->user_id)->increment('notification_count');
+        return $notification;
+    }
+
     public function includeFromUser($default_columns)
     {
         $available_include = Includable::make('from_user')
