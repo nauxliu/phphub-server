@@ -14,4 +14,5 @@ _ide_helper_models.php
 .php_cs.cache
 
 /public/build
+/public/js
 /public/css
