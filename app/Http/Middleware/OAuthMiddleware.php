@@ -39,7 +39,7 @@ class OAuthMiddleware
      *
      * @throws AccessDeniedException
      */
-    public function handle($request, Closure $next, $type)
+    public function handle($request, Closure $next, $type = null)
     {
         $route = $this->router->getCurrentRoute();
 
