@@ -4,6 +4,7 @@ namespace PHPHub\Jobs;
 
 use Illuminate\Contracts\Bus\SelfHandling;
 use PHPHub\Topic;
+use Purifier;
 
 /**
  * 保存帖子，同时生成摘要，解析 markdown etc..
@@ -30,7 +31,8 @@ class SaveTopic extends Job implements SelfHandling
      */
     public function handle()
     {
-        $this->topic->body_original = trim($this->topic->body);
+        $this->topic->title         = Purifier::clean($this->topic->title, 'title');
+        $this->topic->body_original = Purifier::clean(trim($this->topic->body), 'body');
         $this->topic->body          = app('markdown')->text($this->topic->body_original);
         $this->topic->excerpt       = $this->excerpt($this->topic->body_original);
 

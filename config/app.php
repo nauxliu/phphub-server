@@ -178,6 +178,7 @@ return [
         LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
         LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
         McCool\LaravelAutoPresenter\AutoPresenterServiceProvider::class,
+        Mews\Purifier\PurifierServiceProvider::class,
 
     ],
 
@@ -229,6 +230,7 @@ return [
         'View'       => Illuminate\Support\Facades\View::class,
         'QrCode'     => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
+        'Purifier'   => Mews\Purifier\Facades\Purifier::class,
     ],
 
 ];
