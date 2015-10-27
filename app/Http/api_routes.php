@@ -1,9 +1,5 @@
 <?php
 
-use Dingo\Api\Routing\Router;
-
-$router = app('api.router');
-
 /*
  * 申请 access_token 或者刷新 access_token.
  */
@@ -14,7 +10,7 @@ $router->post('oauth/access_token', function () {
 /*
  *  此分组下路由 需要通过 login-token 方式认证的 access token
  */
-$router->group(['middleware' => ['api.auth', 'oauth-user']], function (Router $router) {
+$router->group(['middleware' => ['oauth2:user']], function ($router) {
     //Users
     $router->get('me', 'UsersController@me');
     $router->put('users/{id}', 'UsersController@update');
@@ -42,7 +38,7 @@ $router->group(['middleware' => ['api.auth', 'oauth-user']], function (Router $r
 /*
  * 此分组下路由 需要通过 client_credentials 方式认证的 access_token
  */
-$router->group(['middleware' => ['api.auth', 'oauth-client']], function (Router $router) {
+$router->group(['middleware' => ['oauth2:client']], function ($router) {
     //Topics
     $router->get('topics', 'TopicsController@index');
     $router->get('user/{id}/favorite/topics', 'TopicsController@indexByUserFavorite');
@@ -75,6 +71,6 @@ $router->group(['middleware' => ['api.auth', 'oauth-client']], function (Router 
 /*
  * 此分组下路由 同时支持两种认证方式获取的 access_token
  */
-$router->group(['middleware' => ['api.auth']], function (Router $router) {
+$router->group(['middleware' => ['oauth2']], function ($router) {
     $router->get('topics/{id}', 'TopicsController@show');
 });

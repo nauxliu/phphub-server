@@ -17,9 +17,10 @@ interface NotificationRepositoryInterface extends RepositoryInterface
     public function userRecent($user_id);
 
     /**
-     * 生成一条新的 Notification
+     * 生成一条新的 Notification.
      *
      * @param $attributes
+     *
      * @return Notification
      */
     public function store($attributes);
