@@ -33,11 +33,11 @@ class RouteServiceProvider extends ServiceProvider
     {
         // 如果访问的域名是 API_DOMAIN 配置项的，就只注册 API 路由
         // 如果访问的域名是其他域名，则将先所有路由加上前缀 /api 后注册。
-        if (str_contains(Request::root(), env('API_DOMAIN'))) {
+        if (str_contains(Request::root(), config('api.domain'))) {
             $api_router = app('Dingo\Api\Routing\Router');
             $api_router->group([
-                'version'    => env('API_VERSION'),
-                'prefix'     => env('API_VERSION'),
+                'version'    => config('api.version'),
+                'prefix'     => config('api.version'),
                 'namespace'  => $this->api_controller_namespace,
                 'middleware' => 'api.throttle',
                 'limit'      => env('RATE_LIMITS'),
@@ -47,8 +47,7 @@ class RouteServiceProvider extends ServiceProvider
             });
         } else {
             $router->group([
-                'prefix'    => 'api/'.env('API_VERSION'),
-                'version'   => 'v1',
+                'prefix'    => 'api/'.config('api.version'),
                 'namespace' => 'PHPHub\Http\ApiControllers', ], function ($router) {
                 require app_path('Http/api_routes.php');
             });
