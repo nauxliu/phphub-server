@@ -8,17 +8,30 @@
 </head>
 <body>
 <ul class="list-comment">
+    @if(0 == $replies->count())
+        <div class="content-blank">暂无内容</div>
+    @endif
     @foreach($replies as $reply)
-    <li class="list-comment-item">
-        <div class="meta">
-            <a class="topic-title" href="{!! schema_url('topics', ['id' => $reply->topic_id]) !!}">{!! $reply->topic->title !!}</a>
-            <span>•</span>
-            <abbr class="created_time">{!! $reply->created_at->format('Y-m-d') !!}</abbr>
-        </div>
-        <div class="markdown-content">
-            {!! $reply->body !!}
-        </div>
-    </li>
+        <?php
+            if (!$reply->topic) {
+                continue;
+            }
+        ?>
+        <li class="list-comment-item">
+            <a class="avatar" href="{!! schema_url('users', ['id' => $reply->topic->user->id]) !!}">
+                <img class="avatar" src="{!!  $reply->topic->user->avatar.'?imageView2/1/w/80/h/80' !!}">
+            </a>
+            <div class="info">
+                <div class="meta">
+                    <a class="topic-title" href="{!! schema_url('topics', ['id' => $reply->topic->id]) !!}">{!! $reply->topic->title !!}</a>
+                    <span>•</span>
+                    <abbr>{!! $reply->created_at !!}</abbr>
+                </div>
+                <div class="markdown-content">
+                    {!! $reply->body !!}
+                </div>
+            </div>
+        </li>
     @endforeach
 </ul>
 

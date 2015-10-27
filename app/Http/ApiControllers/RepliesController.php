@@ -142,11 +142,8 @@ class RepliesController extends Controller
     {
         $replies = $this->replies
             ->byUserId($user_id)
-            ->withOnly('topic', ['id', 'title'], true)
+            ->withOnly('topic.user', ['avatar'])
             ->all(['id', 'body', 'created_at', 'topic_id']);
-
-        // 楼层计数
-        $count = 1;
 
         return view('api_web_views.users_replies_list', compact('replies', 'count'));
     }
