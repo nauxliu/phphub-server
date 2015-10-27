@@ -15,7 +15,8 @@
         "prettus/laravel-validation": "1.1.*",
         "naux/auto-correct": "^1.0",
         "erusev/parsedown": "^1.5",
-        "jpush/jpush": "^3.2"
+        "jpush/jpush": "^3.2",
+        "mews/purifier": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
