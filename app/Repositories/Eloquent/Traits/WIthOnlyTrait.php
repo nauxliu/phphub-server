@@ -19,7 +19,7 @@ trait WithOnlyTrait
             if ($with_trashed) {
                 $query->withTrashed();
             }
-            if (!$columns) {
+            if ($columns) {
                 $query->select(array_merge(['id'], $columns));
             }
         }]);
