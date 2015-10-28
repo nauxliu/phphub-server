@@ -100,7 +100,7 @@ class PushNotificationHandler
 
         if ($data['reply_id'] !== 0) {
             $push_data['reply_id']    = $data['reply_id'];
-            $push_data['replies_url'] = route('replies.web_view', $data['reply_id']);
+            $push_data['replies_url'] = route('replies.web_view', $data['topic_id']);
         }
 
         $this->push($event->getUserId(), $presenter->message(), $push_data);
