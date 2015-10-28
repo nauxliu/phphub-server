@@ -52,17 +52,20 @@
 }
 
 .header-title {
-  margin: 25px 0 15px;
+  margin: 20px 0 10px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #eee;
 }
 
 .header-title h3 {
+  font-family: 'Helvetica Neue';
   margin: 0;
-  font-size: 22px;
-  color: #727272;
+  font-size: 25px;
 }
 
 .header-title p {
   margin: 0;
+  margin-top: 5px;
   font-size: 14px;
   color: #ACACAC;
 }
@@ -77,4 +80,13 @@
   -webkit-align-items: center;
   align-items: center;
   text-align: center;
+}
+
+.markdown-content{
+  font-family: 'Helvetica Neue', serif;
+  line-height: 1.6em;
+}
+
+.topic-body{
+  margin-bottom: 60px;
 }

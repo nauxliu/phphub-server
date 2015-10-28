@@ -11,7 +11,7 @@
 
     <p>{!! $topic->created_at->format('Y-m-d H:i:s') !!} • {!! $topic->view_count !!} 阅读</p>
 </div>
-<div class="markdown-content">
+<div class="markdown-content topic-body">
     {!! $topic->body !!}
 </div>
 
