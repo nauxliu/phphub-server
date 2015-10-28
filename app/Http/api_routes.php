@@ -10,35 +10,55 @@ $router->post('oauth/access_token', function () {
 /*
  *  此分组下路由 需要通过 login-token 方式认证的 access token
  */
-$router->group(['middleware' => ['oauth2:user']], function ($router) {
-    //Users
-    $router->get('me', 'UsersController@me');
-    $router->put('users/{id}', 'UsersController@update');
+$router->group(['middleware' => 'oauth2:user'], function ($router) {
 
-    //Topics
-    $router->post('topics', 'TopicsController@store');
-    $router->delete('topics/{id}', 'TopicsController@delete');
-    $router->post('topics/{id}/vote-up', 'TopicsController@voteUp');
-    $router->post('topics/{id}/vote-down', 'TopicsController@voteDown');
-    //Topics 收藏
-    $router->post('topics/{id}/favorite', 'TopicsController@favorite');
-    $router->delete('topics/{id}/favorite', 'TopicsController@unFavorite');
-    //Topics 关注
-    $router->post('topics/{id}/attention', 'TopicsController@attention');
-    $router->delete('topics/{id}/attention', 'TopicsController@unAttention');
+    // 发布内容单独设置频率限制
+    $router->group([
+        'middleware' => 'api.throttle',
+        'limit'      => config('api.rate_limits.publish.limits'),
+        'expires'    => config('api.rate_limits.publish.expires'),
+    ], function ($router) {
+        $router->post('topics', 'TopicsController@store');
+        $router->post('replies', 'RepliesController@store');
+    });
 
-    //Replies
-    $router->post('replies', 'RepliesController@store');
+    $router->group([
+        'middleware' => 'api.throttle',
+        'limit'      => config('api.rate_limits.access.limits'),
+        'expires'    => config('api.rate_limits.access.expires'),
+    ], function ($router) {
+        // Users
+        $router->get('me', 'UsersController@me');
+        $router->put('users/{id}', 'UsersController@update');
 
-    //Notifications
-    $router->get('me/notifications', 'NotificationController@index');
-    $router->get('me/notifications/count', 'NotificationController@unreadMessagesCount');
+        // Topics
+        $router->delete('topics/{id}', 'TopicsController@delete');
+        $router->post('topics/{id}/vote-up', 'TopicsController@voteUp');
+        $router->post('topics/{id}/vote-down', 'TopicsController@voteDown');
+
+        // Topics 收藏
+        $router->post('topics/{id}/favorite', 'TopicsController@favorite');
+        $router->delete('topics/{id}/favorite', 'TopicsController@unFavorite');
+
+        // Topics 关注
+        $router->post('topics/{id}/attention', 'TopicsController@attention');
+        $router->delete('topics/{id}/attention', 'TopicsController@unAttention');
+
+        // Notifications
+        $router->get('me/notifications', 'NotificationController@index');
+        $router->get('me/notifications/count', 'NotificationController@unreadMessagesCount');
+    });
 });
 
 /*
- * 此分组下路由 需要通过 client_credentials 方式认证的 access_token
+ * 此分组下路由 同时支持两种认证方式获取的 access_token
  */
-$router->group(['middleware' => ['oauth2:client']], function ($router) {
+$router->group([
+    'middleware' => ['oauth2', 'api.throttle'],
+    'limit'      => config('api.rate_limits.access.limits'),
+    'expires'    => config('api.rate_limits.access.expires'),
+], function ($router) {
+    $router->get('topics/{id}', 'TopicsController@show');
     //Topics
     $router->get('topics', 'TopicsController@index');
     $router->get('user/{id}/favorite/topics', 'TopicsController@indexByUserFavorite');
@@ -66,11 +86,4 @@ $router->group(['middleware' => ['oauth2:client']], function ($router) {
 
     //Adverts
     $router->get('adverts/launch_screen', 'LaunchScreenAdvertsController@index');
-});
-
-/*
- * 此分组下路由 同时支持两种认证方式获取的 access_token
- */
-$router->group(['middleware' => ['oauth2']], function ($router) {
-    $router->get('topics/{id}', 'TopicsController@show');
 });
