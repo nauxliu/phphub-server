@@ -74,10 +74,3 @@ $router->group(['middleware' => ['oauth2:client']], function ($router) {
 $router->group(['middleware' => ['oauth2']], function ($router) {
     $router->get('topics/{id}', 'TopicsController@show');
 });
-
-$router->get('topics/{id}/web_view',
-    ['as' => 'topic.web_view', 'uses' => 'TopicsController@showWebView']);
-$router->get('topics/{id}/replies/web_view',
-    ['as' => 'replies.web_view', 'uses' => 'RepliesController@indexWebViewByTopic']);
-$router->get('users/{id}/replies/web_view',
-    ['as' => 'users.replies.web_view', 'uses' => 'RepliesController@indexWebViewByUser']);
