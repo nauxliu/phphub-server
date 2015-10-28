@@ -16,33 +16,5 @@
 </div>
 
 <script src="{!! cdn_elixir('js/api.js') !!}"></script>
-<script>
-    function connectWebViewJavascriptBridge(callback) {
-        if (window.WebViewJavascriptBridge) {
-            callback(WebViewJavascriptBridge)
-        } else {
-            document.addEventListener('WebViewJavascriptBridgeReady', function () {
-                callback(WebViewJavascriptBridge)
-            }, false)
-        }
-    }
-
-    connectWebViewJavascriptBridge(function (bridge) {
-        bridge.init(function (message, responseCallback) {
-            responseCallback(data)
-        });
-
-        var imgs = document.getElementsByTagName('img');
-
-        for (var i = 0; i < imgs.length; i++) {
-            imgs[i].onclick = function (e) {
-                var data = {"imageUrl": this.src};
-                bridge.send(data, function (responseData) {
-
-                })
-            }
-        }
-    })
-</script>
 </body>
 </html>
