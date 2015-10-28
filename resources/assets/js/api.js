@@ -17,7 +17,7 @@ connectWebViewJavascriptBridge(function (bridge) {
         responseCallback(data)
     });
 
-    var imgs = document.getElementsByTagName('img');
+    var imgs = document.querySelectorAll('.markdown-content img');
 
     for (var i = 0; i < imgs.length; i++) {
         imgs[i].onclick = function (e) {
@@ -27,4 +27,4 @@ connectWebViewJavascriptBridge(function (bridge) {
             })
         }
     }
-})
+});
