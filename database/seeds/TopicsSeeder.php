@@ -16,7 +16,11 @@ class TopicsSeeder extends Seeder
     public function run()
     {
         // Seed normal topics
-        $topics = factory(PHPHub\Topic::class)->times(100)->make();
+        $normal_topics    = factory(PHPHub\Topic::class)->times(100)->make();
+        $wiki_topics      = factory(PHPHub\Topic::class, 'wiki')->times(20)->make();
+        $excellent_topics = factory(PHPHub\Topic::class, 'excellent')->times(20)->make();
+
+        $topics = array_merge($normal_topics->all(), $wiki_topics->all(), $excellent_topics->all());
 
         $user_ids = User::lists('id')->toArray();
         $node_ids = Node::lists('id')->toArray();
@@ -24,26 +28,6 @@ class TopicsSeeder extends Seeder
         foreach ($topics as $topic) {
             $topic->user_id = array_rand($user_ids, 1);
             $topic->node_id = array_rand($node_ids, 1);
-            $this->dispatch(new SaveTopic($topic));
-        }
-
-        // Seed excellent topics
-        $topics = factory(PHPHub\Topic::class)->times(20)->make();
-
-        foreach ($topics as $topic) {
-            $topic->user_id      = array_rand($user_ids, 1);
-            $topic->node_id      = array_rand($node_ids, 1);
-            $topic->is_excellent = true;
-            $this->dispatch(new SaveTopic($topic));
-        }
-
-        // Seed wiki topics
-        $topics = factory(PHPHub\Topic::class)->times(20)->make();
-
-        foreach ($topics as $topic) {
-            $topic->user_id = array_rand($user_ids, 1);
-            $topic->node_id = array_rand($node_ids, 1);
-            $topic->is_wiki = true;
             $this->dispatch(new SaveTopic($topic));
         }
     }
