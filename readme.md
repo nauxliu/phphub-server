@@ -1,27 +1,24 @@
-## Laravel PHP Framework
+# 介绍
+本项目是基于 Laravel 5.1 重写的 [PHPHub](https://github.com/summerblue/phphub)，使用 `Symfony` 代码规范。基于 MIT 协议开放源码。
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+遇到问题或有好的建议？ 欢迎 star 和提交 pr 或提交一个 [issue](https://github.com/NauxLiu/phphub-server/issues)。 ❤️ 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+目前仅完成了 API 接口，WEB 版尚未在开发中。
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## 环境依赖
+* PHP 5.5.9 +
+* Laravel 5.1
 
-## Official Documentation
+推荐使用 Homestead 环境作为开发测试环境，使用文档见 [Homestead Documentation](http://laravel-china.org/docs/5.0/homestead)
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+### 安装文档
+Homestead - 待补充
+Docker - 待补充
 
-## Contributing
+### API 文档
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+待补充
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+## 基于本项目 API 开发的项目
+[PHPHub IOS 客户端](https://github.com/Aufree/phphub-ios) - by [@Aufree](https://github.com/Aufree)
+[PHPHub Android 客户端](https://github.com/Aufree/phphub-ios) - by [CycloneAxe](https://github.com/CycloneAxe), [xiaoxiaoyu](https://github.com/xiaoxiaoyu), [NauxLiu](https://github.com/NauxLiu)
