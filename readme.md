@@ -20,5 +20,5 @@ Docker - 待补充
 待补充
 
 ## 基于本项目 API 开发的项目
-[PHPHub IOS 客户端](https://github.com/Aufree/phphub-ios) - by [@Aufree](https://github.com/Aufree)
-[PHPHub Android 客户端](https://github.com/Aufree/phphub-ios) - by [CycloneAxe](https://github.com/CycloneAxe), [xiaoxiaoyu](https://github.com/xiaoxiaoyu), [NauxLiu](https://github.com/NauxLiu)
+[PHPHub IOS 客户端](https://github.com/Aufree/phphub-ios) - by [@Aufree](https://github.com/Aufree)  
+[PHPHub Android 客户端](https://github.com/Aufree/phphub-ios) - by [CycloneAxe](https://github.com/CycloneAxe), [xiaoxiaoyu](https://github.com/xiaoxiaoyu), [NauxLiu](https://github.com/NauxLiu)  
