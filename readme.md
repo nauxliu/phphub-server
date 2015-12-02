@@ -1,3 +1,15 @@
+
+## PHPHub related projects
+
+You can checkout the others open source projects of PHPHub in the following list.
+
+* [PHPHub-iOS](https://github.com/Aufree/phphub-ios) by [@Aufree](https://github.com/Aufree)
+* [PHPHub-Server](https://github.com/NauxLiu/phphub-server) by [@NauxLiu](https://github.com/NauxLiu)
+* [PHPHub-Android](https://github.com/CycloneAxe/phphub-android) by [@Kelvin](https://github.com/CycloneAxe) and [@Xiaoxiaoyu](https://github.com/xiaoxiaoyu)
+* [PHPHub-UI](https://github.com/phphub/phphub-ui) by [@Summer](https://github.com/phphub/phphub-ui) and [@Aufree](https://github.com/aufree)
+* [PHPHub-Web](https://github.com/summerblue/phphub) by [@Summer](https://github.com/phphub/phphub-ui)
+
+
 # 介绍
 本项目是使用 Laravel 5.1 重写的 [PHPHub](https://github.com/summerblue/phphub)，遵循 `Symfony` 代码规范。基于 MIT 协议开放源码。
 
