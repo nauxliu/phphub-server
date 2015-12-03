@@ -39,7 +39,7 @@ class CreateTipsTable extends Migration
             ['body' => 'Learn something about everything and everything about something.'],
             ['body' => 'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.'],
             ['body' => 'phptherightway.com 上可以更新的 PHP 知识.'],
-            ['body' => '<a href="http://www.buzzsprout.com/11908" target="_blank">Laravel.io 博客</a> - 听 Laravel 社区的几个领导者谈论技术.'],
+            ['body' => '<a href="http://www.laravelpodcast.com/" target="_blank">Laravel.io 博客</a> - 听 Laravel 社区的几个领导者谈论技术.'],
             ['body' => 'Model::remember(5)->get(); 可以缓存 Model 五分钟'],
             ['body' => '使用 CoffeeScript 和 Sass 来写 JavaScript 和 CSS 提高开发效率'],
         ];
