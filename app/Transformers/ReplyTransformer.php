@@ -2,16 +2,11 @@
 
 namespace PHPHub\Transformers;
 
-use PHPHub\Transformers\Traits\HelpersTrait;
-use League\Fractal\TransformerAbstract;
-
 /**
  * Class ReplyTransformer.
  */
-class ReplyTransformer extends TransformerAbstract
+class ReplyTransformer extends BaseTransformer
 {
-    use HelpersTrait;
-
     /**
      * Resources that can be included if requested.
      *

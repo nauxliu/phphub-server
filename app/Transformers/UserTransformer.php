@@ -2,16 +2,13 @@
 
 namespace PHPHub\Transformers;
 
-use PHPHub\Transformers\Traits\HelpersTrait;
 use PHPHub\User;
-use League\Fractal\TransformerAbstract;
 
 /**
  * Class UserTransformer.
  */
-class UserTransformer extends TransformerAbstract
+class UserTransformer extends BaseTransformer
 {
-    use HelpersTrait;
     /**
      * Transform the \User entity.
      *

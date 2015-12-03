@@ -1,25 +1,18 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: xuan
- * Date: 9/21/15
- * Time: 7:17 PM.
+ * Date: 12/3/15
+ * Time: 7:12 PM.
  */
-namespace PHPHub\Transformers\Traits;
+namespace PHPHub\Transformers;
 
-use McCool\LaravelAutoPresenter\HasPresenter;
+use Illuminate\Database\Eloquent\Model;
+use League\Fractal\TransformerAbstract;
 
-trait HelpersTrait
+class BaseTransformer extends TransformerAbstract
 {
-    /**
-     * Transform the entity.
-     *
-     * @param $model
-     *
-     * @return array
-     */
-    public function transform($model)
+    public function transform(Model $model)
     {
         if ($model instanceof HasPresenter) {
             $model = app('autopresenter')->decorate($model);

@@ -2,16 +2,11 @@
 
 namespace PHPHub\Transformers;
 
-use League\Fractal\TransformerAbstract;
-use PHPHub\Transformers\Traits\HelpersTrait;
-
 /**
  * Class LaunchScreenAdvertTransformer.
  */
-class LaunchScreenAdvertTransformer extends TransformerAbstract
+class LaunchScreenAdvertTransformer extends BaseTransformer
 {
-    use HelpersTrait;
-
     /**
      * Transform the \LaunchScreenAdvert entity.
      *

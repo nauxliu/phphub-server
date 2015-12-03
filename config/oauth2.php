@@ -35,7 +35,7 @@ return [
         'login_token' => [
             'class'            => \PHPHub\OAuth\LoginTokenGrant::class,
             'callback'         => \PHPHub\OAuth\LoginTokenVerifier::class.'@verify',
-            'access_token_ttl' => (int)env('OAUTH_ACCESS_TOKEN_TTL', 3600),
+            'access_token_ttl' => (int) env('OAUTH_ACCESS_TOKEN_TTL', 3600),
         ],
 
         /*
@@ -43,7 +43,7 @@ return [
          */
         'client_credentials' => [
             'class'            => \League\OAuth2\Server\Grant\ClientCredentialsGrant::class,
-            'access_token_ttl' => (int)env('OAUTH_CLIENT_ACCESS_TOKEN_TTL', 3600),
+            'access_token_ttl' => (int) env('OAUTH_CLIENT_ACCESS_TOKEN_TTL', 3600),
         ],
 
         /*
@@ -51,8 +51,8 @@ return [
          */
         'refresh_token' => [
             'class'             => \League\OAuth2\Server\Grant\RefreshTokenGrant::class,
-            'access_token_ttl'  => (int)env('OAUTH_ACCESS_TOKEN_TTL', 3600),
-            'refresh_token_ttl' => (int)env('OAUTH_REFRESH_TOKEN_TTL', 36000),
+            'access_token_ttl'  => (int) env('OAUTH_ACCESS_TOKEN_TTL', 3600),
+            'refresh_token_ttl' => (int) env('OAUTH_REFRESH_TOKEN_TTL', 36000),
         ],
     ],
 

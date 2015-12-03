@@ -2,16 +2,11 @@
 
 namespace PHPHub\Transformers;
 
-use League\Fractal\TransformerAbstract;
-use PHPHub\Transformers\Traits\HelpersTrait;
-
 /**
  * Class NodeTransformer.
  */
-class NodeTransformer extends TransformerAbstract
+class NodeTransformer extends BaseTransformer
 {
-    use HelpersTrait;
-
     /**
      * Transform the \Node entity.
      *

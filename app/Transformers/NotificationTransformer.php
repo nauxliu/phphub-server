@@ -2,17 +2,13 @@
 
 namespace PHPHub\Transformers;
 
-use League\Fractal\TransformerAbstract;
 use PHPHub\Notification;
-use PHPHub\Transformers\Traits\HelpersTrait;
 
 /**
  * Class NotificationTransformer.
  */
-class NotificationTransformer extends TransformerAbstract
+class NotificationTransformer extends BaseTransformer
 {
-    use HelpersTrait;
-
     /**
      * Resources that can be included if requested.
      *
