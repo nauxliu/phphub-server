@@ -11,7 +11,14 @@ $finder = Symfony\CS\Finder\DefaultFinder::create()
 ;
 
 return Symfony\CS\Config\Config::create()
-    ->fixers(array('symfony', '-psr0', 'align_double_arrow', 'align_equals'))
+    ->fixers([
+        'symfony',
+        '-psr0',
+        'align_double_arrow',
+        'align_equals',
+        'strict',
+        'unalign_double_arrow'
+    ])
     ->finder($finder)
     ->setUsingCache(true)
 ;

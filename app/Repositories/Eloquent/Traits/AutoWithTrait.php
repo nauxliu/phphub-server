@@ -103,7 +103,7 @@ trait AutoWithTrait
      */
     private function parseColumnsParam()
     {
-        if (null != $this->param_columns) {
+        if (null !== $this->param_columns) {
             $this->param_columns;
         }
         $result = [];
@@ -111,7 +111,7 @@ trait AutoWithTrait
 
         foreach ($items as $item) {
             $arr = explode('(', $item);
-            if (count($arr) != 2) {
+            if (count($arr) !== 2) {
                 continue;
             }
 

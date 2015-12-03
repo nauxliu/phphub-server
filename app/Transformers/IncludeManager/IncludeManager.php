@@ -28,7 +28,7 @@ class IncludeManager
     {
         if ($includable->isNested()) {
             $parent_includable = $this->getIncludable($includable->getParentName());
-            if (null == $parent_includable) {
+            if (null === $parent_includable) {
                 throw new Exception('You must define includable '.$includable->getParentName());
             }
             $parent_includable->addChildren($includable);
@@ -84,7 +84,7 @@ class IncludeManager
      */
     public function parseIncludes()
     {
-        if ($this->includes == null) {
+        if ($this->includes === null) {
             return $this->includes = explode(',', Input::get('include'));
         }
 

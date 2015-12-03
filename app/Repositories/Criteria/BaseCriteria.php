@@ -50,10 +50,10 @@ abstract class BaseCriteria extends RequestCriteria
                     $condition = trim(strtolower($condition));
 
                     if (isset($searchData[$field])) {
-                        $value = $condition == 'like' ? "%{$searchData[$field]}%" : $searchData[$field];
+                        $value = $condition === 'like' ? "%{$searchData[$field]}%" : $searchData[$field];
                     } else {
                         if (!is_null($search)) {
-                            $value = $condition == 'like' ? "%{$search}%" : $search;
+                            $value = $condition === 'like' ? "%{$search}%" : $search;
                         }
                     }
 

@@ -39,7 +39,7 @@ class NotificationTransformer extends BaseTransformer
 
     public function includeReply($model)
     {
-        if ($model->reply == null) {
+        if ($model->reply === null) {
             return;
         }
 
@@ -48,7 +48,7 @@ class NotificationTransformer extends BaseTransformer
 
     public function includeTopic($model)
     {
-        if ($model->topic == null) {
+        if ($model->topic === null) {
             return;
         }
 

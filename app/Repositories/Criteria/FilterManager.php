@@ -33,7 +33,7 @@ class FilterManager
      */
     public static function parseRequest()
     {
-        if (self::$parsed_filters != []) {
+        if (self::$parsed_filters !== []) {
             return self::$parsed_filters;
         }
 

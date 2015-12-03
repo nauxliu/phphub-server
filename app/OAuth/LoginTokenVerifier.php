@@ -18,7 +18,7 @@ class LoginTokenVerifier
             ->where(['github_name' => $github_name])
             ->first(['id', 'login_token']);
 
-        if ($user->login_token == $login_token) {
+        if ($user->login_token === $login_token) {
             return $user->id;
         }
 
