@@ -4,7 +4,7 @@ namespace PHPHub\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use PHPHub\Handlers\Events\PushNotificationHandler;
+use PHPHub\Listeners\NotificationListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -29,7 +29,7 @@ class EventServiceProvider extends ServiceProvider
         parent::boot($events);
 
         if (! \Request::isMethod('GET')) {
-            $events->subscribe(PushNotificationHandler::class);
+            $events->subscribe(NotificationListener::class);
         }
     }
 }

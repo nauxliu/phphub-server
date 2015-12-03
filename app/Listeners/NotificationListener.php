@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPHub\Handlers\Events;
+namespace PHPHub\Listeners;
 
 use JPush\Exception\APIRequestException;
 use PHPHub\Events\Event;
@@ -9,7 +9,7 @@ use PHPHub\Events\TopicUpVoted;
 use PHPHub\Repositories\NotificationRepositoryInterface;
 use PHPHub\Services\PushService\Jpush;
 
-class PushNotificationHandler
+class NotificationListener
 {
     /**
      * 订阅的时间和处理的方法.
