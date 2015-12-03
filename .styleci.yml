@@ -6,3 +6,6 @@ enabled:
   - align_double_arrow
   - align_equals
   - strict
+
+disabled:
+  - unalign_double_arrow
