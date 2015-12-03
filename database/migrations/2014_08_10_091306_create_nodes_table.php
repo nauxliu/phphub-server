@@ -1,6 +1,6 @@
 <?php
 
-use App\Node;
+use PHPHub\Node;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
