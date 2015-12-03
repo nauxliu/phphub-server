@@ -1,6 +1,6 @@
 
 [![StyleCI](https://styleci.io/repos/42855306/shield)](https://styleci.io/repos/42855306)
-[![MIT](https://img.shields.io/dub/l/vibe-d.svg)](https://github.com/NauxLiu/phphub-server/blob/master/LICENSE)
+[![MIT](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)](https://github.com/NauxLiu/phphub-server/blob/master/LICENSE)
 
 ## PHPHub related projects
 
