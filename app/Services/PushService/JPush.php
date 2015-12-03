@@ -115,7 +115,7 @@ class JPush
      *
      * @return $this
      */
-    public function extras(Array $extras)
+    public function extras(array $extras)
     {
         $this->extras = $extras;
 

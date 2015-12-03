@@ -36,7 +36,7 @@ $factory->define(PHPHub\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(PHPHub\Topic::class,  function (Faker\Generator $faker) {
+$factory->define(PHPHub\Topic::class, function (Faker\Generator $faker) {
     $created_at = rand_created_time();
 
     return [
@@ -48,19 +48,19 @@ $factory->define(PHPHub\Topic::class,  function (Faker\Generator $faker) {
     ];
 });
 
-$factory->defineAs(PHPHub\Topic::class, 'wiki',  function (Faker\Generator $faker) use ($factory) {
+$factory->defineAs(PHPHub\Topic::class, 'wiki', function (Faker\Generator $faker) use ($factory) {
     $topic = $factory->raw(PHPHub\Topic::class);
 
     return array_merge($topic, ['is_wiki' => true]);
 });
 
-$factory->defineAs(PHPHub\Topic::class, 'excellent',  function (Faker\Generator $faker) use ($factory) {
+$factory->defineAs(PHPHub\Topic::class, 'excellent', function (Faker\Generator $faker) use ($factory) {
     $topic = $factory->raw(PHPHub\Topic::class);
 
     return array_merge($topic, ['is_excellent' => true]);
 });
 
-$factory->define(PHPHub\Reply::class,  function (Faker\Generator $faker) {
+$factory->define(PHPHub\Reply::class, function (Faker\Generator $faker) {
     $created_at = rand_created_time();
 
     return [

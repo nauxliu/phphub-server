@@ -12,7 +12,7 @@
  *
  * @param null $default
  *
- * @return String
+ * @return string
  */
 function per_page($default = null)
 {
