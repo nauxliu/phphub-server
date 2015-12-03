@@ -20,7 +20,7 @@ You can checkout the others open source projects of PHPHub in the following list
 
 
 # 介绍
-本项目是使用 Laravel 5.1 重写的 [PHPHub](https://github.com/summerblue/phphub)，遵循 `Symfony` 代码规范。基于 MIT 协议开放源码。
+本项目是使用 Laravel 5.1 重写的 [PHPHub](https://github.com/summerblue/phphub)，遵循 [Laravel](https://styleci.readme.io/docs/presets#laravel) 代码规范。
 
 遇到问题或有好的建议？ 欢迎 star 和提交 pr 或提交一个 [issue](https://github.com/NauxLiu/phphub-server/issues) ❤
 
@@ -38,5 +38,6 @@ Docker - 待补充
 
 ### API 文档
 
-待补充
+在线阅读: https://nauxliu.gitbooks.io/phphub-api-doc/content/index.html
+GitHub: https://github.com/NauxLiu/phphub-api-doc
 
