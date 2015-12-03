@@ -38,6 +38,6 @@ Docker - 待补充
 
 ### API 文档
 
-在线阅读: https://nauxliu.gitbooks.io/phphub-api-doc/content/index.html
+在线阅读: https://nauxliu.gitbooks.io/phphub-api-doc/content/index.html  
 GitHub: https://github.com/NauxLiu/phphub-api-doc
 
