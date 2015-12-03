@@ -1,0 +1,10 @@
+preset: symfony
+
+linting: true
+
+enabled:
+  - psr0
+  - align_double_arrow
+  - align_equals
+  - strict
+  - unalign_double_arrow
