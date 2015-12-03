@@ -14,7 +14,7 @@ class CodeSniffer extends Command implements SelfHandling
      *
      * @var string
      */
-    protected $signature = 'cbf:all';
+    protected $signature = 'format';
 
     /**
      * The console command description.
