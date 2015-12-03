@@ -13,7 +13,6 @@ $finder = Symfony\CS\Finder\DefaultFinder::create()
 return Symfony\CS\Config\Config::create()
     ->fixers([
         'symfony',
-        '-psr0',
         'align_double_arrow',
         'align_equals',
         'strict',

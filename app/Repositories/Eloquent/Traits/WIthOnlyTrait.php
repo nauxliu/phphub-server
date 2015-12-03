@@ -2,7 +2,7 @@
 
 namespace PHPHub\Repositories\Eloquent\Traits;
 
-trait WithOnlyTrait
+trait WIthOnlyTrait
 {
     /**
      * Load relations and specific columns.

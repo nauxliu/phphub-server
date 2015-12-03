@@ -5,7 +5,7 @@ namespace PHPHub\Services\PushService;
 use Config;
 use JPush\JPushClient;
 
-class Jpush
+class JPush
 {
     private $client;
     private $payload;
