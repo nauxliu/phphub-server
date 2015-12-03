@@ -1,4 +1,6 @@
 
+[![StyleCI](https://styleci.io/repos/42855306/shield)](https://styleci.io/repos/42855306)
+
 ## PHPHub related projects
 
 You can checkout the others open source projects of PHPHub in the following list.
@@ -30,7 +32,3 @@ Docker - 待补充
 ### API 文档
 
 待补充
-
-## 基于本项目 API 开发的项目
-[PHPHub iOS 客户端](https://github.com/Aufree/phphub-ios) - by [@Aufree](https://github.com/Aufree)  
-[PHPHub Android 客户端](https://github.com/CycloneAxe/phphub-android) - by [@CycloneAxe](https://github.com/CycloneAxe), [@xiaoxiaoyu](https://github.com/xiaoxiaoyu), [@NauxLiu](https://github.com/NauxLiu)  
