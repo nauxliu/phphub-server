@@ -17,12 +17,10 @@
 function per_page($default = null)
 {
     $max_per_page = config('api.max_per_page');
-    $per_page     = (Input::get('per_page') ?: $default) ?: config('api.default_per_page');
+    $per_page = (Input::get('per_page') ?: $default) ?: config('api.default_per_page');
 
     return (int) ($per_page < $max_per_page ? $per_page : $max_per_page);
-}
-
-;
+};
 
 /**
  * 使用 cdn 镜像获取本地资源的加速连接.

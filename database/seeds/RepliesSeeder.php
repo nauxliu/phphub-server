@@ -13,11 +13,11 @@ class RepliesSeeder extends Seeder
     {
         $replies = factory(PHPHub\Reply::class)->times(1000)->make();
 
-        $user_ids  = User::lists('id')->toArray();
+        $user_ids = User::lists('id')->toArray();
         $topic_ids = Topic::lists('id')->toArray();
 
         foreach ($replies as $reply) {
-            $reply->user_id  = array_rand($user_ids, 1);
+            $reply->user_id = array_rand($user_ids, 1);
             $reply->topic_id = array_rand($topic_ids, 1);
             $reply->save();
         }

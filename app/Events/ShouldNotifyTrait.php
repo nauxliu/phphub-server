@@ -22,12 +22,12 @@ use PHPHub\Topic;
  */
 trait ShouldNotifyTrait
 {
-    protected $body         = null;
-    protected $topic_id     = null;
-    protected $reply_id     = 0;
-    protected $user_id      = null;
+    protected $body = null;
+    protected $topic_id = null;
+    protected $reply_id = 0;
+    protected $user_id = null;
     protected $from_user_id = null;
-    protected $type         = null;
+    protected $type = null;
 
     public function getReplyId()
     {
@@ -37,7 +37,7 @@ trait ShouldNotifyTrait
     public function __call($method, $args)
     {
         $property = snake_case(str_replace('get', '', $method));
-        if (!isset($this->$property) || $this->$property === null) {
+        if (! isset($this->$property) || $this->$property === null) {
             throw new \Exception('请在 Event 中设置 '.$property);
         }
 
@@ -62,9 +62,9 @@ trait ShouldNotifyTrait
      */
     public function setNotificationInfoFromTopic(Topic $topic, $from_user_id)
     {
-        $this->body         = $topic->body;
-        $this->topic_id     = $topic->id;
-        $this->user_id      = $topic->user_id;
+        $this->body = $topic->body;
+        $this->topic_id = $topic->id;
+        $this->user_id = $topic->user_id;
         $this->from_user_id = $from_user_id;
 
         if (isset($this->notification_type)) {
@@ -81,10 +81,10 @@ trait ShouldNotifyTrait
      */
     public function setNotificationInfoFromReply(Reply $reply, $from_user_id, $user_id = null)
     {
-        $this->body         = $reply->body;
-        $this->topic_id     = $reply->topic_id;
-        $this->reply_id     = $reply->id;
-        $this->user_id      = $user_id ?: $reply->topic()->pluck('user_id');
+        $this->body = $reply->body;
+        $this->topic_id = $reply->topic_id;
+        $this->reply_id = $reply->id;
+        $this->user_id = $user_id ?: $reply->topic()->pluck('user_id');
         $this->from_user_id = $from_user_id;
 
         if (isset($this->notification_type)) {

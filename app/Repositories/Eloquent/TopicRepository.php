@@ -27,7 +27,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
 {
     use IncludeUserTrait, DispatchesJobs;
 
-    protected $favorite_table  = 'favorites';
+    protected $favorite_table = 'favorites';
     protected $attention_table = 'attentions';
 
     /**
@@ -55,7 +55,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     public function store(array $attributes)
     {
-        if (!is_null($this->validator)) {
+        if (! is_null($this->validator)) {
             $this->validator->with($attributes)
                 ->passesOrFail(ValidatorInterface::RULE_CREATE);
         }
@@ -63,7 +63,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
         $topic = new Topic($attributes);
 
         $topic->user_id = Auth::id();
-        $topic          = $this->dispatch(new SaveTopic($topic));
+        $topic = $this->dispatch(new SaveTopic($topic));
 
         return $topic;
     }
@@ -340,7 +340,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
         }
 
         $topic_ids = array_pluck($paginator->items(), 'topic_id');
-        $topics    = $this->whereInAndOrderBy($topic_ids)
+        $topics = $this->whereInAndOrderBy($topic_ids)
             ->autoWith()
             ->autoWithRootColumns($columns)
             ->get();
@@ -388,7 +388,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     public function favorite($topic_id, $user_id)
     {
-        $topic     = new Topic();
+        $topic = new Topic();
         $topic->id = $topic_id;
 
         if ($topic->favoriteBy()->wherePivot('user_id', $user_id)->exists()) {
@@ -406,7 +406,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     public function unFavorite($topic_id, $user_id)
     {
-        $topic     = new Topic();
+        $topic = new Topic();
         $topic->id = $topic_id;
         $topic->favoriteBy()->detach($user_id);
     }
@@ -419,7 +419,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     public function attention($topic_id, $user_id)
     {
-        $topic     = new Topic();
+        $topic = new Topic();
         $topic->id = $topic_id;
 
         if ($topic->attentionBy()->wherePivot('user_id', $user_id)->exists()) {
@@ -437,7 +437,7 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
      */
     public function unAttention($topic_id, $user_id)
     {
-        $topic     = new Topic();
+        $topic = new Topic();
         $topic->id = $topic_id;
         $topic->attentionBy()->detach($user_id);
     }

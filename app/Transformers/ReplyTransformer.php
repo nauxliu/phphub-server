@@ -12,7 +12,7 @@ class ReplyTransformer extends BaseTransformer
      *
      * @var array
      */
-    protected $availableIncludes = array('user');
+    protected $availableIncludes = ['user'];
 
     /**
      * Transform the \Reply entity.

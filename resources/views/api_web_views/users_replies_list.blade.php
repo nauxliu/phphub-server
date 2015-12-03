@@ -13,7 +13,7 @@
     @endif
     @foreach($replies as $reply)
         <?php
-            if (!$reply->topic) {
+            if (! $reply->topic) {
                 continue;
             }
         ?>

@@ -11,15 +11,15 @@ namespace PHPHub\Transformers\IncludeManager;
 class Includable
 {
     private $default_columns = [];
-    private $allow_columns   = [];
-    private $columns         = [];
+    private $allow_columns = [];
+    private $columns = [];
     private $relation;
     private $nested = false;
     private $name;
     private $foreign_key;
     private $limit;
     private $parent_name;
-    private $children     = [];
+    private $children = [];
     private $with_trashed = false;
 
     public function __construct($name)
@@ -36,7 +36,7 @@ class Includable
      */
     public function getColumns()
     {
-        if (!$this->columns) {
+        if (! $this->columns) {
             throw new \Exception("You must set includable's columns");
         }
 
@@ -66,7 +66,7 @@ class Includable
      */
     public function getDefaultColumns()
     {
-        if (!$this->default_columns) {
+        if (! $this->default_columns) {
             throw new \Exception("You must set includable's default columns");
         }
 
@@ -96,7 +96,7 @@ class Includable
      */
     public function getName()
     {
-        if (!$this->name) {
+        if (! $this->name) {
             throw new \Exception("You must set includable's name");
         }
 
@@ -126,7 +126,7 @@ class Includable
      */
     public function getForeignKey()
     {
-        if (!$this->nested && !$this->foreign_key && !$this->limit) {
+        if (! $this->nested && ! $this->foreign_key && ! $this->limit) {
             throw new \Exception("You must set includable's limit or foreign key");
         }
 
@@ -156,7 +156,7 @@ class Includable
      */
     public function getLimit()
     {
-        if (!$this->foreign_key && !$this->limit) {
+        if (! $this->foreign_key && ! $this->limit) {
             throw new \Exception("You must set includable's limit or foreign key");
         }
 
@@ -245,7 +245,7 @@ class Includable
     public function nested($parent)
     {
         $this->parent_name = $parent;
-        $this->nested      = true;
+        $this->nested = true;
 
         return $this;
     }

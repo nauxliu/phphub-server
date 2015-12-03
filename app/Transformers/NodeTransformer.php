@@ -16,7 +16,7 @@ class NodeTransformer extends BaseTransformer
      */
     public function transformData($model)
     {
-        $data                = $model->toArray();
+        $data = $model->toArray();
         $data['parent_node'] = $model->parent_node ?: 0;
 
         return $data;

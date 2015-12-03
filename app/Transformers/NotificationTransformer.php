@@ -14,7 +14,7 @@ class NotificationTransformer extends BaseTransformer
      *
      * @var array
      */
-    protected $availableIncludes = array('from_user', 'topic', 'reply');
+    protected $availableIncludes = ['from_user', 'topic', 'reply'];
 
     /**
      * Transform the \Notification entity.
@@ -25,9 +25,9 @@ class NotificationTransformer extends BaseTransformer
      */
     public function transformData($model)
     {
-        $data             = $model->toArray();
+        $data = $model->toArray();
         $data['type_msg'] = $model->typeMessage();
-        $data['message']  = $model->message();
+        $data['message'] = $model->message();
 
         return $data;
     }

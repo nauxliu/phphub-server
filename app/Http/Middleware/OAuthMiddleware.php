@@ -23,8 +23,8 @@ class OAuthMiddleware
      */
     public function __construct(Router $router, Authentication $auth, Authorizer $authorizer)
     {
-        $this->router     = $router;
-        $this->auth       = $auth;
+        $this->router = $router;
+        $this->auth = $auth;
         $this->authorizer = $authorizer;
     }
 
@@ -43,7 +43,7 @@ class OAuthMiddleware
     {
         $route = $this->router->getCurrentRoute();
 
-        if (!$this->auth->check(false)) {
+        if (! $this->auth->check(false)) {
             $this->auth->authenticate($route->getAuthProviders());
         }
 

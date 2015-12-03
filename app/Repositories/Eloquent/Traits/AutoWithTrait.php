@@ -37,14 +37,14 @@ trait AutoWithTrait
     {
         $include_manager = app(IncludeManager::class);
 
-        $param_columns  = $this->parseColumnsParam();
+        $param_columns = $this->parseColumnsParam();
         $which_includes = $include_manager->figureOutWhichIncludes();
 
         foreach ($which_includes as $include_name) {
             $include = $include_manager->getIncludable($include_name);
             $include->setColumns(array_get($param_columns, $include_name, []));
 
-            if (!$include->getForeignKey()) {
+            if (! $include->getForeignKey()) {
                 $this->with($include->getRelation());
             } else {
                 $this->withOnly($include->getRelation(), $include->figureOutWhichColumns(), $include->isWithTrashed());
@@ -68,7 +68,7 @@ trait AutoWithTrait
     {
         $method_name = camel_case('include_'.str_replace('.', '_', $name));
 
-        if (!method_exists($this, $method_name)) {
+        if (! method_exists($this, $method_name)) {
             throw new Exception("You should define $method_name in your repository");
         }
 
@@ -89,7 +89,7 @@ trait AutoWithTrait
         $this->parseColumnsParam();
 
         $include_manager = app(IncludeManager::class);
-        $this->model     = $this->model
+        $this->model = $this->model
             ->select(array_merge($this->param_root_columns, $columns, $include_manager->getForeignKeys()));
 
         return $this;
@@ -107,7 +107,7 @@ trait AutoWithTrait
             $this->param_columns;
         }
         $result = [];
-        $items  = explode(',', Input::get('columns'));
+        $items = explode(',', Input::get('columns'));
 
         foreach ($items as $item) {
             $arr = explode('(', $item);

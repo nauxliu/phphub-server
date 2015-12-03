@@ -18,10 +18,10 @@ class JPush
      */
     public function __construct()
     {
-        $app_key       = config('services.jpush.app_key');
+        $app_key = config('services.jpush.app_key');
         $master_secret = config('services.jpush.secret');
 
-        $this->client  = new JPushClient($app_key, $master_secret);
+        $this->client = new JPushClient($app_key, $master_secret);
         $this->payload = $this->client->push();
 
         $this->payload->setOptions([
@@ -38,7 +38,7 @@ class JPush
      */
     public function platform($platform)
     {
-        if (!in_array($platform, ['ios', 'android', 'winphone', 'all'])) {
+        if (! in_array($platform, ['ios', 'android', 'winphone', 'all'])) {
             throw new \InvalidArgumentException('Invalid device type: '.$platform);
         }
 

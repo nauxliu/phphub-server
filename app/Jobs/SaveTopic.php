@@ -31,10 +31,10 @@ class SaveTopic extends Job implements SelfHandling
      */
     public function handle()
     {
-        $this->topic->title         = Purifier::clean($this->topic->title, 'title');
+        $this->topic->title = Purifier::clean($this->topic->title, 'title');
         $this->topic->body_original = Purifier::clean(trim($this->topic->body), 'body');
-        $this->topic->body          = app('markdown')->text($this->topic->body_original);
-        $this->topic->excerpt       = $this->excerpt($this->topic->body_original);
+        $this->topic->body = app('markdown')->text($this->topic->body_original);
+        $this->topic->excerpt = $this->excerpt($this->topic->body_original);
 
         $this->topic->save();
 

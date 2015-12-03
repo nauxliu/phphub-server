@@ -24,7 +24,7 @@ abstract class BaseRepository extends Repository
      */
     public function __construct(Application $app)
     {
-        $this->app      = $app;
+        $this->app = $app;
         $this->criteria = new Collection();
         $this->makeModel();
         $this->makeValidator();

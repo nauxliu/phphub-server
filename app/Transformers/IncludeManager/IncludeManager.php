@@ -14,8 +14,8 @@ use Input;
 class IncludeManager
 {
     private $available_includes = [];
-    private $foreign_keys       = [];
-    private $includes           = null;
+    private $foreign_keys = [];
+    private $includes = null;
 
     /**
      * 添加一个可被引入的项.
@@ -34,7 +34,7 @@ class IncludeManager
             $parent_includable->addChildren($includable);
         }
         $this->available_includes[$includable->getName()] = $includable;
-        $this->foreign_keys[$includable->getName()]       = $includable->getForeignKey();
+        $this->foreign_keys[$includable->getName()] = $includable->getForeignKey();
     }
 
     /**

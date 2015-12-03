@@ -194,7 +194,7 @@ class CreateNodesTable extends Migration
             ],
         ];
 
-        $top_nodes = array();
+        $top_nodes = [];
         foreach ($node_array as $key => $value) {
             $top_nodes[] = [
                 'name' => $key,
@@ -202,7 +202,7 @@ class CreateNodesTable extends Migration
         }
         DB::table('nodes')->insert($top_nodes);
 
-        $nodes = array();
+        $nodes = [];
         foreach ($node_array as $key => $value) {
             $top_node = Node::where('name', '=', $key)->first();
 

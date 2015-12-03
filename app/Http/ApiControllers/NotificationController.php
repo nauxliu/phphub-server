@@ -27,7 +27,7 @@ class NotificationController extends Controller
     public function __construct(NotificationRepositoryInterface $repository, UserRepositoryInterface $user_repository)
     {
         $this->notifications = $repository;
-        $this->users         = $user_repository;
+        $this->users = $user_repository;
     }
 
     /**

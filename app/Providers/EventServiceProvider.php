@@ -28,7 +28,7 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
-        if (!\Request::isMethod('GET')) {
+        if (! \Request::isMethod('GET')) {
             $events->subscribe(PushNotificationHandler::class);
         }
     }

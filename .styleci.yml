@@ -1,11 +1,4 @@
-preset: PSR2
-
-linting: true
+preset: Laravel
 
 enabled:
   - align_double_arrow
-  - align_equals
-  - strict
-
-disabled:
-  - unalign_double_arrow

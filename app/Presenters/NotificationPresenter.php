@@ -38,7 +38,7 @@ class NotificationPresenter extends BasePresenter
      */
     public function typeMessage()
     {
-        if (!array_key_exists($this->wrappedObject->type, $this->type_messages)) {
+        if (! array_key_exists($this->wrappedObject->type, $this->type_messages)) {
             throw new \Exception('Type '.$this->wrappedObject->type.'not exists');
         }
 

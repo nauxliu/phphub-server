@@ -16,8 +16,8 @@ class TopicsSeeder extends Seeder
     public function run()
     {
         // Seed normal topics
-        $normal_topics    = factory(PHPHub\Topic::class)->times(100)->make();
-        $wiki_topics      = factory(PHPHub\Topic::class, 'wiki')->times(20)->make();
+        $normal_topics = factory(PHPHub\Topic::class)->times(100)->make();
+        $wiki_topics = factory(PHPHub\Topic::class, 'wiki')->times(20)->make();
         $excellent_topics = factory(PHPHub\Topic::class, 'excellent')->times(20)->make();
 
         $topics = array_merge($normal_topics->all(), $wiki_topics->all(), $excellent_topics->all());

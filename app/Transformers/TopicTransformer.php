@@ -12,14 +12,14 @@ class TopicTransformer extends BaseTransformer
      *
      * @var array
      */
-    protected $availableIncludes = array('user', 'last_reply_user', 'replies', 'node');
+    protected $availableIncludes = ['user', 'last_reply_user', 'replies', 'node'];
 
     /**
      * Include resources without needing it to be requested.
      *
      * @var array
      */
-    protected $defaultIncludes = array();
+    protected $defaultIncludes = [];
 
     /**
      * Transform the \Topic entity.
@@ -30,7 +30,7 @@ class TopicTransformer extends BaseTransformer
      */
     public function transformData($model)
     {
-        $data          = $model->toArray();
+        $data = $model->toArray();
         $data['links'] = [
             'details_web_view' => route('topic.web_view', $model->id),
             'replies_web_view' => route('replies.web_view', $model->id),

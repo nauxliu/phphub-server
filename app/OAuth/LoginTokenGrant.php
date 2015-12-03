@@ -66,7 +66,7 @@ class LoginTokenGrant  extends AbstractGrant
      */
     protected function getVerifyCredentialsCallback()
     {
-        if (is_null($this->callback) || !is_callable($this->callback)) {
+        if (is_null($this->callback) || ! is_callable($this->callback)) {
             throw new Exception\ServerErrorException('Null or non-callable callback set on Password grant');
         }
 
@@ -127,7 +127,7 @@ class LoginTokenGrant  extends AbstractGrant
 
         // Validate any scopes that are in the request
         $scopeParam = $this->server->getRequest()->request->get('scope', '');
-        $scopes     = $this->validateScopes($scopeParam, $client);
+        $scopes = $this->validateScopes($scopeParam, $client);
 
         // Create a new session
         $session = new SessionEntity($this->server);

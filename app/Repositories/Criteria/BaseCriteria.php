@@ -16,20 +16,20 @@ abstract class BaseCriteria extends RequestCriteria
     public function apply($builder, RepositoryInterface $repository)
     {
         $fieldsSearchable = $repository->getFieldsSearchable();
-        $search           = $this->request->get(config('repository.criteria.params.search', 'search'), null);
-        $searchFields     = $this->request->get(config('repository.criteria.params.searchFields', 'searchFields'), null);
-        $filter           = $this->request->get(config('repository.criteria.params.filter', 'filter'), null);
-        $orderBy          = $this->request->get(config('repository.criteria.params.orderBy', 'orderBy'), null);
-        $sortedBy         = $this->request->get(config('repository.criteria.params.sortedBy', 'sortedBy'), 'asc');
-        $sortedBy         = !empty($sortedBy) ? $sortedBy : 'asc';
+        $search = $this->request->get(config('repository.criteria.params.search', 'search'), null);
+        $searchFields = $this->request->get(config('repository.criteria.params.searchFields', 'searchFields'), null);
+        $filter = $this->request->get(config('repository.criteria.params.filter', 'filter'), null);
+        $orderBy = $this->request->get(config('repository.criteria.params.orderBy', 'orderBy'), null);
+        $sortedBy = $this->request->get(config('repository.criteria.params.sortedBy', 'sortedBy'), 'asc');
+        $sortedBy = ! empty($sortedBy) ? $sortedBy : 'asc';
 
         if ($search && is_array($fieldsSearchable) && count($fieldsSearchable)) {
             $searchFields = is_array($searchFields) || is_null($searchFields) ? $searchFields : explode(';',
                 $searchFields);
-            $fields             = $this->parserFieldsSearch($fieldsSearchable, $searchFields);
-            $isFirstField       = true;
-            $searchData         = $this->parserSearchData($search);
-            $search             = $this->parserSearchValue($search);
+            $fields = $this->parserFieldsSearch($fieldsSearchable, $searchFields);
+            $isFirstField = true;
+            $searchData = $this->parserSearchData($search);
+            $search = $this->parserSearchValue($search);
             $modelForceAndWhere = false;
 
             $builder = $builder->where(function ($query) use (
@@ -52,18 +52,18 @@ abstract class BaseCriteria extends RequestCriteria
                     if (isset($searchData[$field])) {
                         $value = $condition === 'like' ? "%{$searchData[$field]}%" : $searchData[$field];
                     } else {
-                        if (!is_null($search)) {
+                        if (! is_null($search)) {
                             $value = $condition === 'like' ? "%{$search}%" : $search;
                         }
                     }
 
                     if ($isFirstField || $modelForceAndWhere) {
-                        if (!is_null($value)) {
+                        if (! is_null($value)) {
                             $query->where($field, $condition, $value);
                             $isFirstField = false;
                         }
                     } else {
-                        if (!is_null($value)) {
+                        if (! is_null($value)) {
                             $query->orWhere($field, $condition, $value);
                         }
                     }

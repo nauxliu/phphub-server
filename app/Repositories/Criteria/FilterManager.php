@@ -11,7 +11,7 @@ use Input;
 
 class FilterManager
 {
-    protected static $added_filters  = [];
+    protected static $added_filters = [];
     protected static $parsed_filters = [];
 
     /**

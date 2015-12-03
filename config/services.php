@@ -35,10 +35,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    'jpush' => array(
+    'jpush' => [
         'app_key'         => env('JPUSH_KEY'),
         'secret'          => env('JPUSH_SECRET'),
         'apns_production' => env('JPUSH_PRODUCTION', false), //是否推送到生产环境
-    ),
+    ],
 
 ];

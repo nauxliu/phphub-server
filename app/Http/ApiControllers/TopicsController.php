@@ -140,9 +140,9 @@ class TopicsController extends Controller
             ->find($id);
 
         if (Auth::check()) {
-            $topic->favorite  = $this->topics->userFavorite($topic->id, Auth::id());
+            $topic->favorite = $this->topics->userFavorite($topic->id, Auth::id());
             $topic->attention = $this->topics->userAttention($topic->id, Auth::id());
-            $topic->vote_up   = $this->topics->userUpVoted($topic->id, Auth::id());
+            $topic->vote_up = $this->topics->userUpVoted($topic->id, Auth::id());
             $topic->vote_down = $this->topics->userDownVoted($topic->id, Auth::id());
         }
 

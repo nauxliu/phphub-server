@@ -30,7 +30,7 @@ class BaseTransformer extends TransformerAbstract
 
         // 转换 null 字段为空字符串
         foreach (array_keys($model->toArray()) as $key) {
-            if (!isset($data[$key])) {
+            if (! isset($data[$key])) {
                 $data[$key] = '';
                 continue;
             }
