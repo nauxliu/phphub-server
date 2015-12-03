@@ -2,10 +2,8 @@
 
 namespace PHPHub\Http\Controllers;
 
-use PHPHub\Jobs\GenerateUsersLoginToken;
 use PHPHub\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
-use QrCode;
 
 class UserController extends Controller
 {
@@ -22,27 +20,6 @@ class UserController extends Controller
     public function __construct(UserRepositoryInterface $repository)
     {
         $this->repository = $repository;
-    }
-
-    /**
-     * 获取用户登录 QR.
-     *
-     * @param $user_id  用户 ID
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getLoginQR($user_id)
-    {
-        //TODO: 临时接口，待用户登录做了之后将 QR 生成到本地用 cdn 连接返回
-        $login_token = $this->repository->skipPresenter()->find($user_id)->login_token;
-
-        if (! $login_token) {
-            $login_token = $this->dispatch(new GenerateUsersLoginToken($user_id));
-        }
-
-        return QrCode::size(200)
-            ->margin(0)
-            ->generate($login_token);
     }
 
     /**
