@@ -12,21 +12,12 @@ use PHPHub\Services\PushService\Jpush;
 class NotificationListener
 {
     /**
-     * 订阅的时间和处理的方法.
-     *
-     * @var array
-     */
-    protected $subscribe_events = [
-        TopicUpVoted::class => 'handle',
-        NewReply::class     => 'handle',
-    ];
-
-    /**
      * Jpush 对象
      *
      * @var Jpush
      */
     private $jpush = null;
+
     /**
      * @var NotificationRepositoryInterface
      */
@@ -113,8 +104,7 @@ class NotificationListener
      */
     public function subscribe($events)
     {
-        foreach ($this->subscribe_events as $event => $handle_method) {
-            $events->listen($event, self::class.'@'.$handle_method);
-        }
+        $events->listen(TopicUpVoted::class, class_callback(self::class, 'handle'));
+        $events->listen(NewReply::class, class_callback(self::class, 'handle'));
     }
 }
