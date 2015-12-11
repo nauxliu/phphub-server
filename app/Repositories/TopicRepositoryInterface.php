@@ -67,15 +67,6 @@ interface TopicRepositoryInterface extends RepositoryInterface
     public function byUserId($user_id);
 
     /**
-     * 创建新帖子.
-     *
-     * @param array $attributes
-     *
-     * @return mixed|Topic
-     */
-    public function store(array $attributes);
-
-    /**
      * 用户是否已经收藏帖子.
      *
      * @param $topic_id

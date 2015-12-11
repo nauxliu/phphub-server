@@ -64,3 +64,29 @@ function schema_url($path, $parameters = [])
 
     return strtolower(config('app.name')).'://'.trim($path, '/').$query;
 }
+
+/**
+ * 拼装 Eloquent 事件名.
+ *
+ * @param $name
+ * @param $event
+ *
+ * @return string
+ */
+function eloquent_event($name, $event)
+{
+    return "eloquent.{$event}: {$name}";
+}
+
+/**
+ * 拼装类方法回调.
+ *
+ * @param $class_name
+ * @param $method
+ *
+ * @return string
+ */
+function class_callback($class_name, $method)
+{
+    return "{$class_name}@{$method}";
+}

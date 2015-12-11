@@ -31,7 +31,7 @@ class Topic extends Model implements HasPresenter
         'excerpt',
     ];
 
-    protected $fillable = ['body', 'title', 'node_id'];
+    protected $fillable = ['body', 'title', 'node_id', 'user_id'];
 
     protected $morphClass = 'Topic';
 

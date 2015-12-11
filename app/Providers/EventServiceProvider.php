@@ -5,6 +5,7 @@ namespace PHPHub\Providers;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use PHPHub\Listeners\NotificationListener;
+use PHPHub\Listeners\TopicListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
 
         if (! \Request::isMethod('GET')) {
             $events->subscribe(NotificationListener::class);
+            $events->subscribe(TopicListener::class);
         }
     }
 }

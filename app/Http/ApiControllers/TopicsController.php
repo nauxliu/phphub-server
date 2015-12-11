@@ -114,7 +114,7 @@ class TopicsController extends Controller
     public function store(Request $request)
     {
         try {
-            $topic = $this->topics->store($request->all());
+            $topic = $this->topics->create($request->all());
 
             return $this->response()->item($topic, new TopicTransformer());
         } catch (ValidatorException $e) {

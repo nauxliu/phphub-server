@@ -7,7 +7,6 @@ use DB;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Pagination\Paginator;
 use PHPHub\Events\TopicUpVoted;
-use PHPHub\Jobs\SaveTopic;
 use PHPHub\Reply;
 use PHPHub\Repositories\Criteria\TopicCriteria;
 use PHPHub\Repositories\Eloquent\Traits\IncludeUserTrait;
@@ -45,28 +44,6 @@ class TopicRepository extends BaseRepository implements TopicRepositoryInterface
 
         ],
     ];
-
-    /**
-     * 创建新帖子.
-     *
-     * @param array $attributes
-     *
-     * @return mixed|Topic
-     */
-    public function store(array $attributes)
-    {
-        if (! is_null($this->validator)) {
-            $this->validator->with($attributes)
-                ->passesOrFail(ValidatorInterface::RULE_CREATE);
-        }
-
-        $topic = new Topic($attributes);
-
-        $topic->user_id = Auth::id();
-        $topic = $this->dispatch(new SaveTopic($topic));
-
-        return $topic;
-    }
 
     /**
      * Specify Model class name.
