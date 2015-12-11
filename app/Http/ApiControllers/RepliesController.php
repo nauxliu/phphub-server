@@ -39,7 +39,6 @@ class RepliesController extends Controller
 
         $data = $this->replies
             ->byTopicId($topic_id)
-            ->skipPresenter()
             ->autoWith()
             ->autoWithRootColumns(['id', 'vote_count', 'created_at'])
             ->paginate(per_page());
@@ -60,7 +59,6 @@ class RepliesController extends Controller
 
         $data = $this->replies
             ->byUserId($user_id)
-            ->skipPresenter()
             ->autoWith()
             ->autoWithRootColumns(['id', 'vote_count'])
             ->paginate(per_page());

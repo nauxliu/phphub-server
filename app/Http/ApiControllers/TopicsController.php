@@ -134,7 +134,6 @@ class TopicsController extends Controller
         $this->topics->addAvailableInclude('user', ['name', 'avatar']);
 
         $topic = $this->topics
-            ->skipPresenter()
             ->autoWith()
             ->autoWithRootColumns(array_diff(Topic::$includable, ['body', 'body_original', 'excerpt']))
             ->find($id);
@@ -226,7 +225,6 @@ class TopicsController extends Controller
 
         $data = $this->topics
             ->autoWith()
-            ->skipPresenter()
             ->autoWithRootColumns([
                 'id',
                 'title',
