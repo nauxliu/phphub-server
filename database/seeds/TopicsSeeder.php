@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 use PHPHub\Node;
 use PHPHub\User;
 
