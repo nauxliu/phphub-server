@@ -6,7 +6,6 @@ use PHPHub\User;
 
 class TopicsSeeder extends Seeder
 {
-
     /**
      * Run the database seeds.
      */
