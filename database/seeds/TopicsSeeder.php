@@ -2,13 +2,11 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use PHPHub\Jobs\SaveTopic;
 use PHPHub\Node;
 use PHPHub\User;
 
 class TopicsSeeder extends Seeder
 {
-    use DispatchesJobs;
 
     /**
      * Run the database seeds.
