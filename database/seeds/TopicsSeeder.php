@@ -28,7 +28,7 @@ class TopicsSeeder extends Seeder
         foreach ($topics as $topic) {
             $topic->user_id = array_rand($user_ids, 1);
             $topic->node_id = array_rand($node_ids, 1);
-            $this->dispatch(new SaveTopic($topic));
+            $topic->save();
         }
     }
 }
