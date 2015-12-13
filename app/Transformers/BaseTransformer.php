@@ -5,12 +5,13 @@
  * Date: 12/3/15
  * Time: 7:12 PM.
  */
+
 namespace PHPHub\Transformers;
 
 use Illuminate\Database\Eloquent\Model;
 use League\Fractal\TransformerAbstract;
 
-class BaseTransformer extends TransformerAbstract
+abstract class BaseTransformer extends TransformerAbstract
 {
     public function transform(Model $model)
     {
@@ -41,4 +42,6 @@ class BaseTransformer extends TransformerAbstract
 
         return $data;
     }
+
+    abstract public function transformData($model);
 }
