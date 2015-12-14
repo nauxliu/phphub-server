@@ -29,8 +29,10 @@ class NodesController extends Controller
      */
     public function index()
     {
-        $data = $this->nodes->all(['id', 'name', 'parent_node']);
+        $transformer = NodeTransformer::make();
 
-        return $this->response()->collection($data, new NodeTransformer());
+        $data = $this->nodes->all($transformer->figureOutWhichUsed());
+
+        return $this->response()->collection($data, $transformer);
     }
 }
