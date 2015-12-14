@@ -1,15 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use PHPHub\Jobs\SaveTopic;
 use PHPHub\Node;
 use PHPHub\User;
 
 class TopicsSeeder extends Seeder
 {
-    use DispatchesJobs;
-
     /**
      * Run the database seeds.
      */
@@ -28,7 +24,7 @@ class TopicsSeeder extends Seeder
         foreach ($topics as $topic) {
             $topic->user_id = array_rand($user_ids, 1);
             $topic->node_id = array_rand($node_ids, 1);
-            $this->dispatch(new SaveTopic($topic));
+            $topic->save();
         }
     }
 }
