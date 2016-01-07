@@ -87,7 +87,7 @@ class TopicsController extends Controller
     }
 
     /**
-     * 用户收藏的帖子列表.
+     * 用户关注的帖子列表.
      *
      * @param $user_id
      *

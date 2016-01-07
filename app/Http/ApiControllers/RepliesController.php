@@ -27,7 +27,7 @@ class RepliesController extends Controller
     }
 
     /**
-     * 获取指定用户的回复.
+     * 获取指定帖子的回复.
      *
      * @param $topic_id
      *
