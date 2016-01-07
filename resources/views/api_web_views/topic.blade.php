@@ -2,6 +2,7 @@
 <html lang="ch_zh">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <title>{!! $topic->title !!}</title>
     <link rel="stylesheet" href="{!! cdn_elixir('css/api.css') !!}">
 </head>
