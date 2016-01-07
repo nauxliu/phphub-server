@@ -2,6 +2,7 @@
 
 namespace PHPHub\Listeners;
 
+use Auth;
 use PHPHub\Events\Event;
 use PHPHub\Topic;
 use Purifier;
@@ -18,6 +19,7 @@ class TopicListener
 
     public function onSaving(Topic $topic)
     {
+        $topic->user_id = Auth::id();
         $topic->title = Purifier::clean($topic->title, 'title');
         $topic->body_original = Purifier::clean(trim($topic->body), 'body');
         $topic->body = app('markdown')->text($topic->body_original);
