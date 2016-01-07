@@ -5,7 +5,6 @@
  * Date: 12/3/15
  * Time: 7:12 PM.
  */
-
 namespace PHPHub\Transformers;
 
 use Illuminate\Database\Eloquent\Model;
