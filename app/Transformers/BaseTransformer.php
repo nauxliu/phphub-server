@@ -9,6 +9,8 @@ namespace PHPHub\Transformers;
 
 use Illuminate\Database\Eloquent\Model;
 use League\Fractal\TransformerAbstract;
+//fix LaravelAutoPresenter dosen't working
+use McCool\LaravelAutoPresenter\HasPresenter;
 
 abstract class BaseTransformer extends TransformerAbstract
 {
