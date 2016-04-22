@@ -21,7 +21,7 @@ class UserTransformer extends BaseTransformer
         $user = array_only($model->toArray(), User::$includable);
 
         if ($model->getAttribute('avatar')) {
-            $user['avatar'] = $model->avatar();
+            $user['avatar'] = $model->avatar;
         }
 
         if ($model->getAttribute('links')) {
