@@ -6,6 +6,7 @@
  * Date: 9/22/15
  * Time: 8:07 AM.
  */
+
 namespace PHPHub\Repositories\Criteria;
 
 class TopicCriteria extends BaseCriteria
@@ -19,7 +20,7 @@ class TopicCriteria extends BaseCriteria
      */
     public function filterExcellent($model)
     {
-        return $model->where('is_excellent', 1);
+        return $model->where('is_excellent', 'yes');
     }
 
     /**
@@ -29,7 +30,7 @@ class TopicCriteria extends BaseCriteria
      */
     public function filterWiki($model)
     {
-        return $model->where('is_wiki', 1);
+        return $model->where('is_wiki', 'yes');
     }
 
     /**
@@ -59,6 +60,6 @@ class TopicCriteria extends BaseCriteria
      */
     public function filterJobs($model)
     {
-        return $model->where('node_id', 40);
+        return $model->where('category_id', 1);
     }
 }
