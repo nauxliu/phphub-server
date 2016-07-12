@@ -21,7 +21,7 @@ class UserTransformer extends BaseTransformer
         $user = array_only($model->toArray(), User::$includable);
 
         if ($model->getAttribute('avatar')) {
-            $user['avatar'] = starts_with($model->avatar, 'http') ? $model->avatar : cdn($model->avatar);
+            $user['avatar'] = starts_with($model->avatar, 'http') ? $model->avatar : cdn('uploads/avatars/'.$model->avatar);
         }
 
         if ($model->getAttribute('links')) {
