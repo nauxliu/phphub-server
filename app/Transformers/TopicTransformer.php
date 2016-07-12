@@ -12,7 +12,7 @@ class TopicTransformer extends BaseTransformer
      *
      * @var array
      */
-    protected $availableIncludes = ['user', 'last_reply_user', 'replies', 'node'];
+    protected $availableIncludes = ['user', 'last_reply_user', 'replies'];
 
     /**
      * Include resources without needing it to be requested.
