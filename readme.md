@@ -1,3 +1,7 @@
+# 此项目已废弃，最新的代码已迁移至 [summerblue/phphub5](https://github.com/summerblue/phphub5)
+
+---
+
 <p align="center">
 <img src="http://ww4.sinaimg.cn/large/76dc7f1bgw1eyfw7ewb0nj20q808774z.jpg" alt="PHPHub-iOS" title="PHPHub-iOS" width="1000"/>
 </p>
