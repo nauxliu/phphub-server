@@ -61,10 +61,10 @@ $router->group([
     $router->get('topics/{id}', 'TopicsController@show');
     //Topics
     $router->get('topics', 'TopicsController@index');
-    $router->get('user/{id}/favorite/topics', 'TopicsController@indexByUserFavorite');
-    $router->get('user/{id}/attention/topics', 'TopicsController@indexByUserAttention');
-    $router->get('user/{id}/topics', 'TopicsController@indexByUserId');
-    $router->get('node/{id}/topics', 'TopicsController@indexByNodeId');
+    $router->get('users/{id}/favorite/topics', 'TopicsController@indexByUserFavorite');
+    $router->get('users/{id}/attention/topics', 'TopicsController@indexByUserAttention');
+    $router->get('users/{id}/topics', 'TopicsController@indexByUserId');
+    $router->get('nodes/{id}/topics', 'TopicsController@indexByNodeId');
 
     //Web Views
     $router->get('topics/{id}/web_view',
