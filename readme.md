@@ -1,3 +1,12 @@
+<p align="center">
+  <br>
+  <b>创造不息，交付不止</b>
+  <br>
+  <a href="https://www.yousails.com">
+    <img src="https://yousails.com/banners/brand.png" width=350>
+  </a>
+</p>
+
 # 此项目已废弃，最新的代码已迁移至 [summerblue/phphub5](https://github.com/summerblue/phphub5)
 
 ---
@@ -12,10 +21,6 @@
 <a href="https://github.com/NauxLiu/phphub-server/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg?style=flat" /></a>
 <a href="https://scrutinizer-ci.com/g/NauxLiu/phphub-server/?branch=master"><img src="https://scrutinizer-ci.com/g/NauxLiu/phphub-server/badges/quality-score.png?b=master&style=flat" /></a>
 </p>
-
-
-
-
 
 # 介绍
 本项目是使用 Laravel 5.1 重写的 [PHPHub](https://github.com/summerblue/phphub)，遵循 [Laravel](https://styleci.readme.io/docs/presets#laravel) 代码规范。
